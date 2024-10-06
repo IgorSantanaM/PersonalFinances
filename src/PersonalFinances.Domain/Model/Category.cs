@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Domain.Model
 {
-    public  class Category
+    public class Category
     {
         [Key]
         public Guid Id { get; set; }
 
+        public TransactionType? TransactionType { get; set; }
+
+        public Account? BelongsTo { get; set;  }
+
         [Required]
         [MaxLength(50)]
-        public string Name {get; set; }
+        public string Name { get; set; }
     }
 }

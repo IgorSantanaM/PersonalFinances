@@ -4,10 +4,6 @@ namespace PersonalFinances.Domain.Model
 {
     public class Account 
     {
-        public Account()
-        {
-
-        }
         [Key]
         public Guid Id { get; set; }
 
