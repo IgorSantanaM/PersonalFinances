@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Domain.Model
 {
-    internal class TransactionType
+    public enum TransactionType
     {
+        income,
+        Expense, 
+        Transfer,
+        LoanPayment,
+        LoanAmortization
     }
 }

@@ -1,9 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Events.IO.Domain.Core.Models;
+using FluentValidation;
+using System.ComponentModel.DataAnnotations;
+using System.Net.Security;
+using System.Reflection.Metadata;
 
 namespace PersonalFinances.Domain.Model
 {
-    public class Account 
+    public class Account : Entity<Account>
     {
+        public Account(string name, int initialBalance, bool reconcile )
+        {
+            Name = name;
+            InitialBalance = initialBalance;
+            Reconcile = reconcile;
+        }
         [Key]
         public Guid Id { get; set; }
 
@@ -22,8 +32,26 @@ namespace PersonalFinances.Domain.Model
 
         public ICollection<Category> Categories = new List<Category>();
 
-
-        #region ValidatingAccount
-        #endregion
+        public override bool IsValidate()
+        {
+            ValidatingTheAccount();
+            Authenticate();
+            return ValidationResult.IsValid;
+        }
+        private void ValidatingTheAccount()
+        {
+            NameValidation();
+        }
+        private void NameValidation()
+        {
+            RuleFor(c => c.Name)
+                .NotEmpty().WithMessage("Name required")
+                .Length(2, 100).WithMessage("The Account name must be between 2 and 100 chars.");
+        }
+        private void InitialBalanceValidation()
+        {
+            RuleFor(c => c.InitialBalance)
+                .NotEmpty().WithMessage("The amount is not a valid number.");
+        }
     }
 }
