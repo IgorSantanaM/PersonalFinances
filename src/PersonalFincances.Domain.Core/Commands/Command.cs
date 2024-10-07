@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace PersonalFincances.Domain.Core.Commands
 {
-    internal class Command
+    public class Command
     {
+        public DateTime TimeStamp { get; set; }
+
+        public Command()
+        {
+            TimeStamp = DateTime.Now;
+        }
     }
 }

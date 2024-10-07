@@ -1,13 +1,15 @@
-﻿namespace PersonalFincances.Domain.Core.Notifications
+﻿using PersonalFincances.Domain.Core.Events;
+
+namespace PersonalFincances.Domain.Core.Notifications
 {
-    public class DomainNotification
+    public class DomainNotifications : Message
     {
         public Guid DomainNotificationId { get; private set; }
         public string Key { get; private set; }
         public string Value { get; private set; }
         public int Version { get; private set; }
 
-        public DomainNotification(string key, string value)
+        public DomainNotifications(string key, string value)
         {
             DomainNotificationId = Guid.NewGuid();
             Key = key; 

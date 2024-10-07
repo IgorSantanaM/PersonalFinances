@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersonalFincances.Domain.Core.Events
+﻿namespace PersonalFincances.Domain.Core.Events
 {
-    internal class Event
+    public class Event : Message
     {
+        public DateTime TimeStamp { get; private set; }
+
+        protected Event()
+        {
+            TimeStamp = DateTime.Now;
+        }
     }
 }

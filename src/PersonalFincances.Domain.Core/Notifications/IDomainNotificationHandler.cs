@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PersonalFincances.Domain.Core.Events;
 
 namespace PersonalFincances.Domain.Core.Notifications
 {
-    internal interface IDomainNotificationHandler
+    public interface IDomainNotificationHandler<T> : IHandler<T> where T : Message
     {
+        bool HasNotifactions();
+
+        List<T> GetNotifications();
     }
 }

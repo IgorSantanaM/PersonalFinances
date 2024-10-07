@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PersonalFincances.Domain.Core.Events
 {
-    internal interface IHandle
+    public interface IHandler<T> where T : Message
     {
+        void Handle(T message); 
     }
 }
