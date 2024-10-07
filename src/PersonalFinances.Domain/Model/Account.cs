@@ -1,19 +1,19 @@
 ﻿using Events.IO.Domain.Core.Models;
 using FluentValidation;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Security;
-using System.Reflection.Metadata;
 
 namespace PersonalFinances.Domain.Model
 {
     public class Account : Entity<Account>
     {
+
         public Account(string name, int initialBalance, bool reconcile )
         {
             Name = name;
             InitialBalance = initialBalance;
             Reconcile = reconcile;
         }
+
         [Key]
         public Guid Id { get; set; }
 
@@ -35,12 +35,14 @@ namespace PersonalFinances.Domain.Model
         public override bool IsValidate()
         {
             ValidatingTheAccount();
-            Authenticate();
             return ValidationResult.IsValid;
         }
+
         private void ValidatingTheAccount()
         {
             NameValidation();
+            InitialBalanceValidation();
+            ValidationResult = Validate(this);
         }
         private void NameValidation()
         {
