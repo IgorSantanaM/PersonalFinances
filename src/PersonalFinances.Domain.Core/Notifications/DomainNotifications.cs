@@ -1,6 +1,7 @@
-﻿using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Events;
+using System;
 
-namespace PersonalFincances.Domain.Core.Notifications
+namespace PersonalFinances.Domain.Core.Notifications
 {
     public class DomainNotifications : Message
     {
@@ -12,7 +13,7 @@ namespace PersonalFincances.Domain.Core.Notifications
         public DomainNotifications(string key, string value)
         {
             DomainNotificationId = Guid.NewGuid();
-            Key = key; 
+            Key = key;
             Value = value;
             Version = 1;
         }

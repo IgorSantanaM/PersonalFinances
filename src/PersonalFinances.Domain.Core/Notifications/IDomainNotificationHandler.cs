@@ -1,6 +1,7 @@
-﻿using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Events;
+using System.Collections.Generic;
 
-namespace PersonalFincances.Domain.Core.Notifications
+namespace PersonalFinances.Domain.Core.Notifications
 {
     public interface IDomainNotificationHandler<T> : IHandler<T> where T : Message
     {

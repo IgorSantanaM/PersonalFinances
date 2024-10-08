@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj": {}
+    "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj": {}
   },
   "projects": {
-    "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj": {
+    "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\PersonalFinances.Domain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj",
-        "projectName": "PersonalFinances.Domain",
-        "projectPath": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFinances.Domain\\obj\\",
+        "projectUniqueName": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\PersonalFinances.Domain.Core.csproj",
+        "projectName": "PersonalFinances.Domain.Core",
+        "projectPath": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\PersonalFinances.Domain.Core.csproj",
+        "packagesPath": "C:\\Users\\paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,76 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\PersonalFincances.Domain.Core.csproj": {
-                "projectPath": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\PersonalFincances.Domain.Core.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[11.10.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\PersonalFincances.Domain.Core.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\PersonalFincances.Domain.Core.csproj",
-        "projectName": "PersonalFincances.Domain.Core",
-        "projectPath": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\PersonalFincances.Domain.Core.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "D:\\users\\Usuario\\Kinsoftware\\PersonalFinances\\src\\PersonalFincances.Domain.Core\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -101,14 +37,10 @@
           }
         },
         "warningProperties": {
+          "allWarningsAsErrors": true,
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -117,8 +49,86 @@
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
-              "version": "[11.10.0, )"
+              "version": "[11.10.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.11.0, )",
+              "versionCentrallyManaged": true
             }
+          },
+          "centralPackageVersions": {
+            "AspNetCore.HealthChecks.MongoDb": "[6.0.2, )",
+            "AspNetCore.HealthChecks.Redis": "[6.0.4, )",
+            "AspNetCore.HealthChecks.UI": "[6.0.5, )",
+            "AspNetCore.HealthChecks.UI.Client": "[6.0.5, )",
+            "AspNetCore.HealthChecks.UI.InMemory.Storage": "[6.0.5, )",
+            "AutoMapper": "[13.0.1, )",
+            "Azure.Data.Tables": "[12.9.0, )",
+            "Azure.Storage.Blobs": "[12.21.2, )",
+            "Azure.Storage.Common": "[12.20.1, )",
+            "Azure.Storage.Files.DataLake": "[12.19.1, )",
+            "coverlet.collector": "[6.0.2, )",
+            "coverlet.msbuild": "[6.0.2, )",
+            "Discord.Net": "[3.11.0, )",
+            "FluentAssertions": "[6.12.1, )",
+            "FluentValidation": "[11.10.0, )",
+            "KubernetesClient": "[8.0.68, )",
+            "MediatR": "[12.4.1, )",
+            "Microsoft.ApplicationInsights": "[2.22.0, )",
+            "Microsoft.ApplicationInsights.AspNetCore": "[2.22.0, )",
+            "Microsoft.ApplicationInsights.DependencyInjection": "[1.0.34, )",
+            "Microsoft.AspNetCore.Authorization": "[6.0.4, )",
+            "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.4, )",
+            "Microsoft.AspNetCore.JsonPatch": "[6.0.26, )",
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.0, )",
+            "Microsoft.AspNetCore.Mvc.Testing": "[6.0.25, )",
+            "Microsoft.AspNetCore.OpenApi": "[8.0.0, )",
+            "Microsoft.AspNetCore.SignalR.Client": "[7.0.0, )",
+            "Microsoft.AspNetCore.SignalR.StackExchangeRedis": "[6.0.26, )",
+            "Microsoft.CodeAnalysis": "[4.9.2, )",
+            "Microsoft.CodeAnalysis.Analyzers": "[3.11.0, )",
+            "Microsoft.CodeAnalysis.CSharp": "[4.11.0, )",
+            "Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.CodeRefactoring.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.Workspaces": "[4.9.2, )",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "[8.0.0, )",
+            "Microsoft.CodeAnalysis.Workspaces.MSBuild": "[4.9.2, )",
+            "Microsoft.Extensions.Azure": "[1.7.5, )",
+            "Microsoft.Extensions.Caching.StackExchangeRedis": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.Binder": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": "[8.0.0, )",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "[8.0.0, )",
+            "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
+            "Microsoft.Extensions.Options": "[8.0.0, )",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "[8.0.0, )",
+            "Microsoft.Security.Utilities.Core": "[1.4.18, )",
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.15.1, )",
+            "MongoDB.ApplicationInsights.DependencyInjection": "[1.0.34, )",
+            "MongoDB.Driver": "[2.20.0, )",
+            "MongoDB.Driver.Core": "[2.20.0, )",
+            "Moq": "[4.17.2, )",
+            "Sentry.AspNetCore": "[4.8.1, )",
+            "SignalRSwaggerGen": "[4.7.0, )",
+            "StackExchange.Redis": "[2.7.4, )",
+            "Swashbuckle.AspNetCore": "[6.8.1, )",
+            "System.Configuration.ConfigurationManager": "[8.0.0, )",
+            "System.IdentityModel.Tokens.Jwt": "[7.0.3, )",
+            "System.Text.Json": "[8.0.0, )",
+            "Testcontainers.MongoDb": "[3.10.0, )",
+            "Testcontainers.Redis": "[3.10.0, )",
+            "xunit": "[2.9.0, )",
+            "xunit.runner.console": "[2.9.0, )",
+            "xunit.runner.visualstudio": "[2.8.2, )",
+            "ZLogger": "[1.6.1, )"
           },
           "imports": [
             "net461",
@@ -131,12 +141,230 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj",
+        "projectName": "PersonalFinances.Domain",
+        "projectPath": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain\\PersonalFinances.Domain.csproj",
+        "packagesPath": "C:\\Users\\paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\PersonalFinances.Domain.Core.csproj": {
+                "projectPath": "C:\\Users\\paulo\\Documents\\dev\\PersonalFinances\\src\\PersonalFinances.Domain.Core\\PersonalFinances.Domain.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.10.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.11.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "AspNetCore.HealthChecks.MongoDb": "[6.0.2, )",
+            "AspNetCore.HealthChecks.Redis": "[6.0.4, )",
+            "AspNetCore.HealthChecks.UI": "[6.0.5, )",
+            "AspNetCore.HealthChecks.UI.Client": "[6.0.5, )",
+            "AspNetCore.HealthChecks.UI.InMemory.Storage": "[6.0.5, )",
+            "AutoMapper": "[13.0.1, )",
+            "Azure.Data.Tables": "[12.9.0, )",
+            "Azure.Storage.Blobs": "[12.21.2, )",
+            "Azure.Storage.Common": "[12.20.1, )",
+            "Azure.Storage.Files.DataLake": "[12.19.1, )",
+            "coverlet.collector": "[6.0.2, )",
+            "coverlet.msbuild": "[6.0.2, )",
+            "Discord.Net": "[3.11.0, )",
+            "FluentAssertions": "[6.12.1, )",
+            "FluentValidation": "[11.10.0, )",
+            "KubernetesClient": "[8.0.68, )",
+            "MediatR": "[12.4.1, )",
+            "Microsoft.ApplicationInsights": "[2.22.0, )",
+            "Microsoft.ApplicationInsights.AspNetCore": "[2.22.0, )",
+            "Microsoft.ApplicationInsights.DependencyInjection": "[1.0.34, )",
+            "Microsoft.AspNetCore.Authorization": "[6.0.4, )",
+            "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.4, )",
+            "Microsoft.AspNetCore.JsonPatch": "[6.0.26, )",
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.0, )",
+            "Microsoft.AspNetCore.Mvc.Testing": "[6.0.25, )",
+            "Microsoft.AspNetCore.OpenApi": "[8.0.0, )",
+            "Microsoft.AspNetCore.SignalR.Client": "[7.0.0, )",
+            "Microsoft.AspNetCore.SignalR.StackExchangeRedis": "[6.0.26, )",
+            "Microsoft.CodeAnalysis": "[4.9.2, )",
+            "Microsoft.CodeAnalysis.Analyzers": "[3.11.0, )",
+            "Microsoft.CodeAnalysis.CSharp": "[4.11.0, )",
+            "Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.CodeRefactoring.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest": "[1.1.1, )",
+            "Microsoft.CodeAnalysis.CSharp.Workspaces": "[4.9.2, )",
+            "Microsoft.CodeAnalysis.NetAnalyzers": "[8.0.0, )",
+            "Microsoft.CodeAnalysis.Workspaces.MSBuild": "[4.9.2, )",
+            "Microsoft.Extensions.Azure": "[1.7.5, )",
+            "Microsoft.Extensions.Caching.StackExchangeRedis": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.Binder": "[8.0.0, )",
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": "[8.0.0, )",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "[8.0.0, )",
+            "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
+            "Microsoft.Extensions.Options": "[8.0.0, )",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "[8.0.0, )",
+            "Microsoft.Security.Utilities.Core": "[1.4.18, )",
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.15.1, )",
+            "MongoDB.ApplicationInsights.DependencyInjection": "[1.0.34, )",
+            "MongoDB.Driver": "[2.20.0, )",
+            "MongoDB.Driver.Core": "[2.20.0, )",
+            "Moq": "[4.17.2, )",
+            "Sentry.AspNetCore": "[4.8.1, )",
+            "SignalRSwaggerGen": "[4.7.0, )",
+            "StackExchange.Redis": "[2.7.4, )",
+            "Swashbuckle.AspNetCore": "[6.8.1, )",
+            "System.Configuration.ConfigurationManager": "[8.0.0, )",
+            "System.IdentityModel.Tokens.Jwt": "[7.0.3, )",
+            "System.Text.Json": "[8.0.0, )",
+            "Testcontainers.MongoDb": "[3.10.0, )",
+            "Testcontainers.Redis": "[3.10.0, )",
+            "xunit": "[2.9.0, )",
+            "xunit.runner.console": "[2.9.0, )",
+            "xunit.runner.visualstudio": "[2.8.2, )",
+            "ZLogger": "[1.6.1, )"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
         }
       }
     }

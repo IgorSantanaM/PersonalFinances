@@ -1,4 +1,6 @@
-﻿namespace PersonalFincances.Domain.Core.Events
+﻿using System;
+
+namespace PersonalFinances.Domain.Core.Events
 {
     public abstract class Message
     {

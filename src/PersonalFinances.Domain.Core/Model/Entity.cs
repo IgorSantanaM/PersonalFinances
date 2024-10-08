@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using System;
 
 namespace Events.IO.Domain.Core.Models
 {

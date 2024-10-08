@@ -1,0 +1,158 @@
+<Project>
+	<!-- Fixed properties for properties -->
+	<PropertyGroup>
+		<Authors>Igor;Paulo</Authors>
+		<Copyright>© PersonalFinances. All rights reserved.</Copyright>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Nullable>Enable</Nullable>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<CentralPackageVersionsFileImported>true</CentralPackageVersionsFileImported>
+		<ServerGarbageCollection>true</ServerGarbageCollection>
+		<ThreadPoolMinThreads>128</ThreadPoolMinThreads>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SystemVersion>8.0.0</SystemVersion>
+		<MicrosoftExtensionsVersion>8.0.0</MicrosoftExtensionsVersion>
+	</PropertyGroup>
+
+
+	<!-- Dynamic properties for projects -->
+	<PropertyGroup>
+		<TargetFramework Condition="'$(TargetFramework)' == '' And '$(TargetFrameworks)' == ''">net8.0</TargetFramework>
+		<LangVersion Condition="'$(LangVersion)' == ''">10.0</LangVersion>
+		<IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
+		<Platforms Condition="'$(Platforms)' == ''">AnyCPU;x64</Platforms>
+		<RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">win-x64;linux-x64</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	</PropertyGroup>
+	<ItemGroup>
+		<GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0"/>
+	</ItemGroup>
+
+	<!-- Shared properties for Test projects -->
+	<PropertyGroup Condition="'$(ContainsTests)' == 'true'">
+		<Nullable>Disable</Nullable>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(ContainsTests)' == 'true'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.11.1" />
+		<PackageReference Include="MSTest.TestAdapter" VersionOverride="3.1.1" />
+		<PackageReference Include="MSTest.TestFramework" VersionOverride="3.1.1" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(ContainsBenchmarks)' == 'true'">
+		<PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.11" />
+		<PackageReference Include="CommandLineParser" VersionOverride="2.9.1" />
+	</ItemGroup>
+
+	<!-- Shared properties for NuGet packages -->
+	<PropertyGroup Condition="'$(IsPackable)' == 'true'">
+		<!-- Disable missing XML comments Warnings  -->
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(IsPackable)' == 'true'">
+		<GlobalPackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="8.0.0" />
+	</ItemGroup>
+
+	<!-- Central Package Management -->
+	<ItemGroup>
+
+		<!-- System Packages -->
+		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+		<PackageVersion Include="System.Text.Json" Version="$(SystemVersion)" />
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="$(SystemVersion)" />
+
+		<!-- Microsoft Packages -->
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(SystemVersion)" />
+		<PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="6.0.4" />
+		<PackageVersion Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.26" />
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="6.0.26" />
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="6.0.4" />
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(SystemVersion)" />		
+		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+		<PackageVersion Include="AspNetCore.HealthChecks.UI" Version="6.0.5" />
+		<PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+		<PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.5" />
+
+		<!-- Microsoft ApplicationInsights Packages -->
+		<PackageVersion Include="Microsoft.ApplicationInsights" Version="2.22.0" />
+		<PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+		<PackageVersion Include="Microsoft.ApplicationInsights.DependencyInjection" Version="1.0.34" />
+
+
+		<!-- Microsoft.Extensions Packages -->
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Options" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(MicrosoftExtensionsVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+		<PackageVersion Include="Microsoft.Extensions.Azure" Version="1.7.5" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="$(MicrosoftExtensionsVersion)" />
+
+		<!-- Microsoft.Security Packages -->
+		<PackageVersion Include="Microsoft.Security.Utilities.Core" Version="1.4.18" />
+
+		<!-- Azure Packages -->
+		<PackageVersion Include="Azure.Data.Tables" Version="12.9.0" />
+		<PackageVersion Include="Azure.Storage.Blobs" Version="12.21.2" />
+		<PackageVersion Include="Azure.Storage.Common" Version="12.20.1" />
+		<PackageVersion Include="Azure.Storage.Files.DataLake" Version="12.19.1" />
+
+		<!-- Mongo packages -->
+		<PackageVersion Include="MongoDB.Driver" Version="2.20.0" />
+		<PackageVersion Include="MongoDB.Driver.Core" Version="2.20.0" />
+		<PackageVersion Include="AspNetCore.HealthChecks.MongoDb" Version="6.0.2"  />
+		<PackageVersion Include="MongoDB.ApplicationInsights.DependencyInjection" Version="1.0.34"  />
+
+		<PackageVersion Include="Testcontainers.MongoDb" Version="3.10.0" />
+		<PackageVersion Include="Testcontainers.Redis" Version="3.10.0" />
+		<PackageVersion Include="coverlet.collector" Version="6.0.2" />
+		<PackageVersion Include="coverlet.msbuild" Version="6.0.2" />
+		<PackageVersion Include="Moq" Version="4.17.2" />
+		<PackageVersion Include="xunit" Version="2.9.0" />
+		<PackageVersion Include="xunit.runner.console" Version="2.9.0" />
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+		<PackageVersion Include="FluentAssertions" Version="6.12.1" />
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.25" />
+
+		<!-- Redis packages -->
+		<PackageVersion Include="StackExchange.Redis" Version="2.7.4" />
+		<PackageVersion Include="AspNetCore.HealthChecks.Redis" Version="6.0.4" />
+
+		<!-- Additional 3rd-Party packages -->
+		<PackageVersion Include="Sentry.AspNetCore" Version="4.8.1" />
+		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+		<PackageVersion Include="MediatR" Version="12.4.1" />
+		<PackageVersion Include="Discord.Net" Version="3.11.0" />
+		<PackageVersion Include="ZLogger" Version="1.6.1" />
+		<PackageVersion Include="AutoMapper" Version="13.0.1" />
+		<PackageVersion Include="KubernetesClient" Version="8.0.68" />
+		<PackageVersion Include="SignalRSwaggerGen " Version="4.7.0" />
+		<PackageVersion Include="FluentValidation" Version="11.10.0" />
+
+		<!-- Roslyn Packages -->
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.MSTest" Version="1.1.1" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest" Version="1.1.1" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeRefactoring.Testing.MSTest" Version="1.1.1" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest" Version="1.1.1"/>
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.9.2" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.9.2" />
+		<PackageVersion Include="Microsoft.CodeAnalysis" Version="4.9.2" />
+	</ItemGroup>
+</Project>
