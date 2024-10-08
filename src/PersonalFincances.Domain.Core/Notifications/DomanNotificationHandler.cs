@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace PersonalFincances.Domain.Core.Notifications
 {
-    public class DomainNotificationHandler : IDomainNotificationHandler<DomainNotifications>
+    public class DomainNotificationHandler : IDomainNotificationHandler<DomainNotification>
     {
-        public List<DomainNotifications> _notifications;
+        public List<DomainNotification> _notifications;
 
         public DomainNotificationHandler()
         {
-            _notifications = new List<DomainNotifications>();
+            _notifications = new List<DomainNotification>();
         }
-        public List<DomainNotifications> GetNotifications()
+        public List<DomainNotification> GetNotifications()
         {
             return _notifications;
         }
 
-        public void Handle(DomainNotifications message)
+        public void Handle(DomainNotification message)
         {
             _notifications.Add(message);
         }
@@ -30,7 +30,7 @@ namespace PersonalFincances.Domain.Core.Notifications
         }
         public void Dispose()
         {
-            _notifications = new List<DomainNotifications>();
+            _notifications = new List<DomainNotification>();
         }
     }
 }
