@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
+    <Folder Include="Account\Events\" />
   </ItemGroup>
 
 </Project>

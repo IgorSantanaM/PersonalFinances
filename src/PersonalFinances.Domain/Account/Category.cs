@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Domain.Model
+namespace PersonalFinances.Domain.Account
 {
     public class Category
     {
@@ -14,7 +14,7 @@ namespace PersonalFinances.Domain.Model
 
         public TransactionType? TransactionType { get; set; }
 
-        public Account? BelongsTo { get; set;  }
+        public Account? BelongsTo { get; set; }
 
         [Required]
         [MaxLength(50)]

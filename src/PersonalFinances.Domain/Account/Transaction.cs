@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Domain.Model
+namespace PersonalFinances.Domain.Account
 {
     public class Transaction
     {
