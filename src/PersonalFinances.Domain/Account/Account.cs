@@ -2,12 +2,12 @@
 using FluentValidation;
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalFinances.Domain.Model
+namespace PersonalFinances.Domain.Account
 {
     public class Account : Entity<Account>
     {
 
-        public Account(string name, int initialBalance, bool reconcile )
+        public Account(string name, int initialBalance, bool reconcile)
         {
             Name = name;
             InitialBalance = initialBalance;

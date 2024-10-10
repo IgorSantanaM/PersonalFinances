@@ -1,4 +1,4 @@
-﻿namespace PersonalFinances.Domain.Model
+﻿namespace PersonalFinances.Domain.Account
 {
     public enum Frequency
     {

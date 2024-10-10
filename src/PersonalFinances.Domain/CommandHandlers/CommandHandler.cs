@@ -14,10 +14,10 @@ namespace PersonalFinances.Domain.CommandHandlers
     public abstract class CommandHandler
     {
         private readonly IBus _bus;
-        private readonly IDomainNotificationHandler<DomainNotifications> _notifications;
+        private readonly IDomainNotificationHandler<DomainNotification> _notifications;
         private readonly IUnitOfWork _uow;
 
-        protected CommandHandler(IBus bus, IDomainNotificationHandler<DomainNotifications> notifications, IUnitOfWork uow)
+        protected CommandHandler(IBus bus, IDomainNotificationHandler<DomainNotification> notifications, IUnitOfWork uow)
         {
             _bus = bus;
             _notifications = notifications;
@@ -29,7 +29,7 @@ namespace PersonalFinances.Domain.CommandHandlers
             var commandResponse = _uow.Commit();
             if (commandResponse.Success) return true;
             Console.WriteLine("Error when saving data in the database");
-            _bus.RaiseEvent(new DomainNotifications("Commit", "Error when saving data in the database"));
+            _bus.RaiseEvent(new DomainNotification("Commit", "Error when saving data in the database"));
 
             return false;
         }
