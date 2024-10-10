@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFincances.Domain.Core\PersonalFincances.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>
