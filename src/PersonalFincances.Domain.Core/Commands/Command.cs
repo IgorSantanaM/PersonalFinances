@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalFincances.Domain.Core.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalFincances.Domain.Core.Commands
 {
-    public class Command
+    public class Command : Message
     {
         public DateTime TimeStamp { get; set; }
 
