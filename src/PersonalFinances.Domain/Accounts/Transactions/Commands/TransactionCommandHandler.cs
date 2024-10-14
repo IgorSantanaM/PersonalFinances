@@ -4,6 +4,7 @@ using PersonalFinances.Domain.Interfaces;
 using PersonalFincances.Domain.Core.Bus;
 using PersonalFincances.Domain.Core.Events;
 using PersonalFincances.Domain.Core.Notifications;
+using PersonalFinances.Domain.Accounts.Transactions.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;  
