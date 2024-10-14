@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Domain.Account.Commands
+namespace PersonalFinances.Domain.Accounts.Commands
 {
     public class BaseAccountTypeCommand : Command
     {

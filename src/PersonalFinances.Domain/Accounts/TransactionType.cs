@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Domain.Account
+namespace PersonalFinances.Domain.Accounts
 {
     public class TransactionType
     {
