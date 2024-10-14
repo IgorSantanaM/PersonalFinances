@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PersonalFinances.Domain.Account;
 
-namespace PersonalFinances.Domain.Account
+namespace PersonalFinances.Domain.Accounts.Transactions
 {
     public class Transaction
     {
