@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Domain.Accounts.Events
 {
-    internal class AccountDeletedEvent
+    public class AccountDeletedEvent : BaseAccountEvent
     {
+        public AccountDeletedEvent(Guid id) 
+        {
+            Id = id;
+        }
     }
 }
