@@ -7,11 +7,12 @@ namespace PersonalFinances.Domain.Account
     public class Account : Entity<Account>
     {
 
-        public Account(string name, int initialBalance, bool reconcile)
+        public Account(string name, int initialBalance, bool reconcile, AccountType accountType)
         {
             Name = name;
             InitialBalance = initialBalance;
             Reconcile = reconcile;
+            Type = accountType;
         }
 
         [Key]

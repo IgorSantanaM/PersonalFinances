@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Domain.Account.Commands
+namespace PersonalFinances.Domain.Accounts.Events
 {
-    internal class BaseAccountCommand
+    internal class AccountDeletedEvent
     {
     }
 }
