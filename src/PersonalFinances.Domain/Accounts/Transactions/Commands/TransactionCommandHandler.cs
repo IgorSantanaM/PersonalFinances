@@ -38,7 +38,7 @@ namespace PersonalFinances.Domain.Accounts.Transactions.Commands
 
             if (Commit())
             {
-                _bus.RaiseEvent(new RegistredTransactionEvent(message.Id, message.DateOfTransaction, message.Amount, message.Remarks  ))
+                _bus.RaiseEvent(new RegistredTransactionEvent(message.Id, message.DateOfTransaction, message.Amount, message.Remarks));
             }
         }
     }
