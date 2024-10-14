@@ -2,7 +2,7 @@
 using FluentValidation;
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalFinances.Domain.Account
+namespace PersonalFinances.Domain.Accounts
 {
     public class Account : Entity<Account>
     {

@@ -1,6 +1,6 @@
 ﻿using PersonalFincances.Domain.Core.Commands;
 
-namespace PersonalFinances.Domain.Account.Commands
+namespace PersonalFinances.Domain.Accounts.Commands
 {
     public class BaseAccountCommand : Command
     {

@@ -1,4 +1,4 @@
-﻿namespace PersonalFinances.Domain.Account
+﻿namespace PersonalFinances.Domain.Accounts
 {
     public class Frequency
     {

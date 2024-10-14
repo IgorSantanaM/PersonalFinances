@@ -1,5 +1,5 @@
-﻿using PersonalFinances.Domain.Account.Commands;
-using PersonalFinances.Domain.Account;
+﻿using PersonalFinances.Domain.Accounts.Commands;
+using PersonalFinances.Domain.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
