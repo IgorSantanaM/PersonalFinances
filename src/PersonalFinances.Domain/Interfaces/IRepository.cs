@@ -5,8 +5,8 @@ namespace PersonalFinances.Domain.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
     {
-        void AddAsync(TEntity obj);
-        TEntity GetEntityByIdAsync(Guid id);
+        void Add(TEntity obj);
+        TEntity GetEntityById(Guid id);
         IEnumerable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(Guid id);
