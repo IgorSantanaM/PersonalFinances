@@ -22,14 +22,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Domain.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 WebApi", "1.1 WebApi", "{66326C1D-FF15-4660-892A-96CBA284BEF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFincances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFincances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFincances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 CrossCutting", "5.1 CrossCutting", "{763B9E0C-81A5-43D5-9721-7BE8993EDA51}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 CrossCutting", "5.2 CrossCutting", "{763B9E0C-81A5-43D5-9721-7BE8993EDA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.Infra.CrossCutting.Bus", "src\PersonalFinances.Infra.CrossCutting\PersonalFinances.Infra.CrossCutting.Bus.csproj", "{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Infra.CrossCutting.Bus", "src\PersonalFinances.Infra.CrossCutting\PersonalFinances.Infra.CrossCutting.Bus.csproj", "{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59}"
 	ProjectSection(ProjectDependencies) = postProject
 		{733614B7-1F95-4181-B849-2040A10A5D21} = {733614B7-1F95-4181-B849-2040A10A5D21}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.Infra.Data", "src\PersonalFinances.Infra.Data\PersonalFinances.Infra.Data.csproj", "{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4A3876BA-66BE-4655-9E98-A4EF171FAADF} = {4A3876BA-66BE-4655-9E98-A4EF171FAADF}
+		{733614B7-1F95-4181-B849-2040A10A5D21} = {733614B7-1F95-4181-B849-2040A10A5D21}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 Data", "5.1 Data", "{7ABC4011-0548-4EAC-A0F6-068DD100C6CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.Infra.CrossCutting.IoC", "src\PersonalFinances.Infra.CrossCutting.IoC\PersonalFinances.Infra.CrossCutting.IoC.csproj", "{8CE22BED-6E86-4682-B40F-E7314F7C3DB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +63,14 @@ Global
 		{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +82,9 @@ Global
 		{25B543CC-241D-4427-82E7-F4CD54EC271E} = {66326C1D-FF15-4660-892A-96CBA284BEF7}
 		{763B9E0C-81A5-43D5-9721-7BE8993EDA51} = {640DAC5C-92B6-44E5-B798-932D94A94E00}
 		{349B2C92-4E0C-4B04-B3EF-5CC5D3652B59} = {763B9E0C-81A5-43D5-9721-7BE8993EDA51}
+		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {7ABC4011-0548-4EAC-A0F6-068DD100C6CB}
+		{7ABC4011-0548-4EAC-A0F6-068DD100C6CB} = {640DAC5C-92B6-44E5-B798-932D94A94E00}
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0} = {763B9E0C-81A5-43D5-9721-7BE8993EDA51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82402FA9-44DC-41B7-8731-7920B53BA95B}

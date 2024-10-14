@@ -1,4 +1,5 @@
-﻿using PersonalFinances.Domain.Interfaces;
+﻿using FluentValidation.Results;
+using PersonalFinances.Domain.Interfaces;
 using PersonalFincances.Domain.Core.Bus;
 using PersonalFincances.Domain.Core.Notifications;
 using System;
@@ -16,12 +17,20 @@ namespace PersonalFinances.Domain.CommandHandlers
         private readonly IBus _bus;
         private readonly IDomainNotificationHandler<DomainNotification> _notifications;
         private readonly IUnitOfWork _uow;
-
-        protected CommandHandler(IBus bus, IDomainNotificationHandler<DomainNotification> notifications, IUnitOfWork uow)
+            
+        protected CommandHandler(IBus bus, IUnitOfWork uow, IDomainNotificationHandler<DomainNotification> notifications)
         {
             _bus = bus;
             _notifications = notifications;
             _uow = uow;
+        }
+        protected void NotifyErrorValidations(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
+            {
+                Console.WriteLine(error.ErrorMessage);
+                _bus.RaiseEvent(new DomainNotification(error.PropertyName, error.ErrorMessage));
+            }
         }
         protected bool Commit()
         {
