@@ -14,8 +14,4 @@
     <ProjectReference Include="..\PersonalFincances.Domain.Core\PersonalFincances.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Account\Events\" />
-  </ItemGroup>
-
 </Project>
