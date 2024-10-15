@@ -1,4 +1,4 @@
-﻿using Events.IO.Domain.Core.Models;
+﻿using PersonalFincances.Domain.Core.Model;
 using System.Linq.Expressions;
 
 namespace PersonalFinances.Domain.Interfaces

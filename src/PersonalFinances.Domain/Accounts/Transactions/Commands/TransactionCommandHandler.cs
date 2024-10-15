@@ -1,5 +1,4 @@
-﻿using PersonalFinances.Domain.Accounts.Transactions.Repository;
-using PersonalFinances.Domain.CommandHandlers;
+﻿using PersonalFinances.Domain.CommandHandlers;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFincances.Domain.Core.Bus;
 using PersonalFincances.Domain.Core.Events;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;  
 using System.Text;
 using System.Threading.Tasks;
+using PersonalFincances.Domain.Accounts.Model.Repository;
 
 namespace PersonalFinances.Domain.Accounts.Transactions.Commands
 {

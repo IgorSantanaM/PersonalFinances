@@ -1,12 +1,7 @@
-﻿using PersonalFinances.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PersonalFinances.Domain.Accounts.Transactions;
+using PersonalFinances.Domain.Interfaces;
 
-namespace PersonalFinances.Domain.Accounts.Transactions.Repository
+namespace PersonalFincances.Domain.Accounts.Model.Repository
 {
     public interface ITransactionRepository : IRepository<Transaction>
     {

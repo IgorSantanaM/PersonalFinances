@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace Events.IO.Domain.Core.Models
+namespace PersonalFincances.Domain.Core.Model
 {
     public abstract class Entity<T> : AbstractValidator<T> where T : Entity<T>
     {
@@ -9,9 +9,11 @@ namespace Events.IO.Domain.Core.Models
         {
             ValidationResult = new ValidationResult();
         }
+
         public Guid Id { get; protected set; }
 
         public abstract bool IsValidate();
+
         public ValidationResult ValidationResult { get; protected set; }
 
         public override bool Equals(object? obj)
@@ -23,6 +25,7 @@ namespace Events.IO.Domain.Core.Models
 
             return Id.Equals(compareTo.Id);
         }
+
         public static bool operator ==(Entity<T> a, Entity<T> b)
         {
             if (ReferenceEquals(a, null) && ReferenceEquals(b, null)) return true;
@@ -30,17 +33,30 @@ namespace Events.IO.Domain.Core.Models
 
             return a.Equals(b);
         }
+
         public static bool operator !=(Entity<T> a, Entity<T> b)
         {
             return !(a == b);
         }
+
         public override int GetHashCode()
         {
             return (GetType().GetHashCode() * 907) + Id.GetHashCode();
         }
+
         public override string ToString()
         {
-            return (GetType().Name + $"[Id ={Id} ]");
+            return $"{GetType().Name}[Id={Id}]";
+        }
+
+        // Example validation logic (can be overridden in derived classes)
+        public virtual void Validate()
+        {
+            ValidationResult = Validate((T)this);
+            if (!ValidationResult.IsValid)
+            {
+                throw new ValidationException(ValidationResult.Errors);
+            }
         }
     }
 }
