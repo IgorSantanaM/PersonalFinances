@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PersonalFincances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Events.IO.Domain.Core.Models;
-using PersonalFinances.Domain.Accounts;
 
 namespace PersonalFinances.Domain.Accounts.Transactions
 {

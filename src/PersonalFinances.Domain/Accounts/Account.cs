@@ -1,5 +1,5 @@
-﻿using Events.IO.Domain.Core.Models;
-using FluentValidation;
+﻿using FluentValidation;
+using PersonalFincances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace PersonalFinances.Domain.Accounts
@@ -7,12 +7,11 @@ namespace PersonalFinances.Domain.Accounts
     public class Account : Entity<Account>
     {
 
-        public Account(string name, int initialBalance, bool reconcile, AccountType accountType)
+        public Account( string name, int initialBalance, bool reconcile)
         {
             Name = name;
             InitialBalance = initialBalance;
             Reconcile = reconcile;
-            Type = accountType;
         }
 
         [Key]
