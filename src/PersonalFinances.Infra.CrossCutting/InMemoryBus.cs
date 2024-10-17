@@ -7,9 +7,10 @@ namespace PersonalFinances.Infra.CrossCutting.Bus
 {
     public class InMemoryBus : IBus
     {
-
         public static Func<IServiceProvider> ContainerAccessor { get; set; }
+
         private static IServiceProvider Container => ContainerAccessor();
+
         public void RaiseEvent<T>(T theEvent) where T : Event
         {
             Publish(theEvent);

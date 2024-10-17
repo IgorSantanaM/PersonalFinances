@@ -9,7 +9,9 @@ namespace PersonalFinances.Domain.Accounts
     public class TransactionType
     {
         public Guid Id { get; set; }
+
         public string Type { get; set; }
+
         public TransactionType(string type)
         {
             Id = Guid.NewGuid();

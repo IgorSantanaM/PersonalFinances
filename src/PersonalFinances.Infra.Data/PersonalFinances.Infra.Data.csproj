@@ -7,11 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UoW\**" />
+    <EmbeddedResource Remove="UoW\**" />
+    <None Remove="UoW\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.Domain\PersonalFinances.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UoW\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Options" />
   </ItemGroup>
 
 </Project>
