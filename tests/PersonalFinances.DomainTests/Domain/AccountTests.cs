@@ -5,7 +5,7 @@ namespace PersonalFincances.Tests.Domain
     public class AccountTests
     {
         [Fact]
-        public void CreateTwoAccountObjects_ObjectsAreCompared_IsEqualMustBeTrue()
+        public void CompareTwoAccounts_NotEquals_ReturnTrue()
         {
             // Arrange
             // nothing to see here
@@ -14,7 +14,7 @@ namespace PersonalFincances.Tests.Domain
             var acc1 = new Account("Igor", 2000, true);
             var acc2 = new Account("Igor", 2000, true);
             // Assert
-            Assert.True(acc1.Equals(acc2));
+            Assert.True(acc1 != acc2 && !acc1.Equals(acc2));
         }
         //[Fact]
         //public void CreateTwoAccountObjects_ObjectsAreCompared_IsEqualMustBeFalse()

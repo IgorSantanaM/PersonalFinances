@@ -12,7 +12,7 @@ namespace PersonalFincances.Domain.Core.Model
 
         public Guid Id { get; protected set; }
 
-        public abstract bool IsValidate();
+        public abstract bool Validate();
 
         public ValidationResult ValidationResult { get; protected set; }
 
@@ -49,14 +49,5 @@ namespace PersonalFincances.Domain.Core.Model
             return $"{GetType().Name}[Id={Id}]";
         }
 
-        // Example validation logic (can be overridden in derived classes)
-        public virtual void Validate()
-        {
-            ValidationResult = Validate((T)this);
-            if (!ValidationResult.IsValid)
-            {
-                throw new ValidationException(ValidationResult.Errors);
-            }
-        }
     }
 }

@@ -1,23 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FluentValidation;
+using PersonalFincances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonalFinances.Domain.Accounts
 {
-    public class Category
+    public class Category : Entity<Category>
     {
-        [Key]
-        public Guid Id { get; set; }
 
         public TransactionType? TransactionType { get; set; }
 
         public Account? BelongsTo { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public string Name { get; set; }
+
+        public Category(string name)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+        }
+
+        public override bool Validate()
+        {
+            ValidatingTheCategory();
+            return ValidationResult.IsValid;
+        }
+
+        private void ValidatingTheCategory()
+        {
+            NameValidation();
+        }
+
+        private void NameValidation()
+        {
+            RuleFor(c => c.Name)
+                .NotEmpty().WithMessage("The Category name should not be null")
+                .Length(2, 100).WithMessage("The Category name must be between 2 an 100");
+        }
+
     }
 }

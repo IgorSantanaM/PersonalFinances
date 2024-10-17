@@ -27,9 +27,9 @@ namespace PersonalFinances.Domain.Accounts.Transactions.Commands
 
         public void Handle(RegistryTransactionCommand message)
         {
-            Transaction transaction = new(message.Id, message.DateOfTransaction, message.Amount, message.Remarks);
+            Transaction transaction = new(message.DateOfTransaction, message.Amount, message.Remarks);
 
-            if (!transaction.IsValidate())
+            if (!transaction.Validate())
             {
                 NotifyErrorValidations(transaction.ValidationResult);
                 return;

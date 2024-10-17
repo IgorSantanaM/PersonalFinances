@@ -1,11 +1,21 @@
-    var builder = WebApplication.CreateBuilder(args);
+using Microsoft.Extensions.Configuration;
+using PersonalFinances.Infra.Data;
+using PersonalFinances.Infra.Data.Mongo.Configurations;
 
-    // Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
-    builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+// Add services to the container.
+    var services = builder.Services;
+    var configuration = builder.Configuration;
+
+    services.AddInfrastructure();
+    services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
+
+
+services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
 
     var app = builder.Build();
 
