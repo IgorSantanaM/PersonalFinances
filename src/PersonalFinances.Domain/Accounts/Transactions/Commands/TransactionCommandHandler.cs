@@ -19,7 +19,7 @@ namespace PersonalFinances.Domain.Accounts.Transactions.Commands
         private readonly IBus _bus;
         private readonly ITransactionRepository _transactionRepository;
 
-        public TransactionCommandHandler(IBus bus, IUnitOfWork uow, IDomainNotificationHandler<DomainNotification> notifications, ITransactionRepository transactionRepository) : base(bus, uow, notifications)
+        public TransactionCommandHandler(IBus bus, IDomainNotificationHandler<DomainNotification> notifications, ITransactionRepository transactionRepository) : base(bus, notifications)
         {
             _bus = bus;
             _transactionRepository = transactionRepository;
@@ -29,7 +29,7 @@ namespace PersonalFinances.Domain.Accounts.Transactions.Commands
         {
             Transaction transaction = new(message.DateOfTransaction, message.Amount, message.Remarks);
 
-            if (!transaction.Validate())
+            if (!transaction.IsValidate())
             {
                 NotifyErrorValidations(transaction.ValidationResult);
                 return;
@@ -37,10 +37,6 @@ namespace PersonalFinances.Domain.Accounts.Transactions.Commands
             
             _transactionRepository.Add(transaction);
 
-            if (Commit())
-            {
-                _bus.RaiseEvent(new RegistredTransactionEvent(message.Id, message.DateOfTransaction, message.Amount, message.Remarks));
-            }
         }
     }
 }

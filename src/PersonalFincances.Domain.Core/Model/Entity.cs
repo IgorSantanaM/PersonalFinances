@@ -12,7 +12,7 @@ namespace PersonalFincances.Domain.Core.Model
 
         public Guid Id { get; protected set; }
 
-        public abstract bool Validate();
+        public abstract bool IsValidate();
 
         public ValidationResult ValidationResult { get; protected set; }
 

@@ -16,13 +16,11 @@ namespace PersonalFinances.Domain.CommandHandlers
     {
         private readonly IBus _bus;
         private readonly IDomainNotificationHandler<DomainNotification> _notifications;
-        private readonly IUnitOfWork _uow;
             
-        protected CommandHandler(IBus bus, IUnitOfWork uow, IDomainNotificationHandler<DomainNotification> notifications)
+        protected CommandHandler(IBus bus, IDomainNotificationHandler<DomainNotification> notifications)
         {
             _bus = bus;
             _notifications = notifications;
-            _uow = uow;
         }
         protected void NotifyErrorValidations(ValidationResult validationResult)
         {
@@ -31,16 +29,6 @@ namespace PersonalFinances.Domain.CommandHandlers
                 Console.WriteLine(error.ErrorMessage);
                 _bus.RaiseEvent(new DomainNotification(error.PropertyName, error.ErrorMessage));
             }
-        }
-        protected bool Commit()
-        {
-            if (_notifications.HasNotifactions()) return false;
-            var commandResponse = _uow.Commit();
-            if (commandResponse.Success) return true;
-            Console.WriteLine("Error when saving data in the database");
-            _bus.RaiseEvent(new DomainNotification("Commit", "Error when saving data in the database"));
-
-            return false;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace PersonalFincances.Services.DTOs
 {
-    public class CreateAccountDto
+    public class AccountForCreationDto
     {
         [Key]
         public Guid Id { get; set; }
@@ -15,7 +15,7 @@ namespace PersonalFincances.Services.DTOs
 
         public bool Reconcile { get; set; }
 
-        public CreateAccountDto(string name, int initialBalance, bool reconcile)
+        public AccountForCreationDto(string name, int initialBalance, bool reconcile)
         {
             Id = Guid.NewGuid();
             Name = name;

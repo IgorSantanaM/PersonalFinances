@@ -8,33 +8,32 @@ using PersonalFincances.Services.DTOs;
 
 namespace PersonalFinances.Services.Repository
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountAppServices : IAccountAppServices
     {
         private readonly IRepository<Account> _repository;
         private readonly IBus _bus;
         private readonly IMapper _mapper;
         private readonly IMongoRepository<AccountDocument> _mongo;
 
-        public AccountRepository(IRepository<Account> repository, IBus bus, IMapper mapper, IMongoRepository<AccountDocument> mongo)
+        public AccountAppServices(IRepository<Account> repository, IBus bus, IMapper mapper, IMongoRepository<AccountDocument> mongo)
         {
             _repository = repository;
             _bus = bus;
             _mapper = mapper;
             _mongo = mongo;
         }
-        public async Task CreateAccountAsync(CreateAccountDto createAccountDto)
+        public async Task CreateAccountAsync(AccountForCreationDto accountForCreationDto)
         {
-            Account account = _mapper.Map<Account>(createAccountDto);
+            Account account = _mapper.Map<Account>(accountForCreationDto);
 
-            if (!account.Validate())
+            if (!account.IsValidate())
             {
                 throw new Exception("Could not create the account");
             }
 
             _repository.Add(account);
-            _repository.SaveChanges();
 
-            AccountDto accountDto = _mapper.Map<AccountDto>(account);
+            //AccountDto accountDto = _mapper.Map<AccountDto>(account);
             
             AccountDocument accountDocument = _mapper.Map<AccountDocument>(account);
 

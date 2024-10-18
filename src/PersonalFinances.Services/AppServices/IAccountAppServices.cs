@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Services.Repository
 {
-    public interface IAccountRepository
+    public interface IAccountAppServices
     {
-        Task CreateAccountAsync(CreateAccountDto createAccountDto);
+        Task CreateAccountAsync(AccountForCreationDto createAccountDto);
         Task<AccountDto> GetAccountAsync(Guid id);
     }
 }
