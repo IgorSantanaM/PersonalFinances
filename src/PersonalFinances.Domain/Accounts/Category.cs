@@ -19,7 +19,7 @@ namespace PersonalFinances.Domain.Accounts
             Name = name;
         }
 
-        public override bool Validate()
+        public override bool IsValidate()
         {
             ValidatingTheCategory();
             return ValidationResult.IsValid;

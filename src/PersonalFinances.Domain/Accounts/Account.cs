@@ -28,7 +28,7 @@ namespace PersonalFinances.Domain.Accounts
 
         public ICollection<Category> Categories = new List<Category>();
 
-        public override bool Validate()
+        public override bool IsValidate()
         {
             ValidatingTheAccount();
             return ValidationResult.IsValid;
@@ -50,7 +50,8 @@ namespace PersonalFinances.Domain.Accounts
         private void InitialBalanceValidation()
         {
             RuleFor(c => c.InitialBalance)
-                .NotEmpty().WithMessage("The amount is not a valid number.");
+                .NotEmpty().WithMessage("The amount is not a valid number.")
+                .ExclusiveBetween(0, 250000).WithMessage("The initial balance should be between 0 and 250.000");
         }
 
     }

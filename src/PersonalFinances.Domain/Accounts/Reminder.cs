@@ -32,7 +32,7 @@ namespace PersonalFinances.Domain.Accounts
             Remarks = remarks;
             NumberOfRepetitions = numberOfRepetitions;
         }
-        public override bool Validate()
+        public override bool IsValidate()
         {
             ValidatingReminder();
             return ValidationResult.IsValid;

@@ -24,7 +24,7 @@ namespace PersonalFinances.Domain.Accounts.Transactions
             Remarks = remarks;
         }
 
-        public override bool Validate()
+        public override bool IsValidate()
         {
             ValidatingTransaction();
             return ValidationResult.IsValid;

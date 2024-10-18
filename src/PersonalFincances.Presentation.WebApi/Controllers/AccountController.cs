@@ -5,20 +5,20 @@ using System.Runtime.InteropServices;
 
 namespace PersonalFincances.Services.Controllers
 {
-    [Route("/Account/")]
+    [ApiController]
+    [Route("Account")]
     public class AccountController : Controller
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountAppServices _accountRepository;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(IAccountAppServices accountRepository)
         {
             _accountRepository = accountRepository;
         }
-        [HttpPost(Name = "CreateAccount")]
-        [Route("/Create")]
-        public async Task<IActionResult> CreateAccount(CreateAccountDto createAccountDto)
+        [HttpPost("Create")] 
+        public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
-            await _accountRepository.CreateAccountAsync(createAccountDto);
+            await _accountRepository.CreateAccountAsync(accountForCreationDto);
 
             return Ok();
         }
