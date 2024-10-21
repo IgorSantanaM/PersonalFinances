@@ -13,6 +13,8 @@ namespace PersonalFinances.Infra.Data
     {
         IQueryable<TDocument> AsQueryable();
 
+        Task<IEnumerable<TDocument>> GetAllAsync();
+
         Task<IEnumerable<TDocument>> FindAsync(FilterDefinition<TDocument> filter);
 
         IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression);

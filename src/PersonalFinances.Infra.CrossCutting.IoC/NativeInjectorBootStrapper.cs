@@ -32,7 +32,7 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
             services.AddScoped<IHandler<RegistryAccountCommand>, AccountCommandHandler>();
             // services.AddScoped<IHandler<DeleteAccountCommand>, EventCommandHandler>();
             // services.AddScoped<IHandler<UpdateAccountCommand>, EventCommandHandler>();
-            services.AddScoped<IHandler<RegistryTransactionCommand>, TransactionCommandHandler>();
+            //services.AddScoped<IHandler<RegistryTransactionCommand>, TransactionCommandHandler>();
 
             // Infra BUS
             services.AddScoped<IBus, InMemoryBus>();

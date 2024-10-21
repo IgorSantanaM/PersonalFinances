@@ -114,5 +114,10 @@ namespace PersonalFinances.Infra.Data
 
         public Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression) => collection.DeleteManyAsync(filterExpression);
         public Task<IClientSession> StartSessionAsync() => throw new NotImplementedException();
+
+        public async Task<IEnumerable<TDocument>> GetAllAsync()
+        {
+            return await collection.Find(Builders<TDocument>.Filter.Empty).ToListAsync();
+        }
     }
 }

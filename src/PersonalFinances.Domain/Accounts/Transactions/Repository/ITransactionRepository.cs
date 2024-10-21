@@ -3,8 +3,8 @@ using PersonalFinances.Domain.Interfaces;
 
 namespace PersonalFincances.Domain.Accounts.Model.Repository
 {
-    public interface ITransactionRepository : IRepository<Transaction>
-    {
+    //public interface ITransactionRepository : IRepository<Transaction>
+    //{
         
-    }
+    //}
 }

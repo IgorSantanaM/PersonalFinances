@@ -1,22 +1,21 @@
 ﻿using PersonalFincances.Domain.Core.Model;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace PersonalFinances.Domain.Interfaces
 {
-    public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
+    public interface IRepository<K, T> where K : Entity<K>
     {
 
-        void Add(TEntity obj);
+        Task AddAsync(K obj);
 
-        TEntity GetEntityById(Guid id);
+        Task<K?> GetEntityByIdAsync(Guid id);
 
-        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<K>> GetAllAsync();
 
-        void Update(TEntity obj);
+        Task UpdateAsync(K obj);
     
-        void Remove(Guid id);
-
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        Task RemoveAsync(Guid id);
 
     }
 }

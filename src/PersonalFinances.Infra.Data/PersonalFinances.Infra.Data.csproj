@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.Domain\PersonalFinances.Domain.csproj" />
+    <ProjectReference Include="..\PersonalFincances.Domain.Core\PersonalFincances.Domain.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
