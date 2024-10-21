@@ -4,7 +4,6 @@ using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFincances.Services.DTOs;
 
-
 namespace PersonalFincances.Services.Profiles;
     public class AccountsProfile : Profile
     {

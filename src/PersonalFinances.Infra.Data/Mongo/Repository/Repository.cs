@@ -1,59 +1,65 @@
-﻿using AutoMapper;
-using MongoDB.Bson;
+﻿using System.Linq.Expressions;
+using AutoMapper;
+using MongoDB.Driver;
 using PersonalFinances.Domain.Interfaces;
+using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFincances.Domain.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonalFinances.Infra.Data.Mongo.Repository
 {
 
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity<TEntity>
+    public abstract class Repository<K, T> : IRepository<K, T>
+        where T : IDocument, new()
+        where K : Entity<K>
     {
         private readonly IMapper _mapper;
 
-        protected Repository(IMapper mapper)
+        private readonly IMongoRepository<T> _mongoRepository;
+
+        protected Repository(IMapper mapper, IMongoRepository<T> mongoRepository)
         {
             _mapper = mapper;
-        }
-        public void Add(TEntity obj)
-        {
-            throw new NotImplementedException();
+            _mongoRepository = mongoRepository;
         }
 
-        public void Dispose()
+        public virtual async Task AddAsync(K obj)
         {
-            throw new NotImplementedException();
+           var document = _mapper.Map<T>(obj);
+
+           await _mongoRepository.InsertOneAsync(document);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<IEnumerable<K>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var entities = await _mongoRepository.GetAllAsync();
+
+            var accountList = _mapper.Map<List<K>> (entities);
+
+            return accountList;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual async Task<K?> GetEntityByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            T? document = await _mongoRepository.FindByIdAsync(id);    
+
+            if(document is null)
+            {
+                return null;
+            }
+
+            return _mapper.Map<K>(document);
         }
 
-        public TEntity GetEntityById(Guid id)
+        public virtual async Task RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _mongoRepository.DeleteByIdAsync(id);
         }
 
-        public void Remove(Guid id)
+        public virtual async Task UpdateAsync(K obj)
         {
-            throw new NotImplementedException();
+            var document = _mapper.Map<T>(obj);
+            await _mongoRepository.ReplaceOneAsync(document);
         }
 
-        public void Update(TEntity obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

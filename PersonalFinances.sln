@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Services",
 		{4A3876BA-66BE-4655-9E98-A4EF171FAADF} = {4A3876BA-66BE-4655-9E98-A4EF171FAADF}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFincances.Application", "src\PersonalFincances.Application\PersonalFincances.Application.csproj", "{38FB3360-64C2-4191-B026-C999EB99798B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Application", "src\PersonalFincances.Application\PersonalFinances.Application.csproj", "{38FB3360-64C2-4191-B026-C999EB99798B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
