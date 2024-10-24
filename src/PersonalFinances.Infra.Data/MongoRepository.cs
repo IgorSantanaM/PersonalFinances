@@ -36,6 +36,11 @@ namespace PersonalFinances.Infra.Data
             var attributes = documentType!.GetCustomAttributes(typeof(BsonCollectionAttribute), true);
             var c = attributes.FirstOrDefault();
 
+            if (c == null)
+            {
+                Console.WriteLine($"The type {documentType.Name} does not have a BsonCollectionAttribute.");
+            }
+
             return ((BsonCollectionAttribute)c!).CollectionName;
         }
 

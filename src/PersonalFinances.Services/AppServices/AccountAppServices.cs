@@ -42,5 +42,12 @@ namespace PersonalFinances.Services.Repository
             return accountDto;
         }
 
+        public Task<IEnumerable<AccountDto>> GetAllAccountsAsync()
+        {
+            var accounts = _repository.GetAllAsync();
+            var accountDtos = _mapper.Map<Task<IEnumerable<AccountDto>>>(accounts);
+
+            return accountDtos;
+        }
     }
 }
