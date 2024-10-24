@@ -25,6 +25,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFincances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}
+		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0} = {8CE22BED-6E86-4682-B40F-E7314F7C3DB0}
 		{A3595AA7-F7E6-4B4C-9009-A4BAA75835B3} = {A3595AA7-F7E6-4B4C-9009-A4BAA75835B3}
 	EndProjectSection
 EndProject
