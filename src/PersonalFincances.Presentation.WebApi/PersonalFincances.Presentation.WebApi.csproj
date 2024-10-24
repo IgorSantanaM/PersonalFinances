@@ -14,6 +14,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	<ProjectReference Include="..\PersonalFinances.Services\PersonalFinances.Services.csproj" />
 	<ProjectReference Include="..\PersonalFinances.Infra.Data\PersonalFinances.Infra.Data.csproj" />
+	<ProjectReference Include="..\PersonalFinances.Infra.CrossCutting.IoC\PersonalFinances.Infra.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
 </Project>

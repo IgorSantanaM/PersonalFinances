@@ -16,5 +16,6 @@ namespace PersonalFincances.Services.Profiles;
             CreateMap<Account, AccountDocument>();
 
             CreateMap<Account, AccountForCreationDto>();
+
         }
     }

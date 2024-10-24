@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Configuration;
+using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
 
@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
     services.AddInfrastructure();
     services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
-
+    
+    services.AddServices();
 
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
