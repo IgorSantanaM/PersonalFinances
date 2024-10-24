@@ -22,5 +22,24 @@ namespace PersonalFincances.Services.Controllers
 
             return Ok();
         }
+        [HttpGet("{accountId}")]
+        public async Task<IActionResult> GetAccount(Guid accountId)
+        {
+            var accountDto = _accountRepository.GetAccountAsync(accountId);
+
+            if(accountDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        [HttpGet(Name = "GetAuthors")]
+        public async Task<IActionResult> GetAccounts()
+        {
+            var accountDtos = _accountRepository.GetAllAccountsAsync();
+
+            return Ok();
+        }
     }
 }

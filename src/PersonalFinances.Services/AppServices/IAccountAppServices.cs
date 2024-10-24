@@ -11,5 +11,6 @@ namespace PersonalFinances.Services.Repository
     {
         Task CreateAccountAsync(AccountForCreationDto createAccountDto);
         Task<AccountDto> GetAccountAsync(Guid id);
+        Task<IEnumerable<AccountDto>> GetAllAccountsAsync();
     }
 }
