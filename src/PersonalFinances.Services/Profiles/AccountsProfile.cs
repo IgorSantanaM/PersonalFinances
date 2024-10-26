@@ -14,7 +14,11 @@ namespace PersonalFincances.Services.Profiles;
 
             CreateMap<AccountForCreationDto, Account>();
 
+            CreateMap<AccountForCreationDto, AccountDto>();
+
             CreateMap<Account, AccountDocument>();
+
+            CreateMap<AccountDocument, Account>();
 
             CreateMap<Account, AccountForCreationDto>();
 
