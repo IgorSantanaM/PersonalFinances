@@ -10,7 +10,11 @@ namespace PersonalFinances.Services.Repository
     public interface IAccountAppServices
     {
         Task CreateAccountAsync(AccountForCreationDto createAccountDto);
+
         Task<AccountDto> GetAccountAsync(Guid id);
+
         Task<IEnumerable<AccountDto>> GetAllAccountsAsync();
+
+        Task DeleteAccountAsync(Guid id);
     }
 }

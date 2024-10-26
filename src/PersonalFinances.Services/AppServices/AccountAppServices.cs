@@ -33,6 +33,11 @@ namespace PersonalFinances.Services.Repository
             await _repository.AddAsync(account);
         }
 
+        public async Task DeleteAccountAsync(Guid id)
+        {
+           await _repository.RemoveAsync(id);
+        }
+
         public async Task<AccountDto> GetAccountAsync(Guid id)
         {
             var account = await _repository.GetEntityByIdAsync(id);
@@ -42,12 +47,13 @@ namespace PersonalFinances.Services.Repository
             return accountDto;
         }
 
-        public Task<IEnumerable<AccountDto>> GetAllAccountsAsync()
+        public async Task<IEnumerable<AccountDto>> GetAllAccountsAsync()
         {
-            var accounts = _repository.GetAllAsync();
-            var accountDtos = _mapper.Map<Task<IEnumerable<AccountDto>>>(accounts);
+            var accounts = await _repository.GetAllAsync();
 
-            return accountDtos;
+            return _mapper.Map<IEnumerable<AccountDto>>(accounts);
         }
+
+
     }
 }
