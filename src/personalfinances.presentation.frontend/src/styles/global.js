@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle} from 'styled-components'
 
 import 'react-toastify/ReactToastify.css'
 
