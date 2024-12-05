@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Domain.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 WebApi", "1.2 WebApi", "{66326C1D-FF15-4660-892A-96CBA284BEF7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFincances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFinances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}
 		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0} = {8CE22BED-6E86-4682-B40F-E7314F7C3DB0}
@@ -63,6 +63,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Services",
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Application", "src\PersonalFincances.Application\PersonalFinances.Application.csproj", "{38FB3360-64C2-4191-B026-C999EB99798B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Frontend", "1.1 Frontend", "{E390020B-8496-4663-A794-5F5789065DFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,7 @@ Global
 		{599BDE98-1B39-42DE-86E1-7F8F28B0B120} = {E0EDB109-9679-4732-94D6-99754AFF3A58}
 		{A3595AA7-F7E6-4B4C-9009-A4BAA75835B3} = {8B6583DF-8A88-4819-A9D8-5B83DB359659}
 		{38FB3360-64C2-4191-B026-C999EB99798B} = {1DC55EAC-FC63-446B-AD7E-D815804446F3}
+		{E390020B-8496-4663-A794-5F5789065DFD} = {777C6F1B-A7A7-4AA5-A5A4-DF5605F0D699}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82402FA9-44DC-41B7-8731-7920B53BA95B}
