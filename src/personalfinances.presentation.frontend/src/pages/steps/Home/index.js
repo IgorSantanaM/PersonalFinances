@@ -4,8 +4,9 @@ import { MdMoreHoriz, MdNavigateNext, MdAccountBalance } from "react-icons/md";
 import { GiWallet, GiTwoCoins } from "react-icons/gi";
 import {Link} from 'react-router-dom'
 
-import{ Header, Title, IconWrapper} from '../steps/Component/Header/styles'
-import {Container} from './styles'
+import {Header, Title, IconWrapper} from '../Component/Header/styles';
+import {Container}from './styles'
+
 export default function Home(){
 
     return(
