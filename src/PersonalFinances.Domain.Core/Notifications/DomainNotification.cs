@@ -1,6 +1,6 @@
-﻿using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Events;
 
-namespace PersonalFincances.Domain.Core.Notifications
+namespace PersonalFinances.Domain.Core.Notifications
 {
     public class DomainNotification : Event
     {

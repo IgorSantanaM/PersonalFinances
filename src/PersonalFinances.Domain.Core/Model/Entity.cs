@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace PersonalFincances.Domain.Core.Model
+namespace PersonalFinances.Domain.Core.Model
 {
     public abstract class Entity<T> : AbstractValidator<T> where T : Entity<T>
     {

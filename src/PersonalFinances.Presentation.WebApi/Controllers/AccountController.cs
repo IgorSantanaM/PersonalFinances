@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Services.Repository;
-using PersonalFincances.Services.DTOs;
+using PersonalFinances.Services.DTOs;
 using System.Runtime.InteropServices;
 
-namespace PersonalFincances.Services.Controllers
+namespace PersonalFinances.Services.Controllers
 {
     [Route("api/account")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace PersonalFincances.Services.Controllers
 
             return CreatedAtAction(nameof(GetAccount), new { accountId = accountToReturn.Id }, accountToReturn);
         }
-        [HttpDelete("/delete/{accountId}", Name = "deleteaccount")]
+        [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
         {
             await _accountRepository.DeleteAccountAsync(accountId);

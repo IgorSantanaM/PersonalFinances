@@ -1,4 +1,4 @@
-﻿using PersonalFincances.Domain.Core.Commands;
+﻿using PersonalFinances.Domain.Core.Commands;
 using System.ComponentModel.DataAnnotations;
 
 namespace PersonalFinances.Domain.Accounts.Transactions.Commands

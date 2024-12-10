@@ -2,10 +2,10 @@
 using AutoMapper.Configuration.Conventions;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using PersonalFincances.Domain.Core.Model;
-using PersonalFincances.Services.DTOs;
+using PersonalFinances.Domain.Core.Model;
+using PersonalFinances.Services.DTOs;
 
-namespace PersonalFincances.Services.Profiles;
+namespace PersonalFinances.Services.Profiles;
     public class AccountsProfile : Profile
     {
         public AccountsProfile()

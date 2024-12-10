@@ -1,4 +1,4 @@
-﻿namespace PersonalFincances.Domain.Core.Events
+﻿namespace PersonalFinances.Domain.Core.Events
 {
     public class Event : Message
     {

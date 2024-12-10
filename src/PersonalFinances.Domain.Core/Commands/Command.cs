@@ -1,11 +1,11 @@
-﻿using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFincances.Domain.Core.Commands
+namespace PersonalFinances.Domain.Core.Commands
 {
     public class Command : Message
     {

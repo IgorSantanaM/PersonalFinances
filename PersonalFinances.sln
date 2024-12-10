@@ -18,11 +18,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Domain", "
 		{733614B7-1F95-4181-B849-2040A10A5D21} = {733614B7-1F95-4181-B849-2040A10A5D21}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Domain.Core", "src\PersonalFincances.Domain.Core\PersonalFincances.Domain.Core.csproj", "{733614B7-1F95-4181-B849-2040A10A5D21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Domain.Core", "src\PersonalFinances.Domain.Core\PersonalFinances.Domain.Core.csproj", "{733614B7-1F95-4181-B849-2040A10A5D21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 WebApi", "1.2 WebApi", "{66326C1D-FF15-4660-892A-96CBA284BEF7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Presentation.WebApi", "src\PersonalFincances.Presentation.WebApi\PersonalFinances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Presentation.WebApi", "src\PersonalFinances.Presentation.WebApi\PersonalFinances.Presentation.WebApi.csproj", "{25B543CC-241D-4427-82E7-F4CD54EC271E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}
 		{8CE22BED-6E86-4682-B40F-E7314F7C3DB0} = {8CE22BED-6E86-4682-B40F-E7314F7C3DB0}
@@ -48,7 +48,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Infra.Cros
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E0EDB109-9679-4732-94D6-99754AFF3A58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFincances.Tests", "tests\PersonalFinances.DomainTests\PersonalFincances.Tests.csproj", "{599BDE98-1B39-42DE-86E1-7F8F28B0B120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Tests", "tests\PersonalFinances.DomainTests\PersonalFinances.Tests.csproj", "{599BDE98-1B39-42DE-86E1-7F8F28B0B120}"
 	ProjectSection(ProjectDependencies) = postProject
 		{25B543CC-241D-4427-82E7-F4CD54EC271E} = {25B543CC-241D-4427-82E7-F4CD54EC271E}
 		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}
@@ -62,7 +62,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Services",
 		{4A3876BA-66BE-4655-9E98-A4EF171FAADF} = {4A3876BA-66BE-4655-9E98-A4EF171FAADF}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Application", "src\PersonalFincances.Application\PersonalFinances.Application.csproj", "{38FB3360-64C2-4191-B026-C999EB99798B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Application", "src\PersonalFinances.Application\PersonalFinances.Application.csproj", "{38FB3360-64C2-4191-B026-C999EB99798B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Frontend", "1.1 Frontend", "{E390020B-8496-4663-A794-5F5789065DFD}"
 EndProject

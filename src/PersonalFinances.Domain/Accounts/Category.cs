@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PersonalFincances.Domain.Core.Model;
+using PersonalFinances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace PersonalFinances.Domain.Accounts

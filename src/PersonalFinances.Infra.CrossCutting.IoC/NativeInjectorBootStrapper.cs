@@ -10,9 +10,9 @@ using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFinances.Infra.Data.Mongo.Repository;
 using PersonalFinances.Services.Profiles;
 using PersonalFinances.Services.Repository;
-using PersonalFincances.Domain.Core.Bus;
-using PersonalFincances.Domain.Core.Events;
-using PersonalFincances.Domain.Core.Notifications;
+using PersonalFinances.Domain.Core.Bus;
+using PersonalFinances.Domain.Core.Events;
+using PersonalFinances.Domain.Core.Notifications;
 using System.Reflection;
 
 namespace PersonalFinances.Infra.CrossCutting.IoC

@@ -3,7 +3,7 @@ using AutoMapper;
 using MongoDB.Driver;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using PersonalFincances.Domain.Core.Model;
+using PersonalFinances.Domain.Core.Model;
 
 namespace PersonalFinances.Infra.Data.Mongo.Repository
 {

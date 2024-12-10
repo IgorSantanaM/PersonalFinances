@@ -1,4 +1,4 @@
-﻿using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

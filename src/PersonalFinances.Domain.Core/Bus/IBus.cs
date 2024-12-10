@@ -1,12 +1,12 @@
-﻿using PersonalFincances.Domain.Core.Commands;
-using PersonalFincances.Domain.Core.Events;
+﻿using PersonalFinances.Domain.Core.Commands;
+using PersonalFinances.Domain.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFincances.Domain.Core.Bus
+namespace PersonalFinances.Domain.Core.Bus
 {
     public interface IBus
     {
