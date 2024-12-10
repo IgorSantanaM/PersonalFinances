@@ -1,4 +1,4 @@
-﻿using PersonalFincances.Domain.Core.Commands;
+﻿using PersonalFinances.Domain.Core.Commands;
 
 namespace PersonalFinances.Domain.Accounts.Commands
 {

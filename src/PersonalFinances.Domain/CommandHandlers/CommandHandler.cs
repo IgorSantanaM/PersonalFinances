@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using PersonalFinances.Domain.Interfaces;
-using PersonalFincances.Domain.Core.Bus;
-using PersonalFincances.Domain.Core.Notifications;
+using PersonalFinances.Domain.Core.Bus;
+using PersonalFinances.Domain.Core.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

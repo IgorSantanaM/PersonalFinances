@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFincances.Domain.Core.Events
+namespace PersonalFinances.Domain.Core.Events
 {
     public interface IHandler<T> where T : Message
     {

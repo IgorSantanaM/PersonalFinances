@@ -1,4 +1,4 @@
-﻿using PersonalFincances.Domain.Core.Model;
+﻿using PersonalFinances.Domain.Core.Model;
 
 namespace PersonalFinances.Domain.Accounts
 {

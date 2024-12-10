@@ -3,8 +3,8 @@ using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using PersonalFincances.Domain.Core.Bus;
-using PersonalFincances.Services.DTOs;
+using PersonalFinances.Domain.Core.Bus;
+using PersonalFinances.Services.DTOs;
 using System.Runtime.InteropServices;
 
 namespace PersonalFinances.Services.Repository

@@ -1,0 +1,6 @@
+@PersonalFinances.Presentation.WebApi_HostAddress = http://localhost:5066
+
+GET {{PersonalFinances.Presentation.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
