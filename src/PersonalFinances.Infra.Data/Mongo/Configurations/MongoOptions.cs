@@ -11,6 +11,6 @@ namespace PersonalFinances.Infra.Data.Mongo.Configurations
     {
         public string DatabaseName { get; set; } = string.Empty;
 
-        public MongoClientSettings ConnectionString { get; set; } = new();
+        public string ConnectionString { get; set; } = string.Empty;
     }
 }
