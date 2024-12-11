@@ -12,15 +12,11 @@ namespace PersonalFinances.Services.Profiles;
         {
             CreateMap<Account, AccountDto>();
 
-            CreateMap<AccountForCreationDto, Account>();
+            CreateMap<AccountForCreationDto, Account>().ReverseMap();
 
             CreateMap<AccountForCreationDto, AccountDto>();
 
-            CreateMap<Account, AccountDocument>();
-
-            CreateMap<AccountDocument, Account>();
-
-            CreateMap<Account, AccountForCreationDto>();
+            CreateMap<Account, AccountDocument>().ReverseMap();
 
         CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();
 

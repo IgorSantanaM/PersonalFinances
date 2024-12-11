@@ -17,7 +17,7 @@ using System.Reflection;
 
 namespace PersonalFinances.Infra.CrossCutting.IoC
 {
-    public static class NativeInjectorBootStrapper
+    public static class ServicesCollection
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {

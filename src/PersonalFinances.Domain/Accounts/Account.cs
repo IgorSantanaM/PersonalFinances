@@ -7,9 +7,9 @@ namespace PersonalFinances.Domain.Accounts
     public class Account : Entity<Account>
     {
 
-        public Account(string name, int initialBalance, bool reconcile)
+        public Account(Guid id, string name, int initialBalance, bool reconcile)
         {
-            Id = Guid.NewGuid();
+            Id = Id;
             Name = name;
             InitialBalance = initialBalance;
             Reconcile = reconcile;
@@ -50,8 +50,8 @@ namespace PersonalFinances.Domain.Accounts
         private void InitialBalanceValidation()
         {
             RuleFor(c => c.InitialBalance)
-                .NotEmpty().WithMessage("The amount is not a valid number.")
-                .ExclusiveBetween(0, 250000).WithMessage("The initial balance should be between 0 and 250.000");
+                .InclusiveBetween(0, 250000)
+                .WithMessage("The initial balance should be between 0 and 250.000");
         }
 
     }
