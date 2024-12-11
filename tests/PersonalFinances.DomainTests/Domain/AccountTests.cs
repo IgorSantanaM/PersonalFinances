@@ -11,8 +11,9 @@ namespace PersonalFinances.Tests.Domain
             // nothing to see here
 
             // Act
-            var acc1 = new Account("Igor", 2000, true);
-            var acc2 = new Account("Igor", 2000, true);
+            var acc1 = new Account(Guid.NewGuid(), "Igor", 2000, true);
+            var acc2 = new Account(Guid.NewGuid(), "Igor", 2000, true);
+
             // Assert
             Assert.True(acc1 != acc2 && !acc1.Equals(acc2));
         }

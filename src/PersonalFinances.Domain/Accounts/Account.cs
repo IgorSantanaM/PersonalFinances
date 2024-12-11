@@ -9,7 +9,7 @@ namespace PersonalFinances.Domain.Accounts
 
         public Account(Guid id, string name, int initialBalance, bool reconcile)
         {
-            Id = Id;
+            Id = id;
             Name = name;
             InitialBalance = initialBalance;
             Reconcile = reconcile;

@@ -23,7 +23,7 @@ namespace PersonalFinances.Services.Repository
         }
         public async Task CreateAccountAsync(AccountForCreationDto accountForCreationDto)
         {
-            Account account = new(accountForCreationDto.Id, accountForCreationDto.Name, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
+            Account account = new(accountForCreationDto.Id ,accountForCreationDto.Name, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
 
             if (!account.IsValidate())
             {
