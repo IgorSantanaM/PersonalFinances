@@ -25,9 +25,8 @@ namespace PersonalFinances.Services.Controllers
         {
             await _accountRepository.CreateAccountAsync(accountForCreationDto);
 
-            var accountToReturn = _mapper.Map<AccountDto>(accountForCreationDto);
+            return CreatedAtAction(nameof(GetAccount), new { accountId = accountForCreationDto.Id }, accountForCreationDto);
 
-            return CreatedAtAction(nameof(GetAccount), new { accountId = accountToReturn.Id }, accountToReturn);
         }
         [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
