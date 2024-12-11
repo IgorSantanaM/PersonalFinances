@@ -21,8 +21,13 @@ jobs:
       with:
         dotnet-version: '9.x'
 
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Set up Docker Compose environment
+      run: |
+        docker-compose -f docker-compose.yml up -d
+
+    - name: Restore dependencies inside Docker container
+      run: |
+        docker-compose -f docker-compose.yml run dotnet-app dotnet restore
 
     - name: Build the project
       run: dotnet build --configuration Release --no-restore
