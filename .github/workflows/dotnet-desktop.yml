@@ -1,6 +1,5 @@
 name: .NET Build and Test
 
-# Run this workflow on push to the main branch or pull request events
 on:
   push:
     branches:
@@ -14,24 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    # Checkout the repository code
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Set up .NET Core SDK version (specify your required version here)
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.x'  # Specify your desired .NET SDK version
+        dotnet-version: '9.x'
 
-    # Install dependencies (restore .NET packages)
     - name: Restore dependencies
       run: dotnet restore
 
-    # Build the project
     - name: Build the project
       run: dotnet build --configuration Release --no-restore
 
-    # Run tests
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
