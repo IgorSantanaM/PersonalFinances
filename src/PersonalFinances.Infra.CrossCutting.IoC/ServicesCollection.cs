@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Accounts.Commands;
-using PersonalFinances.Domain.CommandHandlers;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFinances.Infra.CrossCutting.Bus;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Documents;
+using PersonalFinances.Services.AppServices;
 using PersonalFinances.Infra.Data.Mongo.Repository;
 using PersonalFinances.Services.Profiles;
 using PersonalFinances.Services.Repository;
@@ -26,10 +26,10 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly(), typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
-            services.AddScoped<IAccountAppServices, AccountAppServices>();
 
             // Services - AppServices
             services.AddScoped<IAccountAppServices, AccountAppServices>();
+            services.AddScoped<ICategoryAppServices, CategoryAppServices>();
 
             // Domain - Commands
 
@@ -42,11 +42,11 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
 
             // Infra  - Data
             services.AddScoped<IRepository<Account, AccountDocument>, AccountRepository>();
+            services.AddScoped<IRepository<Category, CategoryDocument>, CategoryRepository>();
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
             // Infra  - BUS
             services.AddScoped<IBus, InMemoryBus>();
-
 
             return services;
         }

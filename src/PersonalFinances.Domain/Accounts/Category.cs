@@ -6,28 +6,30 @@ namespace PersonalFinances.Domain.Accounts
 {
     public class Category : Entity<Category>
     {
+        public TransactionType TransactionType { get; set; }
 
-        public TransactionType? TransactionType { get; set; }
-
-        public Account? BelongsTo { get; set; }
+        public CategoryType BelongsTo { get; set; }
 
         public string Name { get; set; }
 
-        public Category(string name)
+        public Category(Guid id, string name, TransactionType transactionType, CategoryType belongsTo)
         {
-            Id = Guid.NewGuid();
+            Id = id;
+            TransactionType = transactionType;
+            BelongsTo = belongsTo;
             Name = name;
         }
 
         public override bool IsValidate()
         {
-            ValidatingTheCategory();
+            ValidatingTheAccount();
             return ValidationResult.IsValid;
         }
 
-        private void ValidatingTheCategory()
+        private void ValidatingTheAccount()
         {
             NameValidation();
+            ValidationResult = Validate(this);
         }
 
         private void NameValidation()
@@ -36,6 +38,5 @@ namespace PersonalFinances.Domain.Accounts
                 .NotEmpty().WithMessage("The Category name should not be null")
                 .Length(2, 100).WithMessage("The Category name must be between 2 an 100");
         }
-
     }
 }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Services.Repository
+namespace PersonalFinances.Services.AppServices
 {
     public interface IAccountAppServices
     {
-        Task CreateAccountAsync(AccountForCreationDto createAccountDto);
+        Task CreateAccountAsync(AccountForCreationDto accountForCreationDto);
 
         Task<AccountDto> GetAccountAsync(Guid id);
 

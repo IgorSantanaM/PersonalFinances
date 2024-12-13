@@ -6,9 +6,9 @@ using PersonalFinances.Domain.Core.Model;
 using PersonalFinances.Services.DTOs;
 
 namespace PersonalFinances.Services.Profiles;
-    public class AccountsProfile : Profile
+    public class AccountProfile : Profile
     {
-        public AccountsProfile()
+        public AccountProfile()
         {
             CreateMap<Account, AccountDto>();
 
@@ -18,7 +18,7 @@ namespace PersonalFinances.Services.Profiles;
 
             CreateMap<Account, AccountDocument>().ReverseMap();
 
-        CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();
+            CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();
 
         }
     }

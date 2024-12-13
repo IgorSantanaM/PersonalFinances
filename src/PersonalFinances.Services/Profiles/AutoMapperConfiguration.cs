@@ -14,7 +14,7 @@ namespace PersonalFinances.Services.Profiles
         {
             return new MapperConfiguration(ps =>
             {
-                ps.AddProfile(new AccountsProfile());
+                ps.AddProfile(new AccountProfile());
             });
         }
     }

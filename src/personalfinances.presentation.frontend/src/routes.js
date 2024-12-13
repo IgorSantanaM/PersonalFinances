@@ -10,20 +10,21 @@ import Menu from './pages/Menu';
 import StepAccount from './pages/steps/Account';
 import StepCategory from './pages/steps/Category';
 import StepReminder from './pages/steps/Reminder';
+import Account from './pages/Account'
 
 export default function RoutesConfig() {
   return (
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/balance" exact element={<Balance />} />
-        <Route path="/summary" exact element={<Summary />} />
-        <Route path="/movement" exact element={<Movement />} />
-        <Route path="/calendar" exact element={<Calendar />} />
-        <Route path="/menu" exact element={<Menu />} />
-        <Route path="/step/account" exact element={<StepAccount />} />
-        <Route path="/step/category" exact element={<StepCategory />} />
-        <Route path="/step/reminder" exact element={<StepReminder />} />
-
+        <Route path="/balance" element={<Balance />} />
+        <Route path="/summary" element={<Summary />} />
+        <Route path="/movement" element={<Movement />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/step/account" element={<StepAccount />} />
+        <Route path="/step/category" element={<StepCategory />} />
+        <Route path="/step/reminder" element={<StepReminder />} />
+        <Route path="/account" element={<Account />} />
         {/* TODO: more pages */}
       </Routes>
   );

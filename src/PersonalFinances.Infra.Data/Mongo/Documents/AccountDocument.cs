@@ -1,4 +1,5 @@
-﻿using PersonalFinances.Infra.Data.Mongo.Configurations;
+﻿using PersonalFinances.Domain.Accounts;
+using PersonalFinances.Infra.Data.Mongo.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,18 @@ namespace PersonalFinances.Infra.Data.Mongo.Documents
     {
         public string Name { get; set; }
 
-        public int InitialBalance { get; set; }
+        public int Balance { get; set; }
+
+        public AccountType AccountType { get; set; }
 
         public bool Reconcile { get; set; }
 
-        public AccountDocument(string name, int initialBalance, bool reconcile)
+        public AccountDocument(string name, int balance, bool reconcile, AccountType accountType)
         {
             Id = Guid.NewGuid();
             Name = name;
-            InitialBalance = initialBalance;
+            AccountType = accountType;
+            Balance = balance;
             Reconcile = reconcile;
         }
         public AccountDocument()

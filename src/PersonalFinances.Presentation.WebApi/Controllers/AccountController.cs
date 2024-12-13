@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using PersonalFinances.Domain.Accounts;
-using PersonalFinances.Services.Repository;
+using PersonalFinances.Services.AppServices;
 using PersonalFinances.Services.DTOs;
-using System.Runtime.InteropServices;
 
 namespace PersonalFinances.Services.Controllers
 {
@@ -20,14 +17,15 @@ namespace PersonalFinances.Services.Controllers
             _accountRepository = accountRepository;
             _mapper = mapper;
         }
-        [HttpPost("create")] 
+
+        [HttpPost("create")]
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             await _accountRepository.CreateAccountAsync(accountForCreationDto);
 
             return CreatedAtAction(nameof(GetAccount), new { accountId = accountForCreationDto.Id }, accountForCreationDto);
-
         }
+
         [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
         {
@@ -41,7 +39,7 @@ namespace PersonalFinances.Services.Controllers
         {
             var accountDto = await _accountRepository.GetAccountAsync(accountId);
 
-            if(accountDto == null)
+            if (accountDto == null)
             {
                 return NotFound();
             }
