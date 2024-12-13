@@ -1,29 +1,26 @@
 ﻿using AutoMapper;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
-using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using PersonalFinances.Domain.Core.Bus;
+using PersonalFinances.Services.AppServices;
 using PersonalFinances.Services.DTOs;
-using System.Runtime.InteropServices;
 
 namespace PersonalFinances.Services.Repository
 {
     public class AccountAppServices : IAccountAppServices
     {
         private readonly IRepository<Account, AccountDocument> _repository;
-        private readonly IBus _bus;
         private readonly IMapper _mapper;
 
-        public AccountAppServices(IRepository<Account, AccountDocument> repository, IBus bus, IMapper mapper)
+        public AccountAppServices(IRepository<Account, AccountDocument> repository, IMapper mapper)
         {
             _repository = repository;
-            _bus = bus;
             _mapper = mapper;
         }
+
         public async Task CreateAccountAsync(AccountForCreationDto accountForCreationDto)
         {
-            Account account = new(accountForCreationDto.Id ,accountForCreationDto.Name, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
+            Account account = new(accountForCreationDto.Id, accountForCreationDto.Name, accountForCreationDto.AccountType, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
 
             if (!account.IsValidate())
             {
@@ -53,7 +50,5 @@ namespace PersonalFinances.Services.Repository
 
             return _mapper.Map<IEnumerable<AccountDto>>(accounts);
         }
-
-
     }
 }

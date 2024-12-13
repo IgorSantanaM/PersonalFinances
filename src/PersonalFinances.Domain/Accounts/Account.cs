@@ -7,38 +7,44 @@ namespace PersonalFinances.Domain.Accounts
     public class Account : Entity<Account>
     {
 
-        public Account(Guid id, string name, int initialBalance, bool reconcile)
+        public Account(Guid id, string name, AccountType accountType, int balance, bool reconcile)
         {
             Id = id;
             Name = name;
-            InitialBalance = initialBalance;
+            Balance = balance;
+            AccountType = accountType;
             Reconcile = reconcile;
         }
 
         public string Name { get; set; }
 
-        public AccountType Type { get; set; }
-
-        public int InitialBalance { get; set; } = 0;
+        public AccountType AccountType { get; set; }
 
         public int? Balance { get; set; }
 
         public bool Reconcile { get; set; }
 
-
         public ICollection<Category> Categories = new List<Category>();
-
+        
         public override bool IsValidate()
         {
-            ValidatingTheAccount();
+            ValidatingTheCategory();
             return ValidationResult.IsValid;
         }
 
-        private void ValidatingTheAccount()
+        private void ValidatingTheCategory()
         {
             NameValidation();
             InitialBalanceValidation();
+            ReconcileValidation();
             ValidationResult = Validate(this);
+        }
+
+        public void ReconcileValidation()
+        {
+                RuleFor(c => c.Reconcile)
+                    .Must((c, reconcile) => !reconcile || c.Balance < 0)
+                    .WithMessage("Reconcile is only true when initial balance is less than 0");
         }
 
         private void NameValidation()
@@ -49,9 +55,9 @@ namespace PersonalFinances.Domain.Accounts
         }
         private void InitialBalanceValidation()
         {
-            RuleFor(c => c.InitialBalance)
-                .InclusiveBetween(0, 250000)
-                .WithMessage("The initial balance should be between 0 and 250.000");
+            RuleFor(c => c.Balance)
+                .InclusiveBetween(0, 2500000)
+                .WithMessage("The initial balance should be between 0 and 2.500.000");
         }
 
     }

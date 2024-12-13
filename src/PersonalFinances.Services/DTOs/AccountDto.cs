@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PersonalFinances.Domain.Accounts;
+using System.ComponentModel.DataAnnotations;
 
 namespace PersonalFinances.Services.DTOs
 {
@@ -11,16 +12,22 @@ namespace PersonalFinances.Services.DTOs
         public string Name { get; set; }
 
         [Required]
-        public int InitialBalance { get; set; }
+        public int Balance { get; set; }
+        [Required]
+        public AccountType AccountType { get; set; }
+        
+        public ICollection<Category> Categories = new List<Category>();
 
         public bool Reconcile { get; set; }
 
-        public AccountDto(string name, int initialBalance, bool reconcile)
+        public AccountDto(string name, int balance, bool reconcile, ICollection<Category> categories, AccountType accountType)
         {
             Id = Guid.NewGuid();
             Name = name;
-            InitialBalance = initialBalance;
+            Balance = balance;
+            AccountType = accountType;
             Reconcile = reconcile;
+            Categories = categories;
         }
     }
 }

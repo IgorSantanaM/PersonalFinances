@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Domain.Accounts
 {
-    public class TransactionType
+    public enum TransactionType
     {
-        public Guid Id { get; set; }
-
-        public string Type { get; set; }
-
-        public TransactionType(string type)
-        {
-            Id = Guid.NewGuid();
-            Type = type;
-        }
+        Income = 0, 
+        Expense = 1,
+        Transfer = 2,
+        LoanPayment = 3,
+        LoanAmortization = 4,
     }
 }

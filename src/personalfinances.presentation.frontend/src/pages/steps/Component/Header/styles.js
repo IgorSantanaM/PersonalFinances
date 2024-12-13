@@ -12,6 +12,7 @@ export const Header = styled.header`
     align-items: center; 
   }
 `
+
 export const Next = styled(Link)`
   display:flex;
   align-items: center;

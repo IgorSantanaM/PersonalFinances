@@ -10,18 +10,21 @@ namespace PersonalFinances.Domain.Accounts.Transactions
 
         public Account Account { get; set; }
 
+        public TransactionType TransactionType { get; set; }
+
         public Category Category { get; set; }
 
         public int Amount { get; set; }
 
         public string? Remarks { get; set; }
 
-        public Transaction(DateTime dateOfTransaction, int amount, string? remarks)
+        public Transaction(DateTime dateOfTransaction,  int amount, string? remarks, TransactionType transactionType)
         {
             Id = Guid.NewGuid();
             DateOfTransaction = dateOfTransaction;
             Amount = amount;
             Remarks = remarks;
+            TransactionType = transactionType;
         }
 
         public override bool IsValidate()
