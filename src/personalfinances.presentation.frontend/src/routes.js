@@ -10,7 +10,9 @@ import Menu from './pages/Menu';
 import StepAccount from './pages/steps/Account';
 import StepCategory from './pages/steps/Category';
 import StepReminder from './pages/steps/Reminder';
-import Account from './pages/Account'
+import Account from './pages/Account';
+import Category from './pages/Category';
+
 
 export default function RoutesConfig() {
   return (
@@ -25,7 +27,7 @@ export default function RoutesConfig() {
         <Route path="/step/category" element={<StepCategory />} />
         <Route path="/step/reminder" element={<StepReminder />} />
         <Route path="/account" element={<Account />} />
-        {/* TODO: more pages */}
+        <Route path="/category" element={<Category />} />
       </Routes>
   );
 }

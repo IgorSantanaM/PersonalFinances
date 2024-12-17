@@ -10,7 +10,6 @@ import { Container, StepButton} from '../Component/Container/styles';
 export default function StepAccount() {
   return (
     <>
-
       <Header>
         <Previous to="/" style={{ textDecoration: 'none' }}>
               <GrFormPrevious size={25} color="black" />
@@ -30,7 +29,7 @@ export default function StepAccount() {
                 
       <Container>
           <p>Your first step is to register all your bank accounts, cards, saving, etc.</p>
-          <StepButton to="/accounts">
+          <StepButton to="/account">
             <button><MdAccountBalance size={26} color="black"  /> <strong> Accounts</strong> </button>
             <p>Click here to go to the accounts page!</p>
           </StepButton>

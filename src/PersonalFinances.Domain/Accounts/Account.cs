@@ -28,14 +28,14 @@ namespace PersonalFinances.Domain.Accounts
         
         public override bool IsValidate()
         {
-            ValidatingTheCategory();
+            ValidatingTheAccount();
             return ValidationResult.IsValid;
         }
 
-        private void ValidatingTheCategory()
+        private void ValidatingTheAccount()
         {
             NameValidation();
-            InitialBalanceValidation();
+            BalanceValidation();
             ReconcileValidation();
             ValidationResult = Validate(this);
         }
@@ -53,7 +53,7 @@ namespace PersonalFinances.Domain.Accounts
                 .NotEmpty().WithMessage("Name required")
                 .Length(2, 100).WithMessage("The Account name must be between 2 and 100 chars.");
         }
-        private void InitialBalanceValidation()
+        private void BalanceValidation()
         {
             RuleFor(c => c.Balance)
                 .InclusiveBetween(0, 2500000)
