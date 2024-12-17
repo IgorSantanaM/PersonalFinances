@@ -1,86 +1,86 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+
 
 export const Container = styled.div`
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 20px;
 `;
 
-export const FormGroup = styled.div`
-  margin-bottom: 15px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  input,
-  select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-
-  input.error {
-    border-color: red;
-  }
-
-  span.error-text {
-    color: red;
-    font-size: 12px;
-  }
+export const Label = styled.label`
+  font-weight: bold;
+  color: #1a73e8; /* Blue color */
+  display: block;
+  margin-bottom: 5px;
 `;
 
-export const Categories = styled.div`
+export const CheckboxWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  gap: 5px;
+`;
 
-  .category {
-    display: flex;
+export const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const Input = styled.input`
+  background-color: #fffbcc; 
+  border: 1px solid ${(props) => (props.error ? 'red' : '#ccc')};
+  padding: 8px;
+  width: 400px;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus {
+    border-color: ${(props) => (props.error ? 'red' : '#1a73e8')};
+  }
+`;
+
+export const Previous = styled(Link)`
+  display:flex;
     align-items: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
 
-    input {
-      margin-right: 5px;
+    &:hover{
+      opacity: 0.7;
     }
-  }
+    div{
+      text-align: right;
+      margin-right: 10px;
 
-  .subcategory {
-    margin-left: 20px;
+      span{
+        font-size: 12px;
+        color: #999;
+      }
+    }
+`;
+export const Select = styled.select`
+  background-color: #fffbcc;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 400px;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus {
+    border-color: #1a73e8;
   }
 `;
 
-export const Actions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &.cancel-btn {
-      background-color: #ccc;
-      color: #333;
-    }
-
-    &.save-btn {
-      background-color: #4caf50;
-      color: white;
-    }
-  }
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
 `;
+
+export const CheckboxLabel = styled.label`
+  font-size: 0.9rem;
+  color: #333;
+`;
+
+export const Checkbox = styled.input.attrs({ type: "checkbox" })``;

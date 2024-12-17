@@ -2,8 +2,8 @@
 {
     public enum AccountType
     {
-        CreaditCard = 0,
-        Wallet = 1,
+        Wallet = 0,
+        CreaditCard = 1,
         Savings = 2
     }
 }

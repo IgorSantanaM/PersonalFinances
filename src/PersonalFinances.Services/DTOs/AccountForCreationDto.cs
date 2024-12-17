@@ -13,6 +13,7 @@ namespace PersonalFinances.Services.DTOs
         public AccountType AccountType { get; set; }
 
         [Required]
+        [Range(1, 2500000)]
         public int InitialBalance { get; set; }
 
         public bool Reconcile { get; set; }

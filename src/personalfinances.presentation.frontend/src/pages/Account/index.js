@@ -1,179 +1,117 @@
 import React, { useState } from 'react';
-import { GrFormPrevious } from 'react-icons/gr';
-import { Link } from 'react-router-dom';
-import { Header, Container, FormGroup, Categories, Actions } from './styles';
+import {GrFormPrevious} from 'react-icons/gr'
+
+import {Header} from '../../Components/Header/styles'
+import { Container, Label, Input, Previous, ErrorMessage, Select, InputWrapper, CheckboxWrapper, Checkbox, CheckboxLabel} from './styles';
 import api from '../../services/api';
 
 export default function Account() {
-  const [name, setName] = useState('');
-  const [accountType, setAccountType] = useState('Wallet');
-  const [initialBalance, setInitialBalance] = useState('');
-  const [categories, setCategories] = useState({
-    salary: false,
-    other: false,
-    education: false,
-    tuition: false,
-  });
-  const [reconcile, setReconcile] = useState(false);
-
-  const handleCategoryChange = (category) => {
-    setCategories((prev) => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
-  };
-
-  const isValidAmount = (amount) => {
-    return !isNaN(amount);
-  };
+  const[name, setName] = useState('');
+  const[isValid, setIsvalid] = useState(true);
+  const[accountType, setAccountType] = useState('Wallet');
+  const options  = ['Wallet', 'Credit Card', 'Savings'];
+  const [initialBalance, setInitialBalance] = useState("");
+  const [isReconcileChecked, setIsReconcileChecked] = useState(false);
+  const accountTypeIndex = accountType.indexOf(accountType.trim());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      name,
-      accountType,
-      initialBalance: parseFloat(initialBalance),
-      reconcile,
-      categories: Object.keys(categories).filter((key) => categories[key]),
+    const data = {
+      name: name,
+      accountType: accountTypeIndex,
+      initialBalance: parseInt(initialBalance),
+      reconcile: isReconcileChecked,
     };
 
     try {
-      const response = await api.post('/account/create', payload);
-      console.log('API response:', response.data);
-      alert('Account added successfully!');
+      const response = await api.post("account/create", data);
+      console.log("Data sent successfully:", response.data);
     } catch (error) {
-      console.error('Error sending data to API:', error);
-      alert('An error occurred. Please try again.');
+      console.error("Error sending data:", error);
+    }
+  };  
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+
+    if (/^-?\d*$/.test(value)) {
+      setInitialBalance(value);
+
+      if (parseInt(value) < 0) {
+        setIsReconcileChecked(false);
+      }
     }
   };
 
-  return (
+  const handleBlur = () => {
+    setIsvalid(name.trim() !== '');
+  };
+
+  return(
     <>
-      <Header>
-        <Link to="/step/account">
-          <GrFormPrevious size={25} color="black" />
-        </Link>
-        <strong>Add Account</strong>
-      </Header>
+    <Header>
+      <Previous to="/step/account" style={{ textDecoration: 'none' }}>
+        <GrFormPrevious size={25} color="black" />
+      </Previous>
+      <strong>Add Account</strong>
+    </Header>
+  
+    <Container>
+        <Label htmlFor="name">Name</Label>
 
-      <Container>
-        <form onSubmit={handleSubmit}>
-          {/* Name Input */}
-          <FormGroup>
-            <label>Name</label>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={name ? '' : 'error'}
-            />
-            {!name && <span className="error-text">- Name required</span>}
-          </FormGroup>
+        <Input
+        type="text"
+        id="name"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        onBlur={handleBlur}
+        className={`input-field ${!isValid ? 'input-error' : ''}`}
+      />
+      {!isValid && <ErrorMessage>- Name is required</ErrorMessage>}
 
-          {/* Account Type Dropdown */}
-          <FormGroup>
-            <label>Account type</label>
-            <select
-              value={accountType}
-              onChange={(e) => setAccountType(e.target.value)}
-            >
-              <option value="Wallet">Wallet</option>
-              <option value="Savings">Savings</option>
-              <option value="Credit">Credit</option>
-            </select>
-          </FormGroup>
+      <Label htmlFor="accountType">Account Type</Label>
 
-          {/* Initial Balance */}
-          <FormGroup>
-            <label>Initial balance</label>
-            <input
-              type="text"
-              value={initialBalance}
-              onChange={(e) => {
-                const value = e.target.value;
-                setInitialBalance(value);
-                setReconcile(parseFloat(value) < 0);
-              }}
-              className={isValidAmount(initialBalance) ? '' : 'error'}
-            />
-            {!isValidAmount(initialBalance) && (
-              <span className="error-text">- The amount is not a valid number</span>
-            )}
-          </FormGroup>
+      <Select
+      id="options"
+      value={accountType}
+      onChange={(e) => setAccountType(e.target.value)}>
+        {options.map((option) => (<option 
+        key={option} value={option}>
+          {option}
+        </option>))}
+      </Select>
 
-          {parseFloat(initialBalance) < 0 && (
-            <FormGroup>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={reconcile}
-                  onChange={() => setReconcile(!reconcile)}
-                />
-                Reconcile
-              </label>
-            </FormGroup>
-          )}
+      <Label htmlFor="initialBalance">Initial Balance</Label>
 
-          {/* Categories */}
-          <FormGroup>
-            <label>No default categories have been selected</label>
-            <Categories>
-              <div className="category">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={categories.salary}
-                    onChange={() => handleCategoryChange('salary')}
-                  />
-                  Salary
-                </label>
-              </div>
-              <div className="category">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={categories.other}
-                    onChange={() => handleCategoryChange('other')}
-                  />
-                  Other
-                </label>
-              </div>
-              <div className="category">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={categories.education}
-                    onChange={() => handleCategoryChange('education')}
-                  />
-                  Education
-                </label>
-                <div className="subcategory">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={categories.tuition}
-                      onChange={() => handleCategoryChange('tuition')}
-                    />
-                    Tuition
-                  </label>
-                </div>
-              </div>
-            </Categories>
-          </FormGroup>
+      <InputWrapper>
+        <span>+/-</span>
+        <span>$</span>
+        <Input
+          type="text"
+          value={initialBalance}
+          onChange={handleInputChange}
+          placeholder="Enter initial balance"
+        />
+      </InputWrapper>
 
-          {/* Buttons */}
-          <Actions>
-            <button type="button" className="cancel-btn">
-              Cancel
-            </button>
-            <button type="submit" className="save-btn">
-              Save
-            </button>
-          </Actions>
-        </form>
-      </Container>
+      {initialBalance === "0" && (
+        <ErrorMessage>- The amount is not a valid number</ErrorMessage>
+      )}
+
+      {parseInt(initialBalance) < 0 && (
+        <CheckboxWrapper>
+          <Checkbox
+            checked={isReconcileChecked}
+            onChange={() => setIsReconcileChecked((prev) => !prev)}
+          />
+          <CheckboxLabel>Reconcile</CheckboxLabel>
+        </CheckboxWrapper>
+      )}
+      
+      <button onClick={handleSubmit}>Submit</button>
+    </Container>
     </>
   );
-}
+  }
