@@ -12,9 +12,22 @@ export default function Category(){
     const[belongsTo, setBelongsTo] = useState('None');
     const[isValid, setIsvalid] = useState(true);
     const optionsBelongsTo = ['None', 'Salary', 'Other', 'Education', 'Food', 'Health', 'Hosehold Operations', 'Holsehold Supplies', 'Housing', 'Recreation', 'Transport', 'Utilities', 'Pets'];
-    const transactionTypeIndex = transactionType.indexOf(transactionType);
-    const belongsToIndex = belongsTo.indexOf(belongsTo);
+    const [transactionTypeIndex, setTransactionTypeIndex] = useState(transactionType.indexOf(transactionType));
+    const [belongsToIndex, setBelongsToIndex] = useState(belongsTo.indexOf(belongsTo));
 
+    const handleBelongsToChange = (e) => {
+        const selectedBelongsTo = e.target.value;
+        const selectedIndex = optionsBelongsTo.indexOf(selectedBelongsTo);
+        setBelongsTo(selectedBelongsTo);
+        setBelongsToIndex(selectedIndex);
+    };
+
+    const handleTransactionTypeChange = (e) => {
+        const selectedTransactionType = e.target.value;
+        const selectedIndex = optionsTransaction.indexOf(selectedTransactionType);
+        setTransactionType(selectedTransactionType);
+        setTransactionTypeIndex(selectedIndex);
+    };
 
     const handleBlur = () => {
         setIsvalid(name.trim() !== '');
@@ -52,7 +65,7 @@ export default function Category(){
                   <Select
                   id="transactionOptions"
                   value={transactionType}
-                  onChange={(e) => setTransactionType(e.target.value)}>
+                  onChange={handleTransactionTypeChange}>
                     {optionsTransaction.map((optionsTransaction) => (<option 
                     key={optionsTransaction} value={optionsTransaction}>
                       {optionsTransaction}
@@ -63,7 +76,7 @@ export default function Category(){
             <Select
                 id="optionsBelongsTo"
                 value={belongsTo}
-                onChange={(e) => setBelongsTo(e.target.value)}>
+                onChange={handleBelongsToChange}>
                 {optionsBelongsTo.map((optionsBelongsTo) => (<option 
                 key={optionsBelongsTo} value={optionsBelongsTo}>
                 {optionsBelongsTo}

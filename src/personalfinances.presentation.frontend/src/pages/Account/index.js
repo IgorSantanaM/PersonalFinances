@@ -14,7 +14,15 @@ export default function Account() {
   const options  = ['Wallet', 'Credit Card', 'Savings'];
   const [initialBalance, setInitialBalance] = useState("");
   const [isReconcileChecked, setIsReconcileChecked] = useState(false);  
-  const accountTypeIndex = accountType.indexOf(accountType);
+  const [accountTypeIndex, setAccountTypeIndex] = useState(accountType.indexOf(accountType));
+
+
+  const handleAccountTypeChange = (e) => {
+    const selectedAccountType = e.target.value;
+    const selectedIndex = options.indexOf(selectedAccountType);
+    setAccountType(selectedAccountType);
+    setAccountTypeIndex(selectedIndex);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,7 +86,7 @@ export default function Account() {
       <Select
       id="options"
       value={accountType}
-      onChange={(e) => setAccountType(e.target.value)}>
+      onChange={handleAccountTypeChange}>
         {options.map((option) => (<option 
         key={option} value={option}>
           {option}
