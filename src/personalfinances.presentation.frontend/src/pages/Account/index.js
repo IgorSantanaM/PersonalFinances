@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {GrFormPrevious} from 'react-icons/gr'
 
-import {Header} from '../../Components/Header/styles'
-import { Container, Label, Input, Previous, ErrorMessage, Select, InputWrapper, CheckboxWrapper, Checkbox, CheckboxLabel} from './styles';
+
+import { Label, Select, Container, Input, ErrorMessage } from '../../Components/Container/styles';
+import {Header, Previous} from '../../Components/Header/styles'
+import {  InputWrapper, CheckboxWrapper, Checkbox, CheckboxLabel} from './styles';
 import api from '../../services/api';
 
 export default function Account() {
@@ -11,8 +13,8 @@ export default function Account() {
   const[accountType, setAccountType] = useState('Wallet');
   const options  = ['Wallet', 'Credit Card', 'Savings'];
   const [initialBalance, setInitialBalance] = useState("");
-  const [isReconcileChecked, setIsReconcileChecked] = useState(false);
-  const accountTypeIndex = accountType.indexOf(accountType.trim());
+  const [isReconcileChecked, setIsReconcileChecked] = useState(false);  
+  const accountTypeIndex = accountType.indexOf(accountType);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
