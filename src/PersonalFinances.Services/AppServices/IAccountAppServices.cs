@@ -9,7 +9,7 @@ namespace PersonalFinances.Services.AppServices
 {
     public interface IAccountAppServices
     {
-        Task CreateAccountAsync(AccountForCreationDto accountForCreationDto);
+        Task<Guid> CreateAccountAsync(AccountForCreationDto accountForCreationDto);
 
         Task<AccountDto> GetAccountAsync(Guid id);
 

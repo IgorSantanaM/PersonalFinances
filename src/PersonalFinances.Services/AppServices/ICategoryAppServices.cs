@@ -9,7 +9,7 @@ namespace PersonalFinances.Services.AppServices
 {
     public interface ICategoryAppServices
     {
-        Task CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto);
+        Task<Guid> CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto);
 
         Task<CategoryDto> GetCategoryAsync(Guid id);
 

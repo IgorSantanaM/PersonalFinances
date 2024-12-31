@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration.Conventions;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFinances.Domain.Core.Model;
 using PersonalFinances.Services.DTOs;
+using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 
-namespace PersonalFinances.Services.Profiles;
+namespace PersonalFinances.Application.Profiles;
     public class AccountProfile : Profile
     {
         public AccountProfile()
@@ -13,6 +13,8 @@ namespace PersonalFinances.Services.Profiles;
             CreateMap<Account, AccountDto>();
 
             CreateMap<AccountForCreationDto, Account>().ReverseMap();
+
+            CreateMap<AccountForCreationDto, CreateAccountCommand>().ReverseMap();
 
             CreateMap<AccountForCreationDto, AccountDto>();
 

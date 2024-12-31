@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;

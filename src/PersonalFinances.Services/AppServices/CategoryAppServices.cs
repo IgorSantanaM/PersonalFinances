@@ -17,7 +17,7 @@ namespace PersonalFinances.Services.AppServices
             _mapper = mapper;
         }
 
-        public async Task CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto)
+        public async Task<Guid> CreateCategoryAsync(CategoryForCreationDto categoryForCreationDto)
         {
             Category category = new(categoryForCreationDto.Id, categoryForCreationDto.Name, categoryForCreationDto.TransactionType, categoryForCreationDto.BelongsTo);
 
@@ -27,6 +27,8 @@ namespace PersonalFinances.Services.AppServices
             }
 
             await _repository.AddAsync(category);
+
+            return category.Id;
         }
 
         public async Task DeleteCategoryAsync(Guid id)

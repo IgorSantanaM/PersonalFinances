@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PersonalFinances.Domain.Accounts;
+using PersonalFinances.Domain.Core.Events;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFinances.Services.AppServices;
@@ -18,7 +19,7 @@ namespace PersonalFinances.Services.Repository
             _mapper = mapper;
         }
 
-        public async Task CreateAccountAsync(AccountForCreationDto accountForCreationDto)
+        public async Task<Guid> CreateAccountAsync(AccountForCreationDto accountForCreationDto)
         {
             Account account = new(accountForCreationDto.Id, accountForCreationDto.Name, accountForCreationDto.AccountType, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
 
@@ -28,11 +29,13 @@ namespace PersonalFinances.Services.Repository
             }
 
             await _repository.AddAsync(account);
+
+            return account.Id;
         }
 
         public async Task DeleteAccountAsync(Guid id)
         {
-           await _repository.RemoveAsync(id);
+            await _repository.RemoveAsync(id);
         }
 
         public async Task<AccountDto> GetAccountAsync(Guid id)

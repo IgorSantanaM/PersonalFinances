@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
+using PersonalFinances.Application.Features.Accounts.Commands.DeleteAccount;
 using PersonalFinances.Services.AppServices;
 using PersonalFinances.Services.DTOs;
 
@@ -11,27 +14,28 @@ namespace PersonalFinances.Services.Controllers
     {
         private readonly IAccountAppServices _accountRepository;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public AccountController(IAccountAppServices accountRepository, IMapper mapper)
+        public AccountController(IAccountAppServices accountRepository, IMapper mapper, IMediator mediator)
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
+        public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand createAccountCommand)
         {
-            await _accountRepository.CreateAccountAsync(accountForCreationDto);
-
-            return CreatedAtAction(nameof(GetAccount), new { accountId = accountForCreationDto.Id }, accountForCreationDto);
+            var id = await _mediator.Send(createAccountCommand);
+            return CreatedAtAction(nameof(GetAccount), new { accountId = id }, createAccountCommand);
         }
 
         [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
         {
-            await _accountRepository.DeleteAccountAsync(accountId);
-
-            return Ok();
+            var deleteAccountCommand = new DeleteAccountCommand() { AccountId = accountId };
+            await _mediator.Send(deleteAccountCommand);
+            return NoContent();
         }
 
         [HttpGet("{accountId}", Name = "getaccount")]

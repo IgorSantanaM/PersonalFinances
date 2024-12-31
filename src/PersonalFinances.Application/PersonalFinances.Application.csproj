@@ -8,7 +8,13 @@
 
   <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="13.0.1" />
+	  <PackageReference Include="MediatR" Version="12.4.1" />
 	  <ProjectReference Include="..\PersonalFinances.Services\PersonalFinances.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Accounts\Queries\" />
+    <Folder Include="Features\Categories\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
+using PersonalFinances.Application.Features.Categories.Commands.DeleteCategory;
 using PersonalFinances.Infra.Data.Mongo.Repository;
 using PersonalFinances.Services.AppServices;
 using PersonalFinances.Services.DTOs;
@@ -13,27 +16,29 @@ namespace PersonalFinances.Presentation.WebApi.Controllers
     {
         private readonly ICategoryAppServices _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public CategoryController(ICategoryAppServices categoryRepository, IMapper mapper)
+        public CategoryController(ICategoryAppServices categoryRepository, IMapper mapper, IMediator mediator)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateCategory([FromBody] CategoryForCreationDto categoryForCreationDto)
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand createCategoryCommand)
         {
-            await _categoryRepository.CreateCategoryAsync(categoryForCreationDto);
+            var id = await _mediator.Send(createCategoryCommand);
 
-            return CreatedAtAction(nameof(GetCategory), new { categoryId = categoryForCreationDto.Id }, categoryForCreationDto);
+            return CreatedAtAction(nameof(GetCategory), new { categoryId = id }, createCategoryCommand);
         }
 
         [HttpDelete("delete/{categoryId}", Name = "deletecategory")]
         public async Task<IActionResult> DeleteCategory(Guid categoryId)
         {
-            await _categoryRepository.DeleteCategoryAsync(categoryId);
-
-            return Ok();
+            var deleteCategoryCommand = new DeleteCategoryCommand() { CategoryId = categoryId };
+            await _mediator.Send(deleteCategoryCommand);
+            return NoContent();
         }
 
         [HttpGet("{categoryId}", Name = "getcategory")]

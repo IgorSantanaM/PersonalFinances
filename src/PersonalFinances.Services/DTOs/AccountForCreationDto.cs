@@ -10,6 +10,7 @@ namespace PersonalFinances.Services.DTOs
 
         [Required]
         public string Name { get; set; }
+
         public AccountType AccountType { get; set; }
 
         [Required]
@@ -18,12 +19,12 @@ namespace PersonalFinances.Services.DTOs
 
         public bool Reconcile { get; set; }
 
-        public AccountForCreationDto(string name, int initialBalance, bool reconcile, AccountType accountType)
+        public AccountForCreationDto(string name, AccountType accountType, int initialBalance, bool reconcile)
         {
             Id = Guid.NewGuid();
             Name = name;
-            InitialBalance = initialBalance;
             AccountType = accountType;
+            InitialBalance = initialBalance;
             Reconcile = reconcile;
         }
     }

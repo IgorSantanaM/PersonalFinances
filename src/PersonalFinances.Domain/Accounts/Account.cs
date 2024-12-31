@@ -6,7 +6,6 @@ namespace PersonalFinances.Domain.Accounts
 {
     public class Account : Entity<Account>
     {
-
         public Account(Guid id, string name, AccountType accountType, int balance, bool reconcile)
         {
             Id = id;

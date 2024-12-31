@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
+using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Core.Model;
 using PersonalFinances.Infra.Data.Mongo.Documents;
@@ -19,6 +20,8 @@ namespace PersonalFinances.Services.Profiles
             CreateMap< Category, CategoryDto > ();
 
             CreateMap<CategoryForCreationDto, Category>().ReverseMap();
+
+            CreateMap<CategoryForCreationDto, CreateCategoryCommand>().ReverseMap();
 
             CreateMap<CategoryForCreationDto, CategoryDto>();
 
