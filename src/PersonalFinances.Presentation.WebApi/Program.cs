@@ -15,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
     
     services.AddServices();
 
+    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
     services.AddControllers();
 
     services.AddEndpointsApiExplorer();
@@ -30,8 +32,6 @@ services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
-
-
 
 var app = builder.Build();
 

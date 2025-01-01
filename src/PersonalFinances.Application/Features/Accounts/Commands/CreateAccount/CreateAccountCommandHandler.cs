@@ -1,33 +1,32 @@
 ﻿using AutoMapper;
 using MediatR;
-using PersonalFinances.Services.AppServices;
-using PersonalFinances.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PersonalFinances.Domain.Accounts;
+using PersonalFinances.Domain.Interfaces;
+using PersonalFinances.Infra.Data.Mongo.Documents;
 
 namespace PersonalFinances.Application.Features.Accounts.Commands.CreateAccount
 {
     public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Guid>
     {
-        private readonly IAccountAppServices _accountAppServices;
-        private readonly IMapper _mapper;
+        private readonly IRepository<Account, AccountDocument> _repository;
 
-        public CreateAccountCommandHandler(IAccountAppServices accountAppServices, IMapper mapper)
+        public CreateAccountCommandHandler(IRepository<Account, AccountDocument> repository, IMapper mapper)
         {
-            _accountAppServices = accountAppServices;
-            _mapper = mapper;
+            _repository = repository;
         }
 
         public async Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
-            var accountDto = _mapper.Map<AccountForCreationDto>(request);
+            Account account = new(request.Name, request.AccountType, request.InitialBalance, request.Reconcile);
 
-            var accountId = await _accountAppServices.CreateAccountAsync(accountDto);
+            if (!account.IsValidate()) 
+            {
+                throw new Exception("Could not Create the account");
+            }
 
-            return accountId;
+            await _repository.AddAsync(account);
+
+            return account.Id;
         }
     }
 }

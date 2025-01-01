@@ -1,7 +1,7 @@
 ﻿using PersonalFinances.Domain.Accounts;
 using System.ComponentModel.DataAnnotations;
 
-namespace PersonalFinances.Services.DTOs
+namespace PersonalFinances.Application.DTOs
 {
     public class AccountDto
     {

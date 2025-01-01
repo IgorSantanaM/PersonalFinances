@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using PersonalFinances.Domain.Accounts;
-using System.ComponentModel.DataAnnotations;
 
-namespace PersonalFinances.Application.Features.Accounts.Commands.CreateAccount
+namespace PersonalFinances.Application.Features.Accounts.Commands.UpdateAccount
 {
-    public record CreateAccountCommand : IRequest<Guid>
+
+    public class UpdateAccountCommand : IRequest<Unit>
     {
+        public Guid AccountId { get; set; }
         public string Name { get; set; }
         public AccountType AccountType { get; set; }
         public int InitialBalance { get; set; }

@@ -1,9 +1,4 @@
-﻿using PersonalFinances.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PersonalFinances.Application.DTOs;
 
 namespace PersonalFinances.Services.AppServices
 {
@@ -13,8 +8,10 @@ namespace PersonalFinances.Services.AppServices
 
         Task<CategoryDto> GetCategoryAsync(Guid id);
 
-        Task<IEnumerable<CategoryDto>> GetAllCategorysAsync();
+        Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync();
 
         Task DeleteCategoryAsync(Guid id);
+
+        Task UpdateCategoryAsync(Guid id);
     }
 }

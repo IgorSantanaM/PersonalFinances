@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 using PersonalFinances.Application.Features.Accounts.Commands.DeleteAccount;
 using PersonalFinances.Services.AppServices;
-using PersonalFinances.Services.DTOs;
+using PersonalFinances.Application.DTOs;
+using System.Runtime.InteropServices;
 
 namespace PersonalFinances.Services.Controllers
 {
@@ -24,17 +25,22 @@ namespace PersonalFinances.Services.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand createAccountCommand)
+        public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
-            var id = await _mediator.Send(createAccountCommand);
-            return CreatedAtAction(nameof(GetAccount), new { accountId = id }, createAccountCommand);
+            var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
+            return CreatedAtAction(nameof(GetAccount), new { accountId = id }, accountForCreationDto);
         }
 
         [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
         {
-            var deleteAccountCommand = new DeleteAccountCommand() { AccountId = accountId };
-            await _mediator.Send(deleteAccountCommand);
+           await _accountRepository.DeleteAccountAsync(accountId);
+            return NoContent();
+        }
+        [HttpPut("update/{accountId}", Name = "updateaccount")]
+        public async Task<IActionResult> UpdateAccount(Guid accountId)
+        {
+            await _accountRepository.UpdateAccountAsync(accountId);
             return NoContent();
         }
 
@@ -42,11 +48,6 @@ namespace PersonalFinances.Services.Controllers
         public async Task<IActionResult> GetAccount(Guid accountId)
         {
             var accountDto = await _accountRepository.GetAccountAsync(accountId);
-
-            if (accountDto == null)
-            {
-                return NotFound();
-            }
 
             return Ok(accountDto);
         }

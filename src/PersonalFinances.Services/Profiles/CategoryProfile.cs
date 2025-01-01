@@ -4,12 +4,9 @@ using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Core.Model;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using PersonalFinances.Services.DTOs;
+using PersonalFinances.Application.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonalFinances.Services.Profiles
 {
