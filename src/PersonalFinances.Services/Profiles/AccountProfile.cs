@@ -2,10 +2,10 @@
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFinances.Domain.Core.Model;
-using PersonalFinances.Services.DTOs;
+using PersonalFinances.Application.DTOs;
 using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 
-namespace PersonalFinances.Application.Profiles;
+namespace PersonalFinances.Services.Profiles;
     public class AccountProfile : Profile
     {
         public AccountProfile()

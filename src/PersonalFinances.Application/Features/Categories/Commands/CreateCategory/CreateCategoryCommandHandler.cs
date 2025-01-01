@@ -1,33 +1,32 @@
 ﻿using AutoMapper;
 using MediatR;
-using PersonalFinances.Services.AppServices;
-using PersonalFinances.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PersonalFinances.Domain.Accounts;
+using PersonalFinances.Domain.Interfaces;
+using PersonalFinances.Infra.Data.Mongo.Documents;
 
 namespace PersonalFinances.Application.Features.Categories.Commands.CreateCategory
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Guid>
     {
-        private readonly ICategoryAppServices _categoryAppServices;
-        private readonly IMapper _mapper;
+        private readonly IRepository<Category, CategoryDocument> _repository;
 
-        public CreateCategoryCommandHandler(ICategoryAppServices categoryAppServices, IMapper mapper)
+        public CreateCategoryCommandHandler(IRepository<Category, CategoryDocument> repository)
         {
-            _categoryAppServices = categoryAppServices;
-            _mapper = mapper;
+            _repository = repository;
         }
 
         public async Task<Guid> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var categoryDto = _mapper.Map<CategoryForCreationDto>(request);
+            Category category = new(request.Name, request.TransactionType, request.BelongsTo);
 
-            var categoryId = await _categoryAppServices.CreateCategoryAsync(categoryDto);
+            if(!category.IsValidate())
+            {
+                throw new Exception("Could not create the category.");
+            }
 
-            return categoryId;
+            await _repository.AddAsync(category);
+
+            return category.Id;
         }
     }
 }

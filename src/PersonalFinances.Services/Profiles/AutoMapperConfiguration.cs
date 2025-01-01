@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using PersonalFinances.Application.Profiles;
 
 namespace PersonalFinances.Services.Profiles
 {

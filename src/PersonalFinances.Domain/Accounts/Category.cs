@@ -12,9 +12,9 @@ namespace PersonalFinances.Domain.Accounts
 
         public string Name { get; set; }
 
-        public Category(Guid id, string name, TransactionType transactionType, CategoryType belongsTo)
+        public Category(string name, TransactionType transactionType, CategoryType belongsTo)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             TransactionType = transactionType;
             BelongsTo = belongsTo;
             Name = name;

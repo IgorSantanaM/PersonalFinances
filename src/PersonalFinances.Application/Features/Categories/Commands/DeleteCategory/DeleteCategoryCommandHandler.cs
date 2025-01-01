@@ -1,25 +1,30 @@
 ﻿using MediatR;
-using PersonalFinances.Services.AppServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PersonalFinances.Application.Exceptions;
+using PersonalFinances.Domain.Accounts;
+using PersonalFinances.Domain.Interfaces;
+using PersonalFinances.Infra.Data.Mongo.Documents;
 
 namespace PersonalFinances.Application.Features.Categories.Commands.DeleteCategory
 {
     public class DeleteCategoryCommandhandler : IRequestHandler<DeleteCategoryCommand, Unit>
     {
-        private readonly ICategoryAppServices _categoryAppServices;
+        private readonly IRepository<Category, CategoryDocument> _repository;
 
-        public DeleteCategoryCommandhandler(ICategoryAppServices categoryAppServices)
+        public DeleteCategoryCommandhandler(IRepository<Category, CategoryDocument> repository)
         {
-            _categoryAppServices = categoryAppServices;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            await _categoryAppServices.DeleteCategoryAsync(request.CategoryId);
+            var categoryToDelete = await _repository.GetEntityByIdAsync(request.CategoryId);
+
+            if(categoryToDelete is null)
+            {
+                throw new NotFoundException(nameof(Category), request.CategoryId);
+            }
+
+            await _repository.RemoveAsync(categoryToDelete.Id);
 
             return Unit.Value;
         }

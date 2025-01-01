@@ -1,4 +1,4 @@
-﻿using PersonalFinances.Services.DTOs;
+﻿using PersonalFinances.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +16,7 @@ namespace PersonalFinances.Services.AppServices
         Task<IEnumerable<AccountDto>> GetAllAccountsAsync();
 
         Task DeleteAccountAsync(Guid id);
+
+        Task UpdateAccountAsync(Guid id);
     }
 }

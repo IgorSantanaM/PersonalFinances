@@ -11,8 +11,8 @@ namespace PersonalFinances.Tests.Domain
             // nothing to see here
 
             // Act
-            var acc1 = new Account(Guid.NewGuid(), "Igor", AccountType.Wallet, 1000, false);
-            var acc2 = new Account(Guid.NewGuid(), "Igor", AccountType.Wallet, 1000, false);
+            var acc1 = new Account( "Igor", AccountType.Wallet, 1000, false);
+            var acc2 = new Account( "Igor", AccountType.Wallet, 1000, false);
 
 
             // Assert
@@ -25,8 +25,8 @@ namespace PersonalFinances.Tests.Domain
             // nothing to see here
 
             // Act
-            var category1 = new Category(Guid.NewGuid(), "Salary", 0, 0);
-            var category2 = new Category(Guid.NewGuid(), "Salary", 0, 0);
+            var category1 = new Category( "Salary", 0, 0);
+            var category2 = new Category( "Salary", 0, 0);
 
             // Assert
             Assert.True(category1 != category2 && !category1.Equals(category2));

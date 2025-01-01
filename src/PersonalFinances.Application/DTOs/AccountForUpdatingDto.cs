@@ -1,10 +1,14 @@
-﻿using MediatR;
-using PersonalFinances.Domain.Accounts;
+﻿using PersonalFinances.Domain.Accounts;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PersonalFinances.Application.Features.Accounts.Commands.CreateAccount
+namespace PersonalFinances.Application.DTOs
 {
-    public record CreateAccountCommand : IRequest<Guid>
+    public class AccountForUpdatingDto
     {
         public string Name { get; set; }
         public AccountType AccountType { get; set; }

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.Application\PersonalFinances.Application.csproj" />
-    <ProjectReference Include="..\PersonalFinances.Infra.CrossCutting\PersonalFinances.Infra.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\PersonalFinances.Services\PersonalFinances.Services.csproj" />
     <ProjectReference Include="..\PersonalFinances.Domain.Core\PersonalFinances.Domain.Core.csproj" />
   </ItemGroup>

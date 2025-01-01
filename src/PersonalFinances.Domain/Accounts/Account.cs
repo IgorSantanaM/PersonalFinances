@@ -6,9 +6,9 @@ namespace PersonalFinances.Domain.Accounts
 {
     public class Account : Entity<Account>
     {
-        public Account(Guid id, string name, AccountType accountType, int balance, bool reconcile)
+        public Account(string name, AccountType accountType, int balance, bool reconcile)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             Name = name;
             Balance = balance;
             AccountType = accountType;
