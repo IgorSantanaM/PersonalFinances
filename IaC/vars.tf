@@ -21,7 +21,7 @@ variable "tenant_id" {
 }
 
 variable "object_id" {
-  description = "The tenant ID for the Azure Active Directory"
+  description = "The object ID"
   type        = string
   default = "fbeb51e1-3c90-4b7d-9a2a-a48738cd6d21"
 }
