@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
-using PersonalFinances.Application.Features.Categories.Commands.DeleteCategory;
-using PersonalFinances.Infra.Data.Mongo.Repository;
+using PersonalFinances.Application.DTOs;
 using PersonalFinances.Services.AppServices;
-using PersonalFinances.Services.DTOs;
-using System.Security.Principal;
 
 namespace PersonalFinances.Presentation.WebApi.Controllers
 {
@@ -16,28 +12,32 @@ namespace PersonalFinances.Presentation.WebApi.Controllers
     {
         private readonly ICategoryAppServices _categoryRepository;
         private readonly IMapper _mapper;
-        private readonly IMediator _mediator;
 
         public CategoryController(ICategoryAppServices categoryRepository, IMapper mapper, IMediator mediator)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
-            _mediator = mediator;
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand createCategoryCommand)
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryForCreationDto categoryForCreationDto)
         {
-            var id = await _mediator.Send(createCategoryCommand);
+            var id = await _categoryRepository.CreateCategoryAsync(categoryForCreationDto);
 
-            return CreatedAtAction(nameof(GetCategory), new { categoryId = id }, createCategoryCommand);
+            return CreatedAtAction(nameof(GetCategory), new { categoryId = id }, categoryForCreationDto);
         }
 
         [HttpDelete("delete/{categoryId}", Name = "deletecategory")]
         public async Task<IActionResult> DeleteCategory(Guid categoryId)
         {
-            var deleteCategoryCommand = new DeleteCategoryCommand() { CategoryId = categoryId };
-            await _mediator.Send(deleteCategoryCommand);
+            await _categoryRepository.DeleteCategoryAsync(categoryId);
+            return NoContent();
+        }
+
+        [HttpPut("update/{categoryId}", Name = "updatecategory")]
+        public async Task<IActionResult> UpdateCategory(Guid categoryId)
+        {
+            await _categoryRepository.UpdateCategoryAsync(categoryId);
             return NoContent();
         }
 
@@ -46,20 +46,15 @@ namespace PersonalFinances.Presentation.WebApi.Controllers
         {
             var categoryDto = await _categoryRepository.GetCategoryAsync(categoryId);
 
-            if (categoryDto == null)
-            {
-                return NotFound();
-            }
-
             return Ok(categoryDto);
         }
 
         [HttpGet(Name = "getcategories")]
         public async Task<IActionResult> GetCategorys()
         {
-            var categorysDto = await _categoryRepository.GetAllCategorysAsync();
+            var categoriesDto = await _categoryRepository.GetAllCategoriesAsync();
 
-            return Ok(categorysDto);
+            return Ok(categoriesDto);
         }
     }
 }

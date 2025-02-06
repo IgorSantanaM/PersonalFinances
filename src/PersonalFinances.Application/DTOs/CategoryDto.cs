@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Services.DTOs
+namespace PersonalFinances.Application.DTOs
 {
-    public class CategoryForCreationDto
+    public class CategoryDto
     {
+
         [Key]
         public Guid Id { get; set; }
 
@@ -22,7 +23,7 @@ namespace PersonalFinances.Services.DTOs
         [Required]
         public string Name { get; set; }
 
-        public CategoryForCreationDto(string name, TransactionType transactionType, CategoryType belongsTo)
+        public CategoryDto(string name, TransactionType transactionType, CategoryType belongsTo)
         {
             Id = Guid.NewGuid();
             TransactionType = transactionType;

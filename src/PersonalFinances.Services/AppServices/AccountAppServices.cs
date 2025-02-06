@@ -1,57 +1,59 @@
 ﻿using AutoMapper;
-using PersonalFinances.Domain.Accounts;
-using PersonalFinances.Domain.Core.Events;
-using PersonalFinances.Domain.Interfaces;
-using PersonalFinances.Infra.Data.Mongo.Documents;
+using MediatR;
+using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
+using PersonalFinances.Application.Features.Accounts.Commands.DeleteAccount;
+using PersonalFinances.Application.Features.Accounts.Commands.UpdateAccount;
 using PersonalFinances.Services.AppServices;
-using PersonalFinances.Services.DTOs;
+using PersonalFinances.Application.DTOs;
+using PersonalFinances.Application.Features.Accounts.Queries.GetAccountDetail;
+using PersonalFinances.Application.Features.Accounts.Queries.GetAccountsList;
 
 namespace PersonalFinances.Services.Repository
 {
     public class AccountAppServices : IAccountAppServices
     {
-        private readonly IRepository<Account, AccountDocument> _repository;
+        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public AccountAppServices(IRepository<Account, AccountDocument> repository, IMapper mapper)
+        public AccountAppServices(IMediator mediator, IMapper mapper)
         {
-            _repository = repository;
+            _mediator = mediator;
             _mapper = mapper;
         }
 
         public async Task<Guid> CreateAccountAsync(AccountForCreationDto accountForCreationDto)
         {
-            Account account = new(accountForCreationDto.Id, accountForCreationDto.Name, accountForCreationDto.AccountType, accountForCreationDto.InitialBalance, accountForCreationDto.Reconcile);
+            var createAccountCommand = _mapper.Map<CreateAccountCommand>(accountForCreationDto);
+            var accountId = await _mediator.Send(createAccountCommand);
 
-            if (!account.IsValidate())
-            {
-                throw new Exception("Could not create the account");
-            }
-
-            await _repository.AddAsync(account);
-
-            return account.Id;
+            return accountId;
         }
 
         public async Task DeleteAccountAsync(Guid id)
         {
-            await _repository.RemoveAsync(id);
+            DeleteAccountCommand deleteAccountComamnd = new() { AccountId = id };
+            await _mediator.Send(deleteAccountComamnd);
         }
 
         public async Task<AccountDto> GetAccountAsync(Guid id)
         {
-            var account = await _repository.GetEntityByIdAsync(id);
-
-            AccountDto accountDto = _mapper.Map<AccountDto>(account);
+            GetAccountDetailQuery getAccountDetailQuery = new() { AccountId = id };
+            var accountDto = await _mediator.Send(getAccountDetailQuery);
 
             return accountDto;
         }
 
         public async Task<IEnumerable<AccountDto>> GetAllAccountsAsync()
         {
-            var accounts = await _repository.GetAllAsync();
+            var accountDtos = await _mediator.Send(new GetAccountsListQuery());
 
-            return _mapper.Map<IEnumerable<AccountDto>>(accounts);
+            return accountDtos;
+        }
+
+        public async Task UpdateAccountAsync(Guid id)
+        {
+            UpdateAccountCommand accountToUpdate = new() { AccountId = id };
+            await _mediator.Send(accountToUpdate);
         }
     }
 }
