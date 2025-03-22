@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
@@ -8,9 +9,6 @@ using PersonalFinances.Services.AppServices;
 using PersonalFinances.Infra.Data.Mongo.Repository;
 using PersonalFinances.Services.Profiles;
 using PersonalFinances.Services.Repository;
-using PersonalFinances.Domain.Core.Events;
-using PersonalFinances.Domain.Core.Notifications;
-using System.Reflection;
 using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
 using PersonalFinances.Application.Features.Categories.Commands.DeleteCategory;

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-finances-frontend-deployment
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: personal-finances-frontend
+  template:
+    metadata:
+      labels:
+        app: personal-finances-frontend
+    spec:
+      containers:
+      - name: personal-finances-frontend
+        image: igorsmedeiros/personal-finances-frontend:v1.0 
+        ports:
+        - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: personal-finances-frontend-service
+spec:
+  selector:
+    app: personal-finances-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

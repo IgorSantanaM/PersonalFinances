@@ -1,6 +1,4 @@
 ﻿using PersonalFinances.Domain.Core.Model;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 
 namespace PersonalFinances.Domain.Interfaces
 {

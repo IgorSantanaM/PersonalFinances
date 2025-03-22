@@ -16,6 +16,7 @@ namespace PersonalFinances.Domain.Core.Model
 
         public ValidationResult ValidationResult { get; protected set; }
 
+        
         public override bool Equals(object? obj)
         {
             var compareTo = obj as Entity<T>;

@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+﻿    using FluentValidation;
 using PersonalFinances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
 
