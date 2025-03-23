@@ -44,7 +44,7 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
         options.DocumentTitle = "My API Documentation";
-        options.DefaultModelsExpandDepth(-1); // Hide models section
+        options.DefaultModelsExpandDepth(-1); 
     });
 
     app.UseDeveloperExceptionPage();
@@ -52,9 +52,22 @@ if (app.Environment.IsDevelopment())
 
 if (app.Environment.IsProduction())
 {
-    app.UseExceptionHandler();
+    app.UseExceptionHandler(appBuilder =>
+    {
+        appBuilder.Run(async context =>
+        {
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/json";
+
+            var error = new
+            {
+                message = "An unexpected error occurred. Please try again later."
+            };
+            await context.Response.WriteAsJsonAsync(error);
+        });
+    });
 }
-    
+
 app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();

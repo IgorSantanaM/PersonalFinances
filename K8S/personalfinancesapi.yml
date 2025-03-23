@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: personal-finances-api
-        image: igorsmedeiros/personal-finances-api:v1.0
+        image: igorsmedeiros/personal-finances-api:v2.0
         ports:
         - containerPort: 8080
         env:
@@ -34,5 +34,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8080
-    nodePort: 30080
+    nodePort: 30000
   type: NodePort
