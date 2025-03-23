@@ -13,6 +13,8 @@ using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 using PersonalFinances.Application.Features.Categories.Commands.CreateCategory;
 using PersonalFinances.Application.Features.Categories.Commands.DeleteCategory;
 using PersonalFinances.Application.Features.Accounts.Commands.DeleteAccount;
+using PersonalFinances.Application.Features.Accounts.Commands.UpdateAccount;
+using PersonalFinances.Application.Features.Categories.Commands.UpdateCategory;
 
 namespace PersonalFinances.Infra.CrossCutting.IoC
 {
@@ -38,6 +40,8 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
 
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateAccountCommandHandler).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateAccountCommand).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateCategoryCommand).Assembly));
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DeleteAccountCommand).Assembly));

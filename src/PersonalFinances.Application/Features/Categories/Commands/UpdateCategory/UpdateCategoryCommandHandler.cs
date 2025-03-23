@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using MediatR;
 using PersonalFinances.Application.Exceptions;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
@@ -33,7 +35,12 @@ namespace PersonalFinances.Application.Features.Categories.Commands.UpdateCatego
 
             if (validationResult.Errors.Count > 0)
             {
-                throw new Exception("" + validationResult);
+                var failures = new List<ValidationFailure>
+                {
+                    new ValidationFailure(nameof(request.Name), "Invalid account details.")
+                };
+
+                throw new ValidationException(failures);
             }
 
             await _repository.UpdateAsync(categoryToUpdate);

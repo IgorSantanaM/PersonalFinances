@@ -10,8 +10,6 @@ namespace PersonalFinances.Application.DTOs
 {
     public class CategoryForCreationDto
     {
-        [Key]
-        public Guid Id { get; set; }
 
         [Required]
         public TransactionType TransactionType { get; set; }
@@ -24,7 +22,6 @@ namespace PersonalFinances.Application.DTOs
 
         public CategoryForCreationDto(string name, TransactionType transactionType, CategoryType belongsTo)
         {
-            Id = Guid.NewGuid();
             TransactionType = transactionType;
             BelongsTo = belongsTo;
             Name = name;

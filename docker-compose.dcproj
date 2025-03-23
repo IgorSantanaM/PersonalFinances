@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>1709ec7c-a1fd-45d2-bf00-ac714822bba0</ProjectGuid>
+    <ProjectGuid>09ab7d28-678d-4828-9bd9-5d11afa2f3ba</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>personalfinances.presentation.webapi</DockerServiceName>

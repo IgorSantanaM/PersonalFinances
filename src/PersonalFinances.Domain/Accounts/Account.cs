@@ -27,11 +27,11 @@ namespace PersonalFinances.Domain.Accounts
         
         public override bool IsValidate()
         {
-            ValidatingTheAccount();
+            ValidateAccount();
             return ValidationResult.IsValid;
         }
 
-        private void ValidatingTheAccount()
+        public void ValidateAccount()
         {
             NameValidation();
             BalanceValidation();
@@ -56,7 +56,7 @@ namespace PersonalFinances.Domain.Accounts
         {
             RuleFor(c => c.Balance)
                 .InclusiveBetween(0, 2500000)
-                .WithMessage("The initial balance should be between 0 and 2.500.000");
+                .WithMessage("The initial balance should be between 1 and 2.500.000");
         }
 
     }

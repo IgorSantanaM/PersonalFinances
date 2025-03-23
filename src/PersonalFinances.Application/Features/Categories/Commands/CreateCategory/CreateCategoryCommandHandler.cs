@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
@@ -21,7 +23,12 @@ namespace PersonalFinances.Application.Features.Categories.Commands.CreateCatego
 
             if(!category.IsValidate())
             {
-                throw new Exception("Could not create the category.");
+                var failures = new List<ValidationFailure>
+                {
+                    new ValidationFailure(nameof(request.Name), "Invalid account details.")
+                };
+
+                throw new ValidationException(failures);
             }
 
             await _repository.AddAsync(category);

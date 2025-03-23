@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
@@ -19,9 +21,14 @@ namespace PersonalFinances.Application.Features.Accounts.Commands.CreateAccount
         {
             Account account = new(request.Name, request.AccountType, request.InitialBalance, request.Reconcile);
 
-            if (!account.IsValidate()) 
+            if (!account.IsValidate())
             {
-                throw new Exception("Could not Create the account");
+                var failures = new List<ValidationFailure>
+                {
+                    new ValidationFailure(nameof(request.Name), "Invalid account details.")
+                };
+
+                throw new ValidationException(failures);
             }
 
             await _repository.AddAsync(account);

@@ -5,9 +5,6 @@ namespace PersonalFinances.Application.DTOs
 {
     public class AccountForCreationDto
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required]
         public string Name { get; set; }
 
@@ -21,7 +18,6 @@ namespace PersonalFinances.Application.DTOs
 
         public AccountForCreationDto(string name, AccountType accountType, int initialBalance, bool reconcile)
         {
-            Id = Guid.NewGuid();
             Name = name;
             AccountType = accountType;
             InitialBalance = initialBalance;

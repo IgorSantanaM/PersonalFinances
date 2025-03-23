@@ -27,6 +27,7 @@ namespace PersonalFinances.Infra.Data.Mongo.Documents
             Balance = balance;
             Reconcile = reconcile;
         }
+        
         public AccountDocument()
         { }
     }

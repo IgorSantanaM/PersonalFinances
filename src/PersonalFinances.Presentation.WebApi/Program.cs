@@ -1,26 +1,28 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
+using PersonalFinances.Services.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
-    var services = builder.Services;
-    var configuration = builder.Configuration;
+var services = builder.Services;
+var configuration = builder.Configuration;
 
-    services.AddInfrastructure();
+services.AddInfrastructure();
 
-    services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
+services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
     
-    services.AddServices();
+services.AddServices();
 
-    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-    services.AddControllers();
+services.AddControllers();
 
-    services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
 services.AddCors(options =>
 {
@@ -35,17 +37,32 @@ services.AddCors(options =>
 
 var app = builder.Build();
 
-    if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-    app.UseCors("AllowAllOrigins");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+        options.DocumentTitle = "My API Documentation";
+        options.DefaultModelsExpandDepth(-1); // Hide models section
+    });
 
-    app.UseHttpsRedirection();
+    app.UseDeveloperExceptionPage();
+}
 
-    app.UseAuthorization();
+if (app.Environment.IsProduction())
+{
+    app.UseExceptionHandler();
+}
+    
+app.UseCors("AllowAllOrigins");
 
-    app.MapControllers();
+app.UseHttpsRedirection();
 
-    app.Run();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.UseMiddleware<ValidationProfileMiddleware>();
+
+app.Run();
