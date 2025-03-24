@@ -12,7 +12,7 @@ namespace PersonalFinances.Application.DTOs
     {
         public string Name { get; set; }
         public AccountType AccountType { get; set; }
-        public int InitialBalance { get; set; }
+        public int Balance { get; set; }
         public bool Reconcile { get; set; }
     }
 }

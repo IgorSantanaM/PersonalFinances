@@ -37,9 +37,9 @@ namespace PersonalFinances.Services.AppServices
             await _mediator.Send(deleteCategoryCommand);
         }
 
-        public async Task UpdateCategoryAsync(Guid id)
+        public async Task UpdateCategoryAsync(Guid id, CategoryForUpdatingDto categoryForUpdatingDto)
         {
-            UpdateCategoryCommand updateCategoryCommand = new() { CategoryId = id };
+            UpdateCategoryCommand updateCategoryCommand = new() { CategoryId = id, BelongsTo = categoryForUpdatingDto.BelongsTo, Name = categoryForUpdatingDto.Name, TransactionType = categoryForUpdatingDto.TransactionType };
             await _mediator.Send(updateCategoryCommand);
         }
 

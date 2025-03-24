@@ -35,9 +35,9 @@ namespace PersonalFinances.Presentation.WebApi.Controllers
         }
 
         [HttpPut("update/{categoryId}", Name = "updatecategory")]
-        public async Task<IActionResult> UpdateCategory(Guid categoryId)
+        public async Task<IActionResult> UpdateCategory(Guid categoryId, CategoryForUpdatingDto categoryForUpdatingDto)
         {
-            await _categoryRepository.UpdateCategoryAsync(categoryId);
+            await _categoryRepository.UpdateCategoryAsync(categoryId, categoryForUpdatingDto);
             return NoContent();
         }
 

@@ -24,7 +24,6 @@ namespace PersonalFinances.Application.Features.Accounts.Commands.UpdateAccount
 
         public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
         {
-
             var accountToUpdate = await _repository.GetEntityByIdAsync(request.AccountId); 
 
             if(accountToUpdate is null)
@@ -44,6 +43,11 @@ namespace PersonalFinances.Application.Features.Accounts.Commands.UpdateAccount
 
                 throw new ValidationException(failures);
             }
+
+            accountToUpdate.Name = request.Name;
+            accountToUpdate.Balance = request.Balance;
+            accountToUpdate.AccountType = request.AccountType;
+            accountToUpdate.Reconcile = request.Reconcile;
 
             await _repository.UpdateAsync(accountToUpdate);
 

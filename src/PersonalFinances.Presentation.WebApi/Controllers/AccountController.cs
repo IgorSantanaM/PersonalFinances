@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
-using PersonalFinances.Application.Features.Accounts.Commands.DeleteAccount;
-using PersonalFinances.Services.AppServices;
 using PersonalFinances.Application.DTOs;
-using System.Runtime.InteropServices;
+using PersonalFinances.Services.AppServices;
 
 namespace PersonalFinances.Services.Controllers
 {
@@ -34,13 +31,13 @@ namespace PersonalFinances.Services.Controllers
         [HttpDelete("delete/{accountId}", Name = "deleteaccount")]
         public async Task<IActionResult> DeleteAccount(Guid accountId)
         {
-           await _accountRepository.DeleteAccountAsync(accountId);
+            await _accountRepository.DeleteAccountAsync(accountId);
             return NoContent();
         }
         [HttpPut("update/{accountId}", Name = "updateaccount")]
-        public async Task<IActionResult> UpdateAccount(Guid accountId)
+        public async Task<IActionResult> UpdateAccount(Guid accountId, AccountForUpdatingDto accountForUpdatingDto)
         {
-            await _accountRepository.UpdateAccountAsync(accountId);
+            await _accountRepository.UpdateAccountAsync(accountId, accountForUpdatingDto);
             return NoContent();
         }
 

@@ -12,6 +12,6 @@ namespace PersonalFinances.Services.AppServices
 
         Task DeleteCategoryAsync(Guid id);
 
-        Task UpdateCategoryAsync(Guid id);
+        Task UpdateCategoryAsync(Guid id, CategoryForUpdatingDto categoryForUpdatingDto);
     }
 }

@@ -30,6 +30,7 @@ namespace PersonalFinances.Application.Features.Categories.Commands.UpdateCatego
             {
                 throw new NotFoundException(nameof(Category), request.CategoryId);
             }
+
             var validator = new UpdateCategoryCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
@@ -42,6 +43,10 @@ namespace PersonalFinances.Application.Features.Categories.Commands.UpdateCatego
 
                 throw new ValidationException(failures);
             }
+
+            categoryToUpdate.Name = request.Name;
+            categoryToUpdate.BelongsTo = request.BelongsTo;
+            categoryToUpdate.TransactionType = request.TransactionType;
 
             await _repository.UpdateAsync(categoryToUpdate);
 

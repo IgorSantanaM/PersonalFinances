@@ -17,6 +17,6 @@ namespace PersonalFinances.Services.AppServices
 
         Task DeleteAccountAsync(Guid id);
 
-        Task UpdateAccountAsync(Guid id);
+        Task UpdateAccountAsync(Guid id, AccountForUpdatingDto accountForUpdatingDto);
     }
 }

@@ -50,9 +50,9 @@ namespace PersonalFinances.Services.Repository
             return accountDtos;
         }
 
-        public async Task UpdateAccountAsync(Guid id)
+        public async Task UpdateAccountAsync(Guid id, AccountForUpdatingDto accountForUpdatingDto)
         {
-            UpdateAccountCommand accountToUpdate = new() { AccountId = id };
+            UpdateAccountCommand accountToUpdate = new() { AccountId = id, Name = accountForUpdatingDto.Name, Reconcile = accountForUpdatingDto.Reconcile, Balance = accountForUpdatingDto.Balance ,AccountType = accountForUpdatingDto.AccountType,  };
             await _mediator.Send(accountToUpdate);
         }
     }
