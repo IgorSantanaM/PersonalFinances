@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: personal-finances-frontend
-        image: igorsmedeiros/personal-finances-frontend:v1.0 
+        image: igorsmedeiros/personal-finances-frontend:v2.0 
         ports:
         - containerPort: 80
 ---
