@@ -1,7 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: personal-finances-api
+  namespace: personalfinances
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - personalfinancescool.com
+    secretName: tls-secret
+  rules:
+  - host: personalfinancescool.com
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: personal-finances-api
+              port:
+                number: 80
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: personal-finances-api
+  namespace: personalfinances
 spec:
   replicas: 1
   selector:
@@ -27,6 +51,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: personal-finances-api
+  namespace: personalfinances
 spec:
   selector:
     app: personal-finances-api
@@ -34,5 +59,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8080
-    nodePort: 30000
-  type: NodePort
+  type: ClusterIP
