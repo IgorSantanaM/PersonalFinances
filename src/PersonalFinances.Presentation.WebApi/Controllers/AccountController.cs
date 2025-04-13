@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using PersonalFinances.Application.DTOs;
 using PersonalFinances.Services.AppServices;
 
@@ -22,6 +24,7 @@ namespace PersonalFinances.Services.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Policy = "HasWriteActionPolicy")]
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
@@ -42,6 +45,7 @@ namespace PersonalFinances.Services.Controllers
         }
 
         [HttpGet("{accountId}", Name = "getaccount")]
+        [OutputCache(PolicyName = "AccountCache")]
         public async Task<IActionResult> GetAccount(Guid accountId)
         {
             var accountDto = await _accountRepository.GetAccountAsync(accountId);

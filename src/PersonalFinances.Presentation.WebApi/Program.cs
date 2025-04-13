@@ -1,10 +1,9 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
+using Asp.Versioning;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
 using PersonalFinances.Services.Profiles;
+using PersonalFinances.Services.Security.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +13,30 @@ var configuration = builder.Configuration;
 services.AddInfrastructure();
 
 services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
-    
+
+services.AddOutputCache(x =>
+{
+    x.AddBasePolicy(c => c.Cache());
+    x.AddPolicy("AccountCache", c =>
+    {
+        c.Cache()
+            .Expire(TimeSpan.FromMinutes(1))
+            .Tag("Accounts");
+    });
+});
+
 services.AddServices();
+
+services.AddAuthentication("Bearer");
+services.AddAuthorization(opt =>
+{
+    opt.AddPolicy("Bearer", policy =>
+     {
+         policy.AuthenticationSchemes.Add("Bearer");
+         policy.RequireAuthenticatedUser();
+     });
+    opt.AddPolicy("HasWriteActionPolicy", AuthorizationPolicies.HasWriteActionPolicy);
+});
 
 services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
@@ -44,7 +65,7 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
         options.DocumentTitle = "My API Documentation";
-        options.DefaultModelsExpandDepth(-1); 
+        options.DefaultModelsExpandDepth(-1);
     });
 
     app.UseDeveloperExceptionPage();
@@ -72,6 +93,7 @@ app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Infra.Cros
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E0EDB109-9679-4732-94D6-99754AFF3A58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.Tests", "tests\PersonalFinances.DomainTests\PersonalFinances.Tests.csproj", "{599BDE98-1B39-42DE-86E1-7F8F28B0B120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinances.UnitTests", "tests\PersonalFinances.DomainTests\PersonalFinances.UnitTests.csproj", "{599BDE98-1B39-42DE-86E1-7F8F28B0B120}"
 	ProjectSection(ProjectDependencies) = postProject
 		{25B543CC-241D-4427-82E7-F4CD54EC271E} = {25B543CC-241D-4427-82E7-F4CD54EC271E}
 		{2B90D6D3-5440-4036-9EAD-E8BEFBC65B15} = {2B90D6D3-5440-4036-9EAD-E8BEFBC65B15}

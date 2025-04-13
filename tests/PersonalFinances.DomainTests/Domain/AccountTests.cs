@@ -1,6 +1,6 @@
 using PersonalFinances.Domain.Accounts;
 
-namespace PersonalFinances.Tests.Domain
+namespace PersonalFinances.UnitTests.Domain
 {
     public class AccountTests
     {
@@ -11,25 +11,34 @@ namespace PersonalFinances.Tests.Domain
             // nothing to see here
 
             // Act
-            var acc1 = new Account( "Igor", AccountType.Wallet, 1000, false);
-            var acc2 = new Account( "Igor", AccountType.Wallet, 1000, false);
+            var acc1 = new Account("Igor", AccountType.Wallet, 1000, false);
+            var acc2 = new Account("Igor", AccountType.Wallet, 1000, false);
 
 
             // Assert
             Assert.True(acc1 != acc2 && !acc1.Equals(acc2));
         }
+        
         [Fact]
-        public void CompareTwoCategories_NotEquals_ReturnTrue()
+        public void Account_Validate_ValidAccount_ReturnTrue()
         {
             // Arrange
-            // nothing to see here
-
+            var account = new Account("Igor", AccountType.Wallet, 1000, false);
             // Act
-            var category1 = new Category( "Salary", 0, 0);
-            var category2 = new Category( "Salary", 0, 0);
-
+            var result = account.IsValidate();
             // Assert
-            Assert.True(category1 != category2 && !category1.Equals(category2));
+            Assert.True(result);
         }
+        [Fact]
+        public void Account_Validate_InvalidAccount_ReturnFalse()
+        {
+            // Arrange
+            var account = new Account("", AccountType.Wallet, 1000, false);
+            // Act
+            var result = account.IsValidate();
+            // Assert
+            Assert.False(result);
+        }
+        
     }
 }
