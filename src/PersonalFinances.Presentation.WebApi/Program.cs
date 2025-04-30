@@ -1,4 +1,3 @@
-using Asp.Versioning;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
@@ -14,29 +13,13 @@ services.AddInfrastructure();
 
 services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
 
-services.AddOutputCache(x =>
+builder.Services.AddStackExchangeRedisCache(options =>
 {
-    x.AddBasePolicy(c => c.Cache());
-    x.AddPolicy("AccountCache", c =>
-    {
-        c.Cache()
-            .Expire(TimeSpan.FromMinutes(1))
-            .Tag("Accounts");
-    });
+    options.Configuration = "redis:6379"; 
+    options.InstanceName = "PersonalFinancesCache:";
 });
 
 services.AddServices();
-
-services.AddAuthentication("Bearer");
-services.AddAuthorization(opt =>
-{
-    opt.AddPolicy("Bearer", policy =>
-     {
-         policy.AuthenticationSchemes.Add("Bearer");
-         policy.RequireAuthenticatedUser();
-     });
-    opt.AddPolicy("HasWriteActionPolicy", AuthorizationPolicies.HasWriteActionPolicy);
-});
 
 services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 

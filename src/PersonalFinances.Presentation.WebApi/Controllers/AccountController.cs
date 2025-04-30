@@ -3,8 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.Extensions.Caching.Distributed;
 using PersonalFinances.Application.DTOs;
 using PersonalFinances.Services.AppServices;
+using System.Text.Json;
 
 namespace PersonalFinances.Services.Controllers
 {
@@ -15,16 +17,17 @@ namespace PersonalFinances.Services.Controllers
         private readonly IAccountAppServices _accountRepository;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
+        private readonly IDistributedCache _cache;
 
-        public AccountController(IAccountAppServices accountRepository, IMapper mapper, IMediator mediator)
+        public AccountController(IAccountAppServices accountRepository, IMapper mapper, IMediator mediator, IDistributedCache cache)
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
             _mediator = mediator;
+            _cache = cache;
         }
 
         [HttpPost("create")]
-        [Authorize(Policy = "HasWriteActionPolicy")]
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
@@ -45,10 +48,22 @@ namespace PersonalFinances.Services.Controllers
         }
 
         [HttpGet("{accountId}", Name = "getaccount")]
-        [OutputCache(PolicyName = "AccountCache")]
         public async Task<IActionResult> GetAccount(Guid accountId)
         {
+            var cacheKey = $"Account-{accountId}";
+            var cached = await _cache.GetStringAsync(cacheKey);
+
+            if (!string.IsNullOrEmpty(cached))
+            {
+                return Ok(cached);
+            }
+
             var accountDto = await _accountRepository.GetAccountAsync(accountId);
+
+            await _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(accountDto), new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
+            });
 
             return Ok(accountDto);
         }
