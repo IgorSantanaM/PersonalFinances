@@ -19,15 +19,5 @@ namespace PersonalFinances.Application.DTOs
         public ICollection<Category> Categories = new List<Category>();
 
         public bool Reconcile { get; set; }
-
-        public AccountDto(string name, int balance, bool reconcile, ICollection<Category> categories, AccountType accountType)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Balance = balance;
-            AccountType = accountType;
-            Reconcile = reconcile;
-            Categories = categories;
-        }
     }
 }

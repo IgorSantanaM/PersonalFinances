@@ -19,12 +19,5 @@ namespace PersonalFinances.Application.DTOs
 
         [Required]
         public string Name { get; set; }
-
-        public CategoryForCreationDto(string name, TransactionType transactionType, CategoryType belongsTo)
-        {
-            TransactionType = transactionType;
-            BelongsTo = belongsTo;
-            Name = name;
-        }
     }
 }

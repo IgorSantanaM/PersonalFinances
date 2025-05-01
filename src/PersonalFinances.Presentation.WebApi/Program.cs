@@ -15,8 +15,7 @@ services.Configure<MongoOptions>(configuration.GetSection("MongoSettings"));
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = "redis:6379"; 
-    options.InstanceName = "PersonalFinancesCache:";
+    configuration.GetSection("RedisSettings").Bind(options);
 });
 
 services.AddServices();

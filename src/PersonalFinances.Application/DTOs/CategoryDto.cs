@@ -22,13 +22,5 @@ namespace PersonalFinances.Application.DTOs
 
         [Required]
         public string Name { get; set; }
-
-        public CategoryDto(string name, TransactionType transactionType, CategoryType belongsTo)
-        {
-            Id = Guid.NewGuid();
-            TransactionType = transactionType;
-            BelongsTo = belongsTo;
-            Name = name;
-        }
     }
 }

@@ -16,12 +16,5 @@ namespace PersonalFinances.Application.DTOs
 
         public bool Reconcile { get; set; }
 
-        public AccountForCreationDto(string name, AccountType accountType, int initialBalance, bool reconcile)
-        {
-            Name = name;
-            AccountType = accountType;
-            InitialBalance = initialBalance;
-            Reconcile = reconcile;
-        }
     }
 }

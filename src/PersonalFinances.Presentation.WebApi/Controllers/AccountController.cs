@@ -55,6 +55,7 @@ namespace PersonalFinances.Services.Controllers
 
             if (!string.IsNullOrEmpty(cached))
             {
+                var account = JsonSerializer.Deserialize<AccountDto>(cached);
                 return Ok(cached);
             }
 
