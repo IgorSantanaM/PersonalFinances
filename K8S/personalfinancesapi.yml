@@ -41,10 +41,9 @@ spec:
         image: igorsmedeiros/personal-finances-api:v1.0
         ports:
         - containerPort: 8080
-        - env:
+        env:
         - name: ConnectionStrings__MongoDb
           value: "mongodb://mongodb:27017"
-        - env:
         - name: Configuration__Redis
           value: "redis:6379"
 
