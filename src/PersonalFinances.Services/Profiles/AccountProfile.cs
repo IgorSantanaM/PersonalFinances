@@ -18,7 +18,7 @@ namespace PersonalFinances.Services.Profiles;
 
             CreateMap<AccountForCreationDto, AccountDto>();
 
-            CreateMap<AccountForSendindMailDto, AccountDocument>().ReverseMap();
+            CreateMap<AccountForSendindMailDto, AccountForCreationDto>().ReverseMap();
 
             CreateMap<Account, AccountDocument>().ReverseMap();
 

@@ -1,4 +1,5 @@
 ﻿using Mjml.Net;
+using PersonalFinances.Application.DTOs;
 using PersonalFinances.Domain.Accounts;
 using RazorEngine.Templating;
 
@@ -6,7 +7,7 @@ namespace PersonalFinances.Application.Mail
 {
     public class RazorEngineMjmlMailRenderer : IHtmlMailRenderer
     {
-        private string TEMPLATE_KEY = "AccountCreatedEmailTemplate";
+        private string TEMPLATE_KEY = "AccountCreatedConfirmation";
         private readonly IRazorEngineService _razor;
         private readonly IMjmlRenderer _mjml;
         private readonly IMailTemplateProvider _templates;
@@ -18,6 +19,7 @@ namespace PersonalFinances.Application.Mail
             _mjml = mjml;
             _templates = templates;
         }
+
         #region cssRules
         private readonly string[] cssAtRules = [
         "bottom-center", "bottom-left", "bottom-left-corner", "bottom-right", "bottom-right-corner", "charset", "counter-style",
@@ -34,16 +36,16 @@ namespace PersonalFinances.Application.Mail
         mjmlOutput.Replace(":wght@", ":wght@@");
         #endregion
 
-        public string RenderHtmlEmail(Account model)
+        public string RenderHtmlEmail(AccountForSendindMailDto model)
         {
-            if (!_razor.IsTemplateCached(TEMPLATE_KEY, typeof(Account))) CacheTemplate();
-            return _razor.Run(TEMPLATE_KEY, typeof(Account), model);
+            if (!_razor.IsTemplateCached(TEMPLATE_KEY, typeof(AccountForSendindMailDto))) CacheTemplate();
+            return _razor.Run(TEMPLATE_KEY, typeof(AccountForSendindMailDto), model);
         }
         private void CacheTemplate()
         {
             var razorSource = CompileMjml();
             _razor.AddTemplate(TEMPLATE_KEY, razorSource);
-            _razor.Compile(TEMPLATE_KEY, typeof(Account));
+            _razor.Compile(TEMPLATE_KEY, typeof(AccountForSendindMailDto));
         }
 
         private string CompileMjml()

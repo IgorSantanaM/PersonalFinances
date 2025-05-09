@@ -19,7 +19,7 @@ namespace PersonalFinances.Application.DTOs
 
         [Required]
         [Range(1, 2500000)]
-        public int Balance { get; set; }
+        public int? Balance { get; set; }
 
         public bool Reconcile { get; set; }
     }

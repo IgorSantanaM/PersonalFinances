@@ -17,23 +17,23 @@ namespace PersonalFinances.Application.Mail
         ILogger<Mailer> logger) : IMailer
     {
 
-        public MimeMessage CreateMessage(Account account)
+        public MimeMessage CreateMessage(AccountForSendindMailDto accountSendingMail)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Igor", "igor@kinsoftware.dev"));
-            message.To.Add(new MailboxAddress(account.Name, "example@example.com"));
+            message.To.Add(new MailboxAddress(accountSendingMail.Name, "example@example.com"));
             message.Subject = $"Your Account has been created!";
             var bb = new BodyBuilder
             {
-                HtmlBody = htmlRenderer.RenderHtmlEmail(account)
+                HtmlBody = htmlRenderer.RenderHtmlEmail(accountSendingMail)
             };
 
             message.Body = bb.ToMessageBody();
             return message;
         }
-        public async Task SendAccountCreatedConfirmationAsync(Account account, CancellationToken token)
+        public async Task SendAccountCreatedConfirmationAsync(AccountForSendindMailDto accountSendingMail, CancellationToken token)
         {
-            var message = CreateMessage(account);
+            var message = CreateMessage(accountSendingMail);
 
             try
             {
@@ -41,7 +41,7 @@ namespace PersonalFinances.Application.Mail
             }
             catch(Exception ex)
             {
-                logger.LogError(ex, "Error sending email for {AccountId}.", account.Id);
+                logger.LogError(ex, "Error sending email for {AccountId}.", accountSendingMail.Id);
                 throw;
             }
         }

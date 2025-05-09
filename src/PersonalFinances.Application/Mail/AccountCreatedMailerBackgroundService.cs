@@ -2,11 +2,10 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PersonalFinances.Application.DTOs;
+using PersonalFinances.Application.Mapping;
 using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Domain.Interfaces;
-using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Documents;
-using System.Reflection.Metadata.Ecma335;
 
 namespace PersonalFinances.Application.Mail
 {
@@ -41,9 +40,10 @@ namespace PersonalFinances.Application.Mail
                 {
                     Account? account = await repository.GetEntityByIdAsync(accountMail.Id);
                     if (account is null) continue;
+                    accountMail = DtoMapping.MapAccountToMailAccount(account);
                     try
                     {
-                        await mailer.SendAccountCreatedConfirmationAsync(account, stoppingToken);
+                        await mailer.SendAccountCreatedConfirmationAsync(accountMail, stoppingToken);
                         await reporter.ReportSuccessAsync(accountMail.Id);
                     }catch(Exception)
                     {
