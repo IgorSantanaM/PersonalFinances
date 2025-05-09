@@ -1,0 +1,15 @@
+<mjml>
+  <mj-body background-color="#f0f0f0">
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="20px" color="#333333" font-family="Helvetica, Arial, sans-serif" align="center">
+          Thank you for creating your account!
+        </mj-text>
+        <mj-divider border-color="#cccccc" />
+        <mj-text font-size="16px" color="#555555" font-family="Helvetica, Arial, sans-serif">
+          We're excited to have you on board. Thank you again for creating the account. @Model.Name
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

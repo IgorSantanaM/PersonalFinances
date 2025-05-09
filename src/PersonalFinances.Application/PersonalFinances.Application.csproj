@@ -7,8 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Templates\Mail\AccountCreatedConfirmation.csmjml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Mail\AccountCreatedConfirmation.csmjml" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="14.0.0" />
+	  <PackageReference Include="MailKit" Version="4.12.0" />
 	  <PackageReference Include="MediatR" Version="12.5.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.2.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.4" />
+	  <PackageReference Include="MimeKit" Version="4.12.0" />
+	  <PackageReference Include="mjml.net" Version="4.8.0" />
+	  <PackageReference Include="RazorEngine.NetCore" Version="3.1.0" />
+	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>

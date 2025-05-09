@@ -18,6 +18,8 @@ namespace PersonalFinances.Services.Profiles;
 
             CreateMap<AccountForCreationDto, AccountDto>();
 
+            CreateMap<AccountForSendindMailDto, AccountDocument>().ReverseMap();
+
             CreateMap<Account, AccountDocument>().ReverseMap();
 
             CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();

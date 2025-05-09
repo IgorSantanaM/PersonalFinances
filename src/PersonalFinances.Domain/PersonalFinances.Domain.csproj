@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PersonalFinances.Domain.Core\PersonalFinances.Domain.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+
 </Project>

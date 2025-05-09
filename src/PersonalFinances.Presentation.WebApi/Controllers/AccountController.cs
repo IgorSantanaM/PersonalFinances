@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Caching.Distributed;
 using PersonalFinances.Application.DTOs;
+using PersonalFinances.Application.Mail;
+using PersonalFinances.Domain.Accounts;
 using PersonalFinances.Services.AppServices;
 using System.Text.Json;
 
@@ -18,19 +20,30 @@ namespace PersonalFinances.Services.Controllers
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
         private readonly IDistributedCache _cache;
+        private readonly IMailQueue _queue;
 
-        public AccountController(IAccountAppServices accountRepository, IMapper mapper, IMediator mediator, IDistributedCache cache)
+        public AccountController(IAccountAppServices accountRepository, IMapper mapper, IMediator mediator, IDistributedCache cache, IMailQueue queue)
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
             _mediator = mediator;
             _cache = cache;
+            _queue = queue;
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
+            AccountForSendindMailDto mailAccount = new()
+            {
+                Id = id,
+                Name = accountForCreationDto.Name,
+                AccountType = accountForCreationDto.AccountType,
+                Balance = accountForCreationDto.InitialBalance,
+                Reconcile = accountForCreationDto.Reconcile
+            };
+            await _queue.AddMailToQueue(mailAccount);
             return CreatedAtAction(nameof(GetAccount), new { accountId = id }, accountForCreationDto);
         }
 

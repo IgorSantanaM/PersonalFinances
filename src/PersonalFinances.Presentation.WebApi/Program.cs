@@ -1,3 +1,5 @@
+using MediatR;
+using PersonalFinances.Application.Mail;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
@@ -17,8 +19,22 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     configuration.GetSection("RedisSettings").Bind(options);
 });
+services.AddSignalR();
 
 services.AddServices();
+
+var smtpSettings = builder.Configuration.GetSection("Smtp").Get<SmtpSettings>() ?? new SmtpSettings();
+
+builder.Services.AddSingleton(smtpSettings);
+//TODO: Continue adding DI
+builder.Services.AddTransient<IMailSender, SmtpMailSender>();
+builder.Services.AddTransient<IMailer, Mailer>();
+
+builder.Services.AddSingleton<IMailQueue, AccountCreatedMailQueue>();
+builder.Services.AddHostedService<AccountCreatedMailerBackgroundService>();
+
+builder.Services.AddSingleton<IMailDeliveryReporter, SignalRMailDeliveryReporter>();
+
 
 services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
@@ -74,6 +90,7 @@ if (app.Environment.IsProduction())
 app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
