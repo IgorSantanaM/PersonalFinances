@@ -40,10 +40,11 @@ namespace PersonalFinances.Application.Mail
         {
             if (!_razor.IsTemplateCached(TEMPLATE_KEY, typeof(AccountForSendindMailDto))) CacheTemplate();
             return _razor.Run(TEMPLATE_KEY, typeof(AccountForSendindMailDto), model);
+            //TODO: Fix this
         }
         private void CacheTemplate()
         {
-            var razorSource = CompileMjml();
+            string razorSource = CompileMjml();
             _razor.AddTemplate(TEMPLATE_KEY, razorSource);
             _razor.Compile(TEMPLATE_KEY, typeof(AccountForSendindMailDto));
         }

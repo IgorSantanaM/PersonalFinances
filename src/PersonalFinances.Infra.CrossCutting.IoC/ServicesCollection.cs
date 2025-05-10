@@ -18,6 +18,10 @@ using PersonalFinances.Application.Features.Categories.Commands.UpdateCategory;
 using PersonalFinances.Application.Mail;
 using RazorEngine.Templating;
 using Mjml.Net;
+using EasyNetQ;
+using System.Text.Json;
+using NodaTime;
+using NodaTime.Serialization.SystemTextJson;
 
 namespace PersonalFinances.Infra.CrossCutting.IoC
 {
@@ -41,12 +45,6 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
             services.AddScoped<IRepository<Category, CategoryDocument>, CategoryRepository>();
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
-
-            services.AddSingleton(_ => RazorEngineService.Create());
-            services.AddSingleton<IMailTemplateProvider>(new EmbeddedResourceMailTemplateProvider());
-            services.AddSingleton<IMjmlRenderer>(_ => new MjmlRenderer());
-            services.AddSingleton<IHtmlMailRenderer, RazorEngineMjmlMailRenderer>();
-
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateAccountCommandHandler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateAccountCommand).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateCategoryCommand).Assembly));
@@ -55,6 +53,21 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DeleteAccountCommand).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DeleteCategoryCommand).Assembly));
 
+
+            return services;
+        }
+        public static IServiceCollection AddMailServices(this IServiceCollection services)
+        {
+            var jsonOptions = new JsonSerializerOptions()
+            .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
+            IBus? bus = RabbitHutch.CreateBus("host=mailrabbit", options =>
+            options.EnableSystemTextJson(jsonOptions));
+            services.AddSingleton(bus);
+
+            services.AddSingleton(_ => RazorEngineService.Create());
+            services.AddSingleton<IMailTemplateProvider>(new EmbeddedResourceMailTemplateProvider());
+            services.AddSingleton<IMjmlRenderer>(_ => new MjmlRenderer());
+            services.AddSingleton<IHtmlMailRenderer, RazorEngineMjmlMailRenderer>();
 
             return services;
         }

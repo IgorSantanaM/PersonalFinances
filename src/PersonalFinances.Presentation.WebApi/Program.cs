@@ -1,10 +1,14 @@
+using EasyNetQ;
 using MediatR;
+using NodaTime;
+using NodaTime.Serialization.SystemTextJson;
 using PersonalFinances.Application.Mail;
 using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
 using PersonalFinances.Services.Profiles;
 using PersonalFinances.Services.Security.Authorization;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +25,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 services.AddSignalR();
 
-services.AddServices();
+services.AddMailServices();
+
+
 
 var smtpSettings = builder.Configuration.GetSection("Smtp").Get<SmtpSettings>() ?? new SmtpSettings();
 

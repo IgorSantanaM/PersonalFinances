@@ -26,11 +26,13 @@ namespace PersonalFinances.Application.Mail
             var bb = new BodyBuilder
             {
                 HtmlBody = htmlRenderer.RenderHtmlEmail(accountSendingMail)
+                //HtmlBody = $"<h1> Thank you for creating the account! {accountSendingMail} </h1>"
             };
 
             message.Body = bb.ToMessageBody();
             return message;
         }
+
         public async Task SendAccountCreatedConfirmationAsync(AccountForSendindMailDto accountSendingMail, CancellationToken token)
         {
             var message = CreateMessage(accountSendingMail);

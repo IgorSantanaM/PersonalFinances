@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyNetQ;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PersonalFinances.Application.DTOs;
@@ -14,7 +15,8 @@ namespace PersonalFinances.Application.Mail
         IServiceProvider services,
         ILogger<AccountCreatedMailerBackgroundService> logger,
         IMailer mailer,
-        IMailDeliveryReporter reporter) : BackgroundService
+        IMailDeliveryReporter reporter,
+        IBus bus) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         => await ProcessMailQueue(stoppingToken);
@@ -41,14 +43,7 @@ namespace PersonalFinances.Application.Mail
                     Account? account = await repository.GetEntityByIdAsync(accountMail.Id);
                     if (account is null) continue;
                     accountMail = DtoMapping.MapAccountToMailAccount(account);
-                    try
-                    {
-                        await mailer.SendAccountCreatedConfirmationAsync(accountMail, stoppingToken);
-                        await reporter.ReportSuccessAsync(accountMail.Id);
-                    }catch(Exception)
-                    {
-                        throw;
-                    }
+                        await bus.PubSub.PublishAsync(accountMail, stoppingToken);
                 }
                 catch (Exception ex)
                 {

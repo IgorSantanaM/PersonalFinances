@@ -7,7 +7,7 @@
         </mj-text>
         <mj-divider border-color="#cccccc" />
         <mj-text font-size="16px" color="#555555" font-family="Helvetica, Arial, sans-serif">
-          We're excited to have you on board. Thank you again for creating the account. @Model.Name
+          We're excited to have you on board. Thank you again for creating the account.
         </mj-text>
       </mj-column>
     </mj-section>
