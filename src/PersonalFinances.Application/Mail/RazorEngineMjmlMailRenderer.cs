@@ -40,7 +40,6 @@ namespace PersonalFinances.Application.Mail
         {
             if (!_razor.IsTemplateCached(TEMPLATE_KEY, typeof(AccountForSendindMailDto))) CacheTemplate();
             return _razor.Run(TEMPLATE_KEY, typeof(AccountForSendindMailDto), model);
-            //TODO: Fix this
         }
         private void CacheTemplate()
         {
@@ -51,7 +50,7 @@ namespace PersonalFinances.Application.Mail
 
         private string CompileMjml()
         {
-            var mjmlSource = _templates.OrderConfirmationMjml;
+            string mjmlSource = _templates.OrderConfirmationMjml;
             var (mjmlOutput, errors) = _mjml.Render(mjmlSource, options);
             if (errors.Any()) throw new(errors.First().Error);
             mjmlOutput = EscapeCssRulesInRazorTemplate(mjmlOutput);

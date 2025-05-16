@@ -26,7 +26,7 @@ namespace PersonalFinances.Application.Mail
             var bb = new BodyBuilder
             {
                 HtmlBody = htmlRenderer.RenderHtmlEmail(accountSendingMail)
-                //HtmlBody = $"<h1> Thank you for creating the account! {accountSendingMail} </h1>"
+                //HtmlBody = $"<h1> Thank you for creating the account! {accountSendingMail.Name} </h1>"
             };
 
             message.Body = bb.ToMessageBody();

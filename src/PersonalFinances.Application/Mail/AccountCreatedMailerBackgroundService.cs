@@ -14,7 +14,6 @@ namespace PersonalFinances.Application.Mail
         IMailQueue queue,
         IServiceProvider services,
         ILogger<AccountCreatedMailerBackgroundService> logger,
-        IMailer mailer,
         IMailDeliveryReporter reporter,
         IBus bus) : BackgroundService
     {

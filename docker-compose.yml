@@ -9,9 +9,22 @@ services:
     environment:
       - MONGO_URI=mongodb://mongodb:27017 
       - REDIS_HOST=redis:6379
+      - RABBITMQ_HOST=mailrabbit
     depends_on:
       - mongodb
       - redis
+      - rabbitmq 
+    networks:
+      - app_network
+
+  personalfinances.mailsender:
+    build:
+      context: .
+      dockerfile: src/PersonalFinances.MailSender/Dockerfile
+    environment:
+      - RABBITMQ_HOST=mailrabbit
+    depends_on:
+      - rabbitmq
     networks:
       - app_network
 
@@ -27,23 +40,22 @@ services:
     image: redis:latest
     container_name: redis
     ports:
-     - "6379:6379"
+      - "6379:6379"
     networks:
-    - app_network
+      - app_network
 
   rabbitmq:
     image: rabbitmq:3-management
     container_name: mailrabbit
     hostname: mailrabbit
     environment:
-        - RABBITMQ_DEFAULT_VHOST=mailrabbit
+      - RABBITMQ_DEFAULT_VHOST=mailrabbit
     ports:
-        - "5672:5672"       
-        - "15672:15672"     
+      - "5672:5672"
+      - "15672:15672"
     networks:
-        - app_network
+      - app_network
 
 networks:
   app_network:
     driver: bridge
-

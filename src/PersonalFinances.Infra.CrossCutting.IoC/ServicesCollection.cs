@@ -60,8 +60,8 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
         {
             var jsonOptions = new JsonSerializerOptions()
             .ConfigureForNodaTime(DateTimeZoneProviders.Tzdb);
-            IBus? bus = RabbitHutch.CreateBus("host=mailrabbit", options =>
-            options.EnableSystemTextJson(jsonOptions));
+            IBus? bus = RabbitHutch.CreateBus("host=rabbitmq;username=guest;password=guest;virtualHost=mailrabbit", options =>
+                options.EnableSystemTextJson(jsonOptions));
             services.AddSingleton(bus);
 
             services.AddSingleton(_ => RazorEngineService.Create());

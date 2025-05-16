@@ -64,7 +64,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6- MailSender", "6- MailSender", "{9BFD72CE-0A34-40AF-9627-51BA96772BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.MailSender", "..\PersonalFinances.MailSender\PersonalFinances.MailSender.csproj", "{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinances.MailSender", "src\PersonalFinances.MailSender\PersonalFinances.MailSender.csproj", "{01C41A41-53D2-4A1F-9AA1-98B7F4E45107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,10 +108,10 @@ Global
 		{09AB7D28-678D-4828-9BD9-5D11AFA2F3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09AB7D28-678D-4828-9BD9-5D11AFA2F3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09AB7D28-678D-4828-9BD9-5D11AFA2F3BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C41A41-53D2-4A1F-9AA1-98B7F4E45107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C41A41-53D2-4A1F-9AA1-98B7F4E45107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C41A41-53D2-4A1F-9AA1-98B7F4E45107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C41A41-53D2-4A1F-9AA1-98B7F4E45107}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,7 +129,7 @@ Global
 		{A3595AA7-F7E6-4B4C-9009-A4BAA75835B3} = {8B6583DF-8A88-4819-A9D8-5B83DB359659}
 		{38FB3360-64C2-4191-B026-C999EB99798B} = {1DC55EAC-FC63-446B-AD7E-D815804446F3}
 		{E390020B-8496-4663-A794-5F5789065DFD} = {777C6F1B-A7A7-4AA5-A5A4-DF5605F0D699}
-		{9CBA0DD9-4C65-47EA-8519-B0BD695BB2C3} = {9BFD72CE-0A34-40AF-9627-51BA96772BD0}
+		{01C41A41-53D2-4A1F-9AA1-98B7F4E45107} = {9BFD72CE-0A34-40AF-9627-51BA96772BD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82402FA9-44DC-41B7-8731-7920B53BA95B}

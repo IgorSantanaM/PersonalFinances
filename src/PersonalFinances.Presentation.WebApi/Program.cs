@@ -25,9 +25,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 services.AddSignalR();
 
+services.AddServices();
+
 services.AddMailServices();
-
-
 
 var smtpSettings = builder.Configuration.GetSection("Smtp").Get<SmtpSettings>() ?? new SmtpSettings();
 
