@@ -5,19 +5,19 @@ namespace PersonalFinances.Application.Mail
 {
     public class AccountCreatedMailQueue : IMailQueue
     {
-        private readonly Channel<AccountForSendindMailDto> channel;
+        private readonly Channel<AccountForSendingMailDto> channel;
         public AccountCreatedMailQueue(int capacity = 100)
         {
             var options = new BoundedChannelOptions(capacity)
             {
                 FullMode = BoundedChannelFullMode.Wait
             };
-            channel = Channel.CreateBounded<AccountForSendindMailDto>(options);
+            channel = Channel.CreateBounded<AccountForSendingMailDto>(options);
         }
-        public async Task AddMailToQueue(AccountForSendindMailDto data)
+        public async Task AddMailToQueue(AccountForSendingMailDto data)
             => await channel.Writer.WriteAsync(data);
 
-        public async Task<AccountForSendindMailDto> FetchMailFromQueueAsync(CancellationToken token)
+        public async Task<AccountForSendingMailDto> FetchMailFromQueueAsync(CancellationToken token)
             => await channel.Reader.ReadAsync(token);
     }
 }

@@ -8,6 +8,6 @@ namespace PersonalFinances.Application.Mail
 {
     public interface IMailTemplateProvider
     {
-        string OrderConfirmationMjml { get; }
+        string AccountCreatedConfirmation { get; }
     }
 }

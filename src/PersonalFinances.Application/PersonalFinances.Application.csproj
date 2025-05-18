@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Templates\Mail\AccountCreatedConfirmation.csmjml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Templates\Mail\AccountCreatedConfirmation.csmjml" />
   </ItemGroup>
 
@@ -25,6 +21,8 @@
 	  <PackageReference Include="mjml.net" Version="4.8.0" />
 	  <PackageReference Include="NodaTime" Version="3.2.2" />
 	  <PackageReference Include="RazorEngine.NetCore" Version="3.1.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
+	  <PackageReference Include="RazorLight" Version="2.3.1" />
 	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
   </ItemGroup>
 

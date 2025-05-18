@@ -1,15 +1,37 @@
 <mjml>
-  <mj-body background-color="#f0f0f0">
-    <mj-section>
-      <mj-column>
-        <mj-text font-size="20px" color="#333333" font-family="Helvetica, Arial, sans-serif" align="center">
-          Thank you for creating your account!
-        </mj-text>
-        <mj-divider border-color="#cccccc" />
-        <mj-text font-size="16px" color="#555555" font-family="Helvetica, Arial, sans-serif">
-          We're excited to have you on board. Thank you again for creating the account.
-        </mj-text>
-      </mj-column>
-    </mj-section>
-  </mj-body>
+	<mj-head>
+		<mj-title>Welcome to Our Service</mj-title>
+		<mj-preview>Your account has been successfully created</mj-preview>
+		<mj-style inline="inline">
+			.header-text {
+			font-size: 24px;
+			font-weight: bold;
+			color: #333333;
+			}
+			.body-text {
+			font-size: 16px;
+			color: #555555;
+			}
+		</mj-style>
+	</mj-head>
+	<mj-body background-color="#f4f4f4">
+		<mj-section background-color="#ffffff" padding="20px">
+			<mj-column>
+				<mj-text align="center" css-class="header-text">
+					Welcome, @Model.Name!
+				</mj-text>
+				<mj-divider border-color="#F45E43" border-width="2px" />
+				<mj-text css-class="body-text">
+					Your account has been successfully created. We’re excited to have you on board!
+				</mj-text>
+				<mj-text css-class="body-text">
+					You can now log in and start exploring all the features we have to offer.
+				</mj-text>
+				<mj-text font-size="14px" color="#999999">
+					If you did not sign up for this account, please ignore this message or contact our support team.
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+	</mj-body>
 </mjml>

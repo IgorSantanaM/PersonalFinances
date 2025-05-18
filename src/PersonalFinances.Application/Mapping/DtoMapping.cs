@@ -8,9 +8,9 @@ namespace PersonalFinances.Application.Mapping
 {
     public static class DtoMapping
     {
-        public static AccountForSendindMailDto MapAccountToMailAccount(this Account account)
+        public static AccountForSendingMailDto MapAccountToMailAccount(this Account account)
         {
-            return new AccountForSendindMailDto
+            return new AccountForSendingMailDto
             {
                 Id = account.Id,
                 Name = account.Name,

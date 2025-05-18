@@ -6,7 +6,7 @@ using PersonalFinances.Application.DTOs;
 using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 
 namespace PersonalFinances.Services.Profiles;
-    public class AccountProfile : Profile
+public class AccountProfile : Profile
     {
         public AccountProfile()
         {
@@ -18,7 +18,7 @@ namespace PersonalFinances.Services.Profiles;
 
             CreateMap<AccountForCreationDto, AccountDto>();
 
-            CreateMap<AccountForSendindMailDto, AccountForCreationDto>().ReverseMap();
+            CreateMap<AccountForSendingMailDto, AccountForCreationDto>().ReverseMap();
 
             CreateMap<Account, AccountDocument>().ReverseMap();
 

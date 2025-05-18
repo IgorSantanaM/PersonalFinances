@@ -1,21 +1,26 @@
 ﻿using Mjml.Net;
 using PersonalFinances.Application.DTOs;
-using PersonalFinances.Domain.Accounts;
 using RazorEngine.Templating;
+using RazorLight;
+using System.Text.RegularExpressions;
 
 namespace PersonalFinances.Application.Mail
 {
-    public class RazorEngineMjmlMailRenderer : IHtmlMailRenderer
+    public class RazorLightMjmlMailRenderer : IHtmlMailRenderer
     {
         private string TEMPLATE_KEY = "AccountCreatedConfirmation";
-        private readonly IRazorEngineService _razor;
+        private readonly RazorLightEngine _razor;
         private readonly IMjmlRenderer _mjml;
         private readonly IMailTemplateProvider _templates;
         private readonly MjmlOptions options = new();
 
-        public RazorEngineMjmlMailRenderer(IRazorEngineService razor, IMjmlRenderer mjml, IMailTemplateProvider templates)
+        public RazorLightMjmlMailRenderer(IRazorEngineService razor, IMjmlRenderer mjml, IMailTemplateProvider templates)
         {
-            _razor = razor;
+            _razor = new RazorLightEngineBuilder()
+                .UseMemoryCachingProvider()
+                .EnableDebugMode()
+                .Build();
+
             _mjml = mjml;
             _templates = templates;
         }
@@ -30,31 +35,33 @@ namespace PersonalFinances.Application.Mail
 
         private string EscapeCssRulesInRazorTemplate(string mjmlOutput) =>
         cssAtRules.Aggregate(mjmlOutput,
-            (current, rule) => current.Replace($"@{rule}", $"@@{rule}"));
+        (current, rule) => Regex.Replace(current, $@"(?<!@)@{rule}\b", $"@@{rule}"));
 
         private string EscapeCssFontWeightsInRazorTemplate(string mjmlOutput) =>
         mjmlOutput.Replace(":wght@", ":wght@@");
         #endregion
 
-        public string RenderHtmlEmail(AccountForSendindMailDto model)
+        public string RenderHtmlEmail(AccountForSendingMailDto model)
         {
-            if (!_razor.IsTemplateCached(TEMPLATE_KEY, typeof(AccountForSendindMailDto))) CacheTemplate();
-            return _razor.Run(TEMPLATE_KEY, typeof(AccountForSendindMailDto), model);
+            var templateContent = CompileMjml();
+            return _razor.CompileRenderStringAsync(TEMPLATE_KEY, templateContent, model)
+                .GetAwaiter()
+                .GetResult();
         }
-        private void CacheTemplate()
-        {
-            string razorSource = CompileMjml();
-            _razor.AddTemplate(TEMPLATE_KEY, razorSource);
-            _razor.Compile(TEMPLATE_KEY, typeof(AccountForSendindMailDto));
-        }
-
         private string CompileMjml()
         {
-            string mjmlSource = _templates.OrderConfirmationMjml;
+            var mjmlSource = _templates.AccountCreatedConfirmation;
             var (mjmlOutput, errors) = _mjml.Render(mjmlSource, options);
-            if (errors.Any()) throw new(errors.First().Error);
+
+            if (errors.Any())
+            {
+                var allErrors = string.Join("\n", errors.Select(e => $"Line {e.Position}: {e.Error}"));
+                throw new Exception($"Erro ao compilar MJML:\n{allErrors}");
+            }
+
             mjmlOutput = EscapeCssRulesInRazorTemplate(mjmlOutput);
             mjmlOutput = EscapeCssFontWeightsInRazorTemplate(mjmlOutput);
+
             return mjmlOutput;
         }
     }

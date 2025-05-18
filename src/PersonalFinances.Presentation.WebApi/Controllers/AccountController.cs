@@ -37,7 +37,7 @@ namespace PersonalFinances.Services.Controllers
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
-            AccountForSendindMailDto mailAccount = new()
+            AccountForSendingMailDto mailAccount = new()
             {
                 Id = id,
                 Name = accountForCreationDto.Name,

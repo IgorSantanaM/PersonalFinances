@@ -4,7 +4,7 @@ namespace PersonalFinances.Application.Mail
 {
     public interface IMailQueue
     {
-        public Task AddMailToQueue(AccountForSendindMailDto data);
-        public Task<AccountForSendindMailDto> FetchMailFromQueueAsync(CancellationToken token);
+        public Task AddMailToQueue(AccountForSendingMailDto data);
+        public Task<AccountForSendingMailDto> FetchMailFromQueueAsync(CancellationToken token);
     }
 }

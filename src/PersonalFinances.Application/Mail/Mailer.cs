@@ -2,13 +2,6 @@
 using Microsoft.Extensions.Logging;
 using MimeKit;
 using PersonalFinances.Application.DTOs;
-using PersonalFinances.Domain.Accounts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonalFinances.Application.Mail
 {
@@ -17,7 +10,7 @@ namespace PersonalFinances.Application.Mail
         ILogger<Mailer> logger) : IMailer
     {
 
-        public MimeMessage CreateMessage(AccountForSendindMailDto accountSendingMail)
+        public MimeMessage CreateMessage(AccountForSendingMailDto accountSendingMail)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Igor", "igor@kinsoftware.dev"));
@@ -33,7 +26,7 @@ namespace PersonalFinances.Application.Mail
             return message;
         }
 
-        public async Task SendAccountCreatedConfirmationAsync(AccountForSendindMailDto accountSendingMail, CancellationToken token)
+        public async Task SendAccountCreatedConfirmationAsync(AccountForSendingMailDto accountSendingMail, CancellationToken token)
         {
             var message = CreateMessage(accountSendingMail);
 
@@ -41,7 +34,7 @@ namespace PersonalFinances.Application.Mail
             {
                 await sender.SendAsync(message, token);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex, "Error sending email for {AccountId}.", accountSendingMail.Id);
                 throw;

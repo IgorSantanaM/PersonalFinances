@@ -12,14 +12,14 @@ public class MailSenderHostedService(IBus bus,
         ILogger<MailSenderHostedService> logger) : IHostedService
 {
     public async Task StartAsync(CancellationToken cancellationToken)
-       => await bus.PubSub.SubscribeAsync<AccountForSendindMailDto>(
+       => await bus.PubSub.SubscribeAsync<AccountForSendingMailDto>(
             "accountCreated",
             async data => await SendMailAsync(data, cancellationToken));
 
     public Task StopAsync(CancellationToken cancellationToken)
         => Task.CompletedTask;
 
-    private async Task SendMailAsync(AccountForSendindMailDto data, CancellationToken token)
+    private async Task SendMailAsync(AccountForSendingMailDto data, CancellationToken token)
     {
         logger.LogDebug("received mail for sending: {AccountId}", data.Id);
         try

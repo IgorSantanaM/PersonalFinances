@@ -19,7 +19,7 @@ namespace PersonalFinances.Domain.Accounts
 
         public AccountType AccountType { get; set; }
 
-        public int? Balance { get; set; }
+        public int Balance { get; set; }
 
         public bool Reconcile { get; set; }
 

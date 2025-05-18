@@ -10,6 +10,6 @@ namespace PersonalFinances.Application.Mail
 {
     public interface IMailer
     {
-        Task SendAccountCreatedConfirmationAsync(AccountForSendindMailDto accountSendingMail, CancellationToken token);
+        Task SendAccountCreatedConfirmationAsync(AccountForSendingMailDto accountSendingMail, CancellationToken token);
     }
 }

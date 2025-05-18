@@ -22,7 +22,7 @@ namespace PersonalFinances.Application.Mail
 
         private async Task ProcessMailQueue(CancellationToken stoppingToken)
         {
-            AccountForSendindMailDto accountMail;
+            AccountForSendingMailDto accountMail;
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
@@ -41,12 +41,19 @@ namespace PersonalFinances.Application.Mail
                 {
                     Account? account = await repository.GetEntityByIdAsync(accountMail.Id);
                     if (account is null) continue;
-                    accountMail = DtoMapping.MapAccountToMailAccount(account);
-                        await bus.PubSub.PublishAsync(accountMail, stoppingToken);
+                    var mailData = new AccountForSendingMailDto()
+                    {   
+                        Id = account.Id,
+                        Name = account.Name,
+                        AccountType = account.AccountType,
+                        Balance = account.Balance,
+                        Reconcile = account.Reconcile
+                    };
+                    await bus.PubSub.PublishAsync(mailData, stoppingToken);
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, "Error sending email for {OrderId}.", accountMail.Id);
+                    logger.LogError(ex, "Error sending email for {AccountId}.", accountMail.Id);
                     await reporter.ReportFailureAsync(accountMail.Id, ex.Message);
                 }
             }

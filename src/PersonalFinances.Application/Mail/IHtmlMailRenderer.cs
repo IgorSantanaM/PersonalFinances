@@ -5,6 +5,6 @@ namespace PersonalFinances.Application.Mail
 {
     public interface IHtmlMailRenderer
     {
-        string RenderHtmlEmail(AccountForSendindMailDto accountSendingMail);
+        string RenderHtmlEmail(AccountForSendingMailDto accountSendingMail);
     }
 }

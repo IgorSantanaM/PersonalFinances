@@ -64,10 +64,11 @@ namespace PersonalFinances.Infra.CrossCutting.IoC
                 options.EnableSystemTextJson(jsonOptions));
             services.AddSingleton(bus);
 
+
             services.AddSingleton(_ => RazorEngineService.Create());
             services.AddSingleton<IMailTemplateProvider>(new EmbeddedResourceMailTemplateProvider());
             services.AddSingleton<IMjmlRenderer>(_ => new MjmlRenderer());
-            services.AddSingleton<IHtmlMailRenderer, RazorEngineMjmlMailRenderer>();
+            services.AddSingleton<IHtmlMailRenderer, RazorLightMjmlMailRenderer>();
 
             return services;
         }
