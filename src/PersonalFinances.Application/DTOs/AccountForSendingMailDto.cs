@@ -9,5 +9,6 @@ namespace PersonalFinances.Application.DTOs
         public AccountType AccountType { get; set; }    
         public int Balance { get; set; }
         public bool Reconcile { get; set; }
+        public IList<CategoryDto>? Categories { get; set; }
     }
 }

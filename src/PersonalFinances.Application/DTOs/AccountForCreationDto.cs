@@ -14,5 +14,6 @@ namespace PersonalFinances.Application.DTOs
         public int InitialBalance { get; set; }
 
         public bool Reconcile { get; set; }
+        public List<CategoryDto>? Categories { get; set; }
     }
 }

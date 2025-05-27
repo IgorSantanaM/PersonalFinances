@@ -7,22 +7,28 @@ using PersonalFinances.Application.Features.Accounts.Commands.CreateAccount;
 
 namespace PersonalFinances.Services.Profiles;
 public class AccountProfile : Profile
+{
+    public AccountProfile()
     {
-        public AccountProfile()
-        {
-            CreateMap<Account, AccountDto>();
+        CreateMap<Account, AccountDto>();
 
-            CreateMap<AccountForCreationDto, Account>().ReverseMap();
+        CreateMap<AccountForCreationDto, Account>().ReverseMap();
 
-            CreateMap<AccountForCreationDto, CreateAccountCommand>().ReverseMap();
+        CreateMap<AccountForCreationDto, CreateAccountCommand>().ReverseMap();
 
-            CreateMap<AccountForCreationDto, AccountDto>();
+        CreateMap<AccountForCreationDto, AccountDto>();
 
-            CreateMap<AccountForSendingMailDto, AccountForCreationDto>().ReverseMap();
+        CreateMap<AccountForSendingMailDto, AccountForCreationDto>().ReverseMap();
 
-            CreateMap<Account, AccountDocument>().ReverseMap();
+        CreateMap<Account, AccountDocument>().ReverseMap();
 
-            CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();
+        CreateMap<Task<IEnumerable<AccountDto>>, Task<IEnumerable<Entity<Account>>>>();
 
-        }
+
+        CreateMap<AccountForCreationDto, CreateAccountCommand>()
+            .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories));
+        CreateMap<CreateAccountCommand, AccountForCreationDto>()
+            .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories));
+
     }
+}

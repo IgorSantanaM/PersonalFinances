@@ -37,14 +37,17 @@ namespace PersonalFinances.Services.Controllers
         public async Task<IActionResult> CreateAccount([FromBody] AccountForCreationDto accountForCreationDto)
         {
             var id = await _accountRepository.CreateAccountAsync(accountForCreationDto);
+
             AccountForSendingMailDto mailAccount = new()
             {
                 Id = id,
                 Name = accountForCreationDto.Name,
                 AccountType = accountForCreationDto.AccountType,
                 Balance = accountForCreationDto.InitialBalance,
-                Reconcile = accountForCreationDto.Reconcile
+                Reconcile = accountForCreationDto.Reconcile,
+                Categories = accountForCreationDto.Categories
             };
+
             await _queue.AddMailToQueue(mailAccount);
             return CreatedAtAction(nameof(GetAccount), new { accountId = id }, accountForCreationDto);
         }
@@ -55,6 +58,7 @@ namespace PersonalFinances.Services.Controllers
             await _accountRepository.DeleteAccountAsync(accountId);
             return NoContent();
         }
+
         [HttpPut("update/{accountId}", Name = "updateaccount")]
         public async Task<IActionResult> UpdateAccount(Guid accountId, AccountForUpdatingDto accountForUpdatingDto)
         {

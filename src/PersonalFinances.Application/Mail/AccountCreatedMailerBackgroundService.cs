@@ -26,7 +26,7 @@ namespace PersonalFinances.Application.Mail
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
-                {
+               {
                     accountMail = await queue.FetchMailFromQueueAsync(stoppingToken);
                 }
                 catch (OperationCanceledException)

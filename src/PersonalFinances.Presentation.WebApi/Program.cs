@@ -6,6 +6,7 @@ using PersonalFinances.Infra.CrossCutting.IoC;
 using PersonalFinances.Infra.Data;
 using PersonalFinances.Infra.Data.Mongo.Configurations;
 using PersonalFinances.Services.Profiles;
+using PersonalFinances.Services.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +73,7 @@ if (app.Environment.IsDevelopment())
 
     app.UseDeveloperExceptionPage();
 }
+
 
 if (app.Environment.IsProduction())
 {

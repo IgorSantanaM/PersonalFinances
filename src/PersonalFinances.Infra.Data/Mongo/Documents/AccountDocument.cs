@@ -19,13 +19,16 @@ namespace PersonalFinances.Infra.Data.Mongo.Documents
 
         public bool Reconcile { get; set; }
 
-        public AccountDocument(string name, int balance, bool reconcile, AccountType accountType)
+        public List<Category>? Categories { get; set; }
+
+        public AccountDocument(string name, int balance, bool reconcile, AccountType accountType, List<Category>? categories)
         {
             Id = Guid.NewGuid();
             Name = name;
             AccountType = accountType;
             Balance = balance;
             Reconcile = reconcile;
+            Categories = categories;
         }
         
         public AccountDocument()

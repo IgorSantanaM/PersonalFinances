@@ -25,7 +25,6 @@ namespace PersonalFinances.Application.Mail
             logger.LogTrace("done");
             return result;
         }
-
         public async Task<string> SendAsync(MimeMessage message, CancellationToken token)
         {
             await semaphore.WaitAsync(token);

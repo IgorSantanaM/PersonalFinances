@@ -19,7 +19,7 @@ namespace PersonalFinances.Application.Features.Accounts.Commands.CreateAccount
 
         public async Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
-            Account account = new(request.Name, request.AccountType, request.InitialBalance, request.Reconcile);
+            Account account = new(request.Name, request.AccountType, request.InitialBalance, request.Reconcile, request.Categories);
 
             if (!account.IsValidate())
             {

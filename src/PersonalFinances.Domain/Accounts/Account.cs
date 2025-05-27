@@ -1,18 +1,20 @@
 ﻿    using FluentValidation;
 using PersonalFinances.Domain.Core.Model;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace PersonalFinances.Domain.Accounts
 {
     public class Account : Entity<Account>
     {
-        public Account(string name, AccountType accountType, int balance, bool reconcile)
+        public Account(string name, AccountType accountType, int balance, bool reconcile, List<Category>? categories)
         {
             Id = Guid.NewGuid();
             Name = name;
             Balance = balance;
             AccountType = accountType;
             Reconcile = reconcile;
+            Categories = categories;
         }
 
         public string Name { get; set; }
@@ -23,8 +25,8 @@ namespace PersonalFinances.Domain.Accounts
 
         public bool Reconcile { get; set; }
 
-        public ICollection<Category> Categories = new List<Category>();
-        
+        public List<Category>? Categories { get; set; } = new();
+
         public override bool IsValidate()
         {
             ValidateAccount();
@@ -55,9 +57,8 @@ namespace PersonalFinances.Domain.Accounts
         private void BalanceValidation()
         {
             RuleFor(c => c.Balance)
-                .InclusiveBetween(0, 2500000)
+                .InclusiveBetween(1, 2500000)
                 .WithMessage("The initial balance should be between 1 and 2.500.000");
         }
-
     }
 }

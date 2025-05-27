@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using PersonalFinances.Domain.Interfaces;
 using PersonalFinances.Infra.Data.Mongo.Documents;
 using PersonalFinances.Domain.Core.Model;
+using PersonalFinances.Domain.Accounts;
 
 namespace PersonalFinances.Infra.Data.Mongo.Repository
 {
@@ -15,6 +16,7 @@ namespace PersonalFinances.Infra.Data.Mongo.Repository
         private readonly IMapper _mapper;
 
         private readonly IMongoRepository<T> _mongoRepository;
+
 
         protected Repository(IMapper mapper, IMongoRepository<T> mongoRepository)
         {
@@ -37,7 +39,6 @@ namespace PersonalFinances.Infra.Data.Mongo.Repository
 
             return accountList;
         }
-
         public virtual async Task<K?> GetEntityByIdAsync(Guid id)
         {
             T? document = await _mongoRepository.FindByIdAsync(id);    
@@ -49,7 +50,6 @@ namespace PersonalFinances.Infra.Data.Mongo.Repository
 
             return _mapper.Map<K>(document);
         }
-
         public virtual async Task RemoveAsync(Guid id)
         {
             await _mongoRepository.DeleteByIdAsync(id);
